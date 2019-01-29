@@ -5,28 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Joystick;
 
-// Button intakeButton = new Button(OI.intakeButton) 
+/**
+ * Add your docs here.
+ */
+public class cmdOpenClose extends Subsystem {
+  public cmdOpenClose() {
 
-// Button ballLevel1Button = new Button(OI.intakeButton);
-// Button ballLevel2Button = new Button(OI.intakeButton);
-// Button ballLevel3Button = new Button(OI.intakeButton);
-// Button ballPickUpButton = new Button(OI.intakeButton);
-
-// Button ballLevel1Button.set(700);
-// Button ballLevel2Button.set();
-// Button ballLevel3Button.set();
-// Button ballPickUpButton.set();
-
-public class Elevator extends Subsystem {
-
-public Joystick operator     = new Joystick(1);
-
-double elevatorAxis = operator.getRawAxis(1); //Left Thumb Stick ~ Y axis ~+/- input
+  }
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
 
   @Override
   public void initDefaultCommand() {

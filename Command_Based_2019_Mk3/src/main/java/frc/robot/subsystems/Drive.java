@@ -7,22 +7,31 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
-import frc.robot.OI.*;
+import java.sql.Driver;
 
-import edu.wpi.first.wpilibj.command.*;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
+
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
- 
-import com.ctre.phoenix.motorcontrol.can.*;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
  */
+
 public class Drive extends Subsystem {
 
+  public Joystick driver       = new Joystick(0);
+
+ //public Joystick driver = new Joystick(OI.driver);
+
+  public double driverAxis1 = driver.getRawAxis(1);  // Left Thumb Stick  ~ Y axis ~ +/- input
+  public double driverAxis5 = driver.getRawAxis(5);  // Right Thumb Stick ~ Y axis ~ +/- input
+  
+
+ 
   // Drive base motors
   WPI_VictorSPX leftMotorA           = new WPI_VictorSPX(RobotMap.leftMotorA);
   WPI_VictorSPX leftMotorB           = new WPI_VictorSPX(RobotMap.leftMotorB);
@@ -34,12 +43,38 @@ public class Drive extends Subsystem {
   SpeedControllerGroup rightDriveBase = new SpeedControllerGroup(rightMotorA, rightMotorB);
 
   // Differential Drive
-  public DifferentialDrive driveBase = new DifferentialDrive(leftDriveBase, rightDriveBase);
+  public DifferentialDrive driveBase;
+
+  //
+
+  public Drive() 
+  {
+    leftMotorA.setInverted(false);
+    leftMotorB.setInverted(false);
+    rightMotorA.setInverted(false);
+    rightMotorB.setInverted(false);
+    driveBase = new DifferentialDrive(leftDriveBase, rightDriveBase);
+  }
+  public void driverJoystick(Joystick joystick, double speed) 
+  {
+    driveBase.arcadeDrive(joystick.getY()*speed, joystick.getX()*speed);
+  }
+
+  public void autoDrive(double speed, double rotationSpeed)
+  {
+    driveBase.arcadeDrive(speed, rotationSpeed);
+  }
+
+  public void stop()
+  {
+    driveBase.stopMotor();
+  }
 
   @Override
   public void initDefaultCommand() 
   {
-    driveBase.tankDrive(OI.driver.Get, OI.driverAxis3);
+    //driveBase.tankDrive(  );
   }
   
 }
+ 

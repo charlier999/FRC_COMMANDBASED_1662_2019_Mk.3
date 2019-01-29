@@ -9,24 +9,47 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.Joystick;
+
+// Commmands
+import frc.robot.commands.cmdBallIntake;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-
+  
   // Joysticks
-  Joystick driver       = new Joystick(0);
-  Joystick operator     = new Joystick(1);
-  Joystick buttonPannel = new Joystick(2);
+  public Joystick driver       = new Joystick(0);
+  public Joystick operator     = new Joystick(1);
+  public Joystick buttonPannel = new Joystick(2);
 
   // Driver Buttons
-  Button shifterButton  = new JoystickButton(driver, 1);
+  public Button shifterButton  = new JoystickButton(driver, 1);
   
-  Button intakeButton   = new JoystickButton(driver, 2);
-  Button outakeButton   = new JoystickButton(driver, 3);
+  public Button intakeButton   = new JoystickButton(driver, 2);
+  // intakeButton.whileHeld(Ball_Intake);
 
-  Button gripperToggle  = new JoystickButton(driver, 5);
+  public Button outakeButton   = new JoystickButton(driver, 3);
+
+  public Button gripperToggle  = new JoystickButton(driver, 5);
+
+
+
+  public Joystick getDriverJoystick()
+  {
+    return driver;
+  }
+
+  public Joystick getOperatorJoystick()
+  {
+    return operator;
+  }
+
+  public OI()
+  {
+    intakeButton.whileHeld(new cmdBallIntake(true, 1));
+    outakeButton.whileHeld(new cmdBallIntake(false, 1));
+  }
 
   // Operator Buttons
 
@@ -47,24 +70,25 @@ public class OI {
   Button climberButton = new JoystickButton(buttonPannel, 1);
   */
 
+ /* 
   //Drive Controller Axis's
-  double driverAxis0;  // Left Thumb Stick  ~ X axis ~ +/- input
-  double driverAxis1;  // Left Thumb Stick  ~ Y axis ~ +/- input
-  double driverAxis2 = driver.getRawAxis(2);  // Left Trigger               ~ only positive input
-  double driverAxis3 = driver.getRawAxis(3);  // Right Trigger              ~ only positive input
-  double driverAxis4 = driver.getRawAxis(4);  // Right Thumb Stick ~ X axis ~ +/- input
-  double driverAxis5 = driver.getRawAxis(5);  // Right Thumb Stick ~ Y axis ~ +/- input
+ public double driverAxis0 = driver.getRawAxis(0);  // Left Thumb Stick  ~ X axis ~ +/- input
+  public double driverAxis1 = driver.getRawAxis(1);  // Left Thumb Stick  ~ Y axis ~ +/- input
+  public double driverAxis2 = driver.getRawAxis(2);  // Left Trigger               ~ only positive input
+  public double driverAxis3 = driver.getRawAxis(3);  // Right Trigger              ~ only positive input
+  public double driverAxis4 = driver.getRawAxis(4);  // Right Thumb Stick ~ X axis ~ +/- input
+  public double driverAxis5 = driver.getRawAxis(5);  // Right Thumb Stick ~ Y axis ~ +/- input
   
 //  driverAxis0 = driver.getRawAxis(0);
 //  driverAxis1 = driver.getRawAxis(1);
 
   //Operator Controller Axis's
-  double operatorAxis0;  // Left Thumb Stick  ~ X axis ~ +/- input
-  double operatorAxis1;  // Left Thumb Stick  ~ Y axis ~ +/- input
-  double operatorAxis2;  // Left Trigger               ~ only positive input
-  double operatorAxis3;  // Right Trigger              ~ only positive input
-  double operatorAxis4;  // Right Thumb Stick ~ X axis ~ +/- input
-  double operatorAxis5;  // Right Thumb Stick ~ Y axis ~ +/- input
+  // public double operatorAxis0;  // Left Thumb Stick  ~ X axis ~ +/- input
+  // public double operatorAxis1;  // Left Thumb Stick  ~ Y axis ~ +/- input
+  // public double operatorAxis2;  // Left Trigger               ~ only positive input
+  // public double operatorAxis3;  // Right Trigger              ~ only positive input
+  // public double operatorAxis4;  // Right Thumb Stick ~ X axis ~ +/- input
+  // public double operatorAxis5;  // Right Thumb Stick ~ Y axis ~ +/- input
 
  /* CREATING BUTTONS
   * One type of button is a joystick button which is any button on a

@@ -25,12 +25,8 @@ public class RobotMap {
   public static int rightMotorB = 4;
 
   //Intake Motors
-  public static int rightGripperMotor1 = 5;
-  public static int leftGripperMotor1 = 6; 
+  public static int GripperMotor = 5;
 
-  //Outake Motors
-  //public static int rightGripperMotor2 = 5;
-  //public static int leftGripperMotor2 = 6;
 
     //Elevator Motors
     public static int rightElevatorMotor1 = 7;
@@ -48,9 +44,9 @@ public class RobotMap {
     public static int wristMotor = 13;
 
     //Double Soleniods
-    DoubleSolenoid p_shifters = new DoubleSolenoid(1, 2);
-    DoubleSolenoid p_gripper = new DoubleSolenoid(3, 4); //Use to open and close grabber
-    DoubleSolenoid p_climberClaws = new DoubleSolenoid(5, 6);
+    public DoubleSolenoid p_shifters = new DoubleSolenoid(1, 2);
+    public DoubleSolenoid p_gripper = new DoubleSolenoid(3, 4); //Use to open and close grabber
+    public DoubleSolenoid p_climberClaws = new DoubleSolenoid(5, 6);
 
     //Encoders
     Encoder e_driveLeft;

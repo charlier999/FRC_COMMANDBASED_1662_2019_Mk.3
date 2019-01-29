@@ -12,17 +12,20 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.Compressor;
 
-//Subsystem Imports
+// Subsystem Imports
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Grabber;
 
+// Commands
+import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.cmdDrive;
+import frc.robot.commands.cmdBallIntake;
+//import frc.robot.commands.cmdOpenClose;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,13 +36,22 @@ import frc.robot.subsystems.Grabber;
  */
 public class Robot extends TimedRobot 
 {
+  // Subsystems
+
   public static ExampleSubsystem sub_subsystem = new ExampleSubsystem();
   public static Climber sub_climber = new Climber();
   public static Drive sub_drive = new Drive();
   public static Elevator sub_elevator = new Elevator();
   public static Grabber sub_grabber = new Grabber();
-  
   public static OI m_oi;
+
+  // Commands
+  Command cmdDrive = new cmdDrive();
+  Command cmdBallIntake = new cmdBallIntake();
+  // Command cmdOpenClose = new cmdOpenClose();
+
+
+
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -128,6 +140,8 @@ public class Robot extends TimedRobot
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    cmdDrive.start();
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
