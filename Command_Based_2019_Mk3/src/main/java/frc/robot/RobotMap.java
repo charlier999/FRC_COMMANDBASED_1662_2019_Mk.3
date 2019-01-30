@@ -9,6 +9,7 @@ package frc.robot;
 
 import java.beans.Encoder;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -27,34 +28,33 @@ public class RobotMap {
   //Intake Motors
   public static int GripperMotor = 5;
 
+  //Elevator Motors
+  public static int rightElevatorMotor = 6;
+  public static int leftElevatorMotor = 7;
 
-    //Elevator Motors
-    public static int rightElevatorMotor1 = 7;
-    public static int leftElevatorMotor2 = 8;
+  //Climber Linear Actuators
+  public static int rightLinearActuator = 9;
 
-    //Climber Linear Actuators
-    public static int rightLinearActuator = 9;
-    public static int leftLinearActuator = 10;
-
-    //Climber Wheel Motors
-    public static int rightClimberWheel = 11;
-    public static int leftClimberWheel = 12;    
+  //Climber Wheel Motors
+  public static int rightClimberWheel = 10;    
     
-    // Wrist Motor
-    public static int wristMotor = 13;
+  // Wrist Motor
+  public static int wristMotor = 11;
 
-    //Double Soleniods
-    public DoubleSolenoid p_shifters = new DoubleSolenoid(1, 2);
-    public DoubleSolenoid p_gripper = new DoubleSolenoid(3, 4); //Use to open and close grabber
-    public DoubleSolenoid p_climberClaws = new DoubleSolenoid(5, 6);
+  //Double Soleniods
+  public DoubleSolenoid p_shifters = new DoubleSolenoid(1, 2);
+  public DoubleSolenoid p_gripper = new DoubleSolenoid(3, 4); //Use to open and close grabber
+  public DoubleSolenoid p_climberClaws = new DoubleSolenoid(5, 6);
 
-    //Encoders
-    Encoder e_driveLeft;
-    Encoder e_driveRight;
-    Encoder e_elevatorDrum;
+  //Encoders
+  public Encoder e_driveLeft;
+  public Encoder e_driveRight;
+  public Encoder e_elevatorDrum;
 
+  public AnalogPotentiometer ap_gripper;
   
-  //This was causing a error on line 58 on the " ; " 
+
+
   /*
   e_driveLeft = new Encoder(0, false, Encoder.EncodingType.k4X);
   e_driveRight = new Encoder(1, false, Encoder.EncodingType.k4X);

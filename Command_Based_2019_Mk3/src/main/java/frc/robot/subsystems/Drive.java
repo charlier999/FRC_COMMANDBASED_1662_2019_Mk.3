@@ -55,9 +55,9 @@ public class Drive extends Subsystem {
     rightMotorB.setInverted(false);
     driveBase = new DifferentialDrive(leftDriveBase, rightDriveBase);
   }
-  public void driverJoystick(Joystick joystick, double speed) 
+  public void driverJoystick(Joystick joystick) 
   {
-    driveBase.arcadeDrive(joystick.getY()*speed, joystick.getX()*speed);
+    driveBase.tankDrive(joystick.getRawAxis(1), joystick.getRawAxis(5));
   }
 
   public void autoDrive(double speed, double rotationSpeed)

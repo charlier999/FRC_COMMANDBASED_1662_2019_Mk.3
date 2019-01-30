@@ -10,34 +10,33 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import frc.robot.RobotMap;
 // import frc.robot.OI;
 import edu.wpi.first.wpilibj.Joystick;
 // import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+
 
 
 public class Grabber extends Subsystem {
 
   public Joystick operator     = new Joystick(1);
   public DoubleSolenoid p_gripper = new DoubleSolenoid(3, 4);
+  public WPI_VictorSPX GripperMotor = new WPI_VictorSPX(RobotMap.GripperMotor);
+  public WPI_VictorSPX wristMotor = new WPI_VictorSPX(RobotMap.wristMotor);
+  public AnalogPotentiometer ap_gripper = new AnalogPotentiometer(1);
 
-  //Intake Motors
-  WPI_VictorSPX GripperMotor = new WPI_VictorSPX(RobotMap.GripperMotor);
-  // WPI_VictorSPX leftGripper1 = new WPI_VictorSPX(RobotMap.leftGripperMotor1);  
 
-  // SpeedControllerGroup gripperIntake = new SpeedControllerGroup(rightGripper1, leftGripper1);
-
-  public void intake(boolean direction, double speed)
+  public void intake(boolean intakeDirection, double intakeSpeed)
   {
-    speed = Math.abs(speed);
+    intakeSpeed = Math.abs(intakeSpeed);
     
-    if(direction)
+    if(intakeDirection)
     {
-      GripperMotor.set(speed);
+      GripperMotor.set(intakeSpeed);
     }else{
-      GripperMotor.set(-speed);
+      GripperMotor.set(-intakeSpeed);
     }
   }
 
@@ -45,19 +44,18 @@ public class Grabber extends Subsystem {
   {
     GripperMotor.stopMotor();
   }
-
-
-
-
-
-
-
-
   
-  
-  double wristAxis = operator.getRawAxis(5);    //Right Thumb Stick ~ Y axis ~ +/- input
+  public void wristActuation(boolean wristDirection, double wristSpeed)
+  {
+    wristSpeed = Math.abs(wristSpeed);
 
-  
+    if(wristDirection)
+    {
+      wristMotor.set(wristSpeed);
+    }else{
+      wristMotor.set(-wristSpeed);
+    }
+  }
 
   @Override
   public void initDefaultCommand() {

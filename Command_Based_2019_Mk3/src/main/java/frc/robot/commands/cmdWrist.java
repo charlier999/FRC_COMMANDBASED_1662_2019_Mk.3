@@ -7,61 +7,53 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
-public class cmdBallIntake extends Command 
+public class cmdWrist extends Command 
 {
 
-  Boolean direction;
-  Double speed;
-
-  public cmdBallIntake(boolean direction, double speed) 
+  Boolean wristDirection;
+  Double wristSpeed;
+  
+  public cmdWrist(boolean wristDirection, double wristSpeed) 
   {
     requires(Robot.sub_grabber);
 
-    this.direction = direction;
-    this.speed = speed;
+    this.wristSpeed = wristSpeed;
+    this.wristDirection = wristDirection;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
 
-  public cmdBallIntake() {
-}
+  public cmdWrist() {
+    
+  }
 
-// Called just before this Command runs the first time
+  // Called just before this Command runs the first time
   @Override
-  protected void initialize() 
-  {
-    Robot.sub_grabber.stop();
+  protected void initialize() {
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() 
-  {
-    Robot.sub_grabber.intake(direction, speed);
+  protected void execute() {
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() 
-  {
+  protected boolean isFinished() {
     return false;
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() 
-  {
-    Robot.sub_grabber.stop();
+  protected void end() {
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() 
-  {
-    Robot.sub_grabber.stop();
+  protected void interrupted() {
   }
 }

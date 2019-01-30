@@ -25,6 +25,7 @@ import frc.robot.subsystems.Grabber;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.cmdDrive;
 import frc.robot.commands.cmdBallIntake;
+import frc.robot.commands.cmdWrist;
 //import frc.robot.commands.cmdOpenClose;
 
 /**
@@ -48,6 +49,7 @@ public class Robot extends TimedRobot
   // Commands
   Command cmdDrive = new cmdDrive();
   Command cmdBallIntake = new cmdBallIntake();
+  Command cmdWrist = new cmdWrist();
   // Command cmdOpenClose = new cmdOpenClose();
 
 
@@ -141,6 +143,8 @@ public class Robot extends TimedRobot
     // continue until interrupted by another command, remove
     // this line or comment it out.
     cmdDrive.start();
+    cmdBallIntake.start();
+    cmdWrist.start();
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();

@@ -31,7 +31,7 @@ public class cmdDrive extends Command
   @Override
   protected void execute() 
   {
-    Robot.sub_drive.driverJoystick(Robot.m_oi.getDriverJoystick(), 1);
+    Robot.sub_drive.driverJoystick(Robot.m_oi.driver);
   }
 
   // Make this return true when this Command no longer needs to run execute()
