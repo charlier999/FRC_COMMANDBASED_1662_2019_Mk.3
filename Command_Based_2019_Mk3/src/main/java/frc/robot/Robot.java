@@ -25,8 +25,11 @@ import frc.robot.subsystems.Grabber;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.cmdDrive;
 import frc.robot.commands.cmdBallIntake;
-import frc.robot.commands.cmdWrist;
+import frc.robot.commands.cmdJoystickElevator;
+import frc.robot.commands.cmdJoystickElevatorTest;
+import frc.robot.commands.cmdWristJoystick;
 //import frc.robot.commands.cmdOpenClose;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -49,7 +52,9 @@ public class Robot extends TimedRobot
   // Commands
   Command cmdDrive = new cmdDrive();
   Command cmdBallIntake = new cmdBallIntake();
-  Command cmdWrist = new cmdWrist();
+  Command cmdJoystickElevator = new cmdJoystickElevator();
+  Command cmdJoystickElevatorTest = new cmdJoystickElevatorTest();
+  Command cmdWristJoystick = new cmdWristJoystick();
   // Command cmdOpenClose = new cmdOpenClose();
 
 
@@ -83,7 +88,8 @@ public class Robot extends TimedRobot
    * LiveWindow and SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {
+  public void robotPeriodic() 
+  {
   }
 
   /**
@@ -92,11 +98,14 @@ public class Robot extends TimedRobot
    * the robot is disabled.
    */
   @Override
-  public void disabledInit() {
+  public void disabledInit() 
+  {
+
   }
 
   @Override
-  public void disabledPeriodic() {
+  public void disabledPeriodic() 
+  {
     Scheduler.getInstance().run();
   }
 
@@ -112,7 +121,8 @@ public class Robot extends TimedRobot
    * to the switch structure below with additional strings & commands.
    */
   @Override
-  public void autonomousInit() {
+  public void autonomousInit() 
+  {
     m_autonomousCommand = m_chooser.getSelected();
 
     /*
@@ -123,7 +133,8 @@ public class Robot extends TimedRobot
      */
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
+    if (m_autonomousCommand != null) 
+    {
       m_autonomousCommand.start();
     }
   }
@@ -132,21 +143,26 @@ public class Robot extends TimedRobot
    * This function is called periodically during autonomous.
    */
   @Override
-  public void autonomousPeriodic() {
+  public void autonomousPeriodic() 
+  {
     Scheduler.getInstance().run();
   }
 
   @Override
-  public void teleopInit() {
+  public void teleopInit() 
+  {
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
     cmdDrive.start();
     cmdBallIntake.start();
-    cmdWrist.start();
+    cmdWristJoystick.start();
+    cmdJoystickElevator.start();
+    cmdWristJoystick.start();
 
-    if (m_autonomousCommand != null) {
+    if (m_autonomousCommand != null) 
+    {
       m_autonomousCommand.cancel();
     }
   }
@@ -155,7 +171,8 @@ public class Robot extends TimedRobot
    * This function is called periodically during operator control.
    */
   @Override
-  public void teleopPeriodic() {
+  public void teleopPeriodic() 
+  {
     Scheduler.getInstance().run();
   }
 
@@ -163,6 +180,8 @@ public class Robot extends TimedRobot
    * This function is called periodically during test mode.
    */
   @Override
-  public void testPeriodic() {
+  public void testPeriodic() 
+  {
+    cmdJoystickElevatorTest.start();
   }
 }

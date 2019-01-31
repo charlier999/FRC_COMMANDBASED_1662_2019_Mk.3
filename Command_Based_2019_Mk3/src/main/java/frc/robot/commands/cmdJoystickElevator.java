@@ -10,50 +10,49 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class cmdWrist extends Command 
+public class cmdJoystickElevator extends Command 
 {
-
-  Boolean wristDirection;
-  Double wristSpeed;
-  
-  public cmdWrist(boolean wristDirection, double wristSpeed) 
+  public cmdJoystickElevator() 
   {
-    requires(Robot.sub_grabber);
+    requires(Robot.sub_elevator);
 
-    this.wristSpeed = wristSpeed;
-    this.wristDirection = wristDirection;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
 
-  public cmdWrist() {
-    
-  }
-
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
+  protected void initialize() 
+  {
+    Robot.sub_elevator.stop();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  protected void execute() 
+  {
+    Robot.sub_elevator.joystickElevator(Robot.m_oi.operator);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() {
+  protected boolean isFinished() 
+  {
     return false;
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
+  protected void end() 
+  {
+    Robot.sub_elevator.stop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {
+  protected void interrupted() 
+  {
+    Robot.sub_elevator.stop();
   }
 }

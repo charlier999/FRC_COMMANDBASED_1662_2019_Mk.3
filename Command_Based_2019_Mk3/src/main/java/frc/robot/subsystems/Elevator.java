@@ -6,28 +6,56 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-
-import edu.wpi.first.wpilibj.command.Subsystem;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
-
-// Button intakeButton = new Button(OI.intakeButton) 
-
-// Button ballLevel1Button = new Button(OI.intakeButton);
-// Button ballLevel2Button = new Button(OI.intakeButton);
-// Button ballLevel3Button = new Button(OI.intakeButton);
-// Button ballPickUpButton = new Button(OI.intakeButton);
-
-// Button ballLevel1Button.set(700);
-// Button ballLevel2Button.set();
-// Button ballLevel3Button.set();
-// Button ballPickUpButton.set();
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.RobotMap;
 
 public class Elevator extends Subsystem {
 
 public Joystick operator     = new Joystick(1);
+WPI_VictorSPX rightElevatorMotor  = new WPI_VictorSPX(RobotMap.rightElevatorMotor);
+WPI_VictorSPX leftElevatorMotor   = new WPI_VictorSPX(RobotMap.leftElevatorMotor);
 
-double elevatorAxis = operator.getRawAxis(1); //Left Thumb Stick ~ Y axis ~+/- input
+public DifferentialDrive elevatorBase;
 
+
+public Elevator()
+{
+  rightElevatorMotor.setInverted(false);
+  leftElevatorMotor.setInverted(false);
+}
+
+public void autoElevator(boolean elevatorDirection, double elevatorSpeed) 
+{
+  elevatorSpeed = Math.abs(elevatorSpeed);
+  if(elevatorDirection)
+  {
+    rightElevatorMotor.set(elevatorSpeed);
+    leftElevatorMotor.set(elevatorSpeed);
+  }else{
+    rightElevatorMotor.set(-elevatorSpeed);
+    leftElevatorMotor.set(-elevatorSpeed);
+  }
+}
+
+public void joystickElevator(Joystick joystick)
+{
+  rightElevatorMotor.set(operator.getRawAxis(1));
+  leftElevatorMotor.set(operator.getRawAxis(1));
+}
+
+public void testElevator(Joystick joystick)
+{
+  rightElevatorMotor.set(operator.getRawAxis(1));
+  leftElevatorMotor.set(operator.getRawAxis(5));
+}
+public void stop()
+{
+  rightElevatorMotor.set(0);
+  leftElevatorMotor.set(0);
+}
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

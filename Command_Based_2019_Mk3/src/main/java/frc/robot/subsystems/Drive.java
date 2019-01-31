@@ -7,12 +7,11 @@
 
 package frc.robot.subsystems;
 
-import java.sql.Driver;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
@@ -26,6 +25,8 @@ public class Drive extends Subsystem {
   public Joystick driver       = new Joystick(0);
 
  //public Joystick driver = new Joystick(OI.driver);
+
+  public DoubleSolenoid shifters = new DoubleSolenoid(2 , 1);
 
   public double driverAxis1 = driver.getRawAxis(1);  // Left Thumb Stick  ~ Y axis ~ +/- input
   public double driverAxis5 = driver.getRawAxis(5);  // Right Thumb Stick ~ Y axis ~ +/- input
@@ -55,6 +56,12 @@ public class Drive extends Subsystem {
     rightMotorB.setInverted(false);
     driveBase = new DifferentialDrive(leftDriveBase, rightDriveBase);
   }
+
+  public void Shifters(DoubleSolenoid doubleSolenoid)
+  {
+
+  }
+
   public void driverJoystick(Joystick joystick) 
   {
     driveBase.tankDrive(joystick.getRawAxis(1), joystick.getRawAxis(5));
