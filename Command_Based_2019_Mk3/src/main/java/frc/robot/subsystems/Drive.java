@@ -26,7 +26,7 @@ public class Drive extends Subsystem {
 
  //public Joystick driver = new Joystick(OI.driver);
 
-  public DoubleSolenoid shifters = new DoubleSolenoid(2 , 1);
+  public DoubleSolenoid shifters = new DoubleSolenoid(1 , 2);
 
   public double driverAxis1 = driver.getRawAxis(1);  // Left Thumb Stick  ~ Y axis ~ +/- input
   public double driverAxis5 = driver.getRawAxis(5);  // Right Thumb Stick ~ Y axis ~ +/- input
@@ -46,7 +46,6 @@ public class Drive extends Subsystem {
   // Differential Drive
   public DifferentialDrive driveBase;
 
-  //
 
   public Drive() 
   {
@@ -54,17 +53,29 @@ public class Drive extends Subsystem {
     leftMotorB.setInverted(false);
     rightMotorA.setInverted(false);
     rightMotorB.setInverted(false);
-    driveBase = new DifferentialDrive(leftDriveBase, rightDriveBase);
+
+    leftMotorA.setSafetyEnabled(false);
+    leftMotorB.setSafetyEnabled(false);
+    rightMotorA.setSafetyEnabled(false);
+    rightMotorB.setSafetyEnabled(false);
+    // driveBase = new DifferentialDrive(leftDriveBase, rightDriveBase);
   }
 
-  public void Shifters(DoubleSolenoid doubleSolenoid)
+  public void Shifters(DoubleSolenoid doubleSolenoid, Boolean state)
   {
-
+    // if(state)
+    // {
+    //   shifters.set(shifters.Value.forward);
+    //   Shifters(shifters.Forward);
+    //   shifters.set(shifters.Value.kForward);
+    // }
   }
 
   public void driverJoystick(Joystick joystick) 
   {
-    driveBase.tankDrive(joystick.getRawAxis(1), joystick.getRawAxis(5));
+    // driveBase.tankDrive(joystick.getRawAxis(1), joystick.getRawAxis(5));
+    leftDriveBase.set(joystick.getRawAxis(1));
+    rightDriveBase.set(joystick.getRawAxis(5));
   }
 
   public void autoDrive(double speed, double rotationSpeed)

@@ -28,6 +28,7 @@ import frc.robot.commands.cmdBallIntake;
 import frc.robot.commands.cmdJoystickElevator;
 import frc.robot.commands.cmdJoystickElevatorTest;
 import frc.robot.commands.cmdWristJoystick;
+import frc.robot.commands.cmdShift;
 //import frc.robot.commands.cmdOpenClose;
 
 
@@ -43,21 +44,22 @@ public class Robot extends TimedRobot
   // Subsystems
 
   public static ExampleSubsystem sub_subsystem = new ExampleSubsystem();
-  public static Climber sub_climber = new Climber();
-  public static Drive sub_drive = new Drive();
-  public static Elevator sub_elevator = new Elevator();
-  public static Grabber sub_grabber = new Grabber();
+  public static Climber sub_climber            = new Climber();
+  public static Drive sub_drive                = new Drive();
+  public static Elevator sub_elevator          = new Elevator();
+  public static Grabber sub_grabber            = new Grabber();
   public static OI m_oi;
 
   // Commands
-  Command cmdDrive = new cmdDrive();
-  Command cmdBallIntake = new cmdBallIntake();
-  Command cmdJoystickElevator = new cmdJoystickElevator();
+  Command cmdDrive                = new cmdDrive();
+  Command cmdBallIntake           = new cmdBallIntake();
+  Command cmdJoystickElevator     = new cmdJoystickElevator();
   Command cmdJoystickElevatorTest = new cmdJoystickElevatorTest();
-  Command cmdWristJoystick = new cmdWristJoystick();
+  Command cmdWristJoystick        = new cmdWristJoystick();
+  Command cmdShift                = new cmdShift();
   // Command cmdOpenClose = new cmdOpenClose();
 
-
+  Compressor compressor = new Compressor(0);
 
 
   Command m_autonomousCommand;
@@ -75,8 +77,8 @@ public class Robot extends TimedRobot
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    Compressor compressor = new Compressor(0);
     compressor.setClosedLoopControl(true);
+    compressor.start();
   }
 
   /**

@@ -29,21 +29,21 @@ public class RobotMap {
   public static int GripperMotor = 5;
 
   //Elevator Motors
-  public static int rightElevatorMotor = 7;
-  public static int leftElevatorMotor = 8;
+  public static int rightElevatorMotor = 6;
+  public static int leftElevatorMotor = 7;
 
   //Climber Linear Actuators
-  public static int rightLinearActuator = 9;
+  public static int rightLinearActuator = 8;
 
   //Climber Wheel Motors
-  public static int rightClimberWheel = 10;    
+  public static int rightClimberWheel = 9;    
     
   // Wrist Motor
-  public static int wristMotor = 11;
+  public static int wristMotor = 10;
 
   //Double Soleniods
-  public DoubleSolenoid p_shifters = new DoubleSolenoid(1, 2);
-  public DoubleSolenoid p_gripper = new DoubleSolenoid(3, 4); //Use to open and close grabber
+  public DoubleSolenoid p_shifters     = new DoubleSolenoid(1, 2);
+  public DoubleSolenoid p_gripper      = new DoubleSolenoid(3, 4); //Use to open and close grabber
   public DoubleSolenoid p_climberClaws = new DoubleSolenoid(5, 6);
 
   //Encoders
