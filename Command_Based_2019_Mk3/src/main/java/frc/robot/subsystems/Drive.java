@@ -85,7 +85,8 @@ public class Drive extends Subsystem {
 
   public void stop()
   {
-    driveBase.stopMotor();
+    leftDriveBase.set(0);
+    rightDriveBase.set(0);
   }
 
   @Override

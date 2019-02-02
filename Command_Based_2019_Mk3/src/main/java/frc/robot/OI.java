@@ -21,7 +21,7 @@ public class OI {
   // Joysticks
   public Joystick driver       = new Joystick(0);
   public Joystick operator     = new Joystick(1);
-  public Joystick buttonPannel = new Joystick(2);
+  // public Joystick buttonPannel = new Joystick(2);
 
   // Driver Buttons
   public Button shifterButton  = new JoystickButton(driver, 1);
