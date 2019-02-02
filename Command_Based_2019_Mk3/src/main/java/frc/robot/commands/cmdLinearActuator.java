@@ -10,25 +10,27 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class cmdClimberPull extends Command
+public class cmdLinearActuator extends Command 
 {
-  public cmdClimberPull() 
+  public cmdLinearActuator() 
   {
     requires(Robot.sub_climber);
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() 
   {
-    Robot.sub_climber.climberStop();
+    Robot.sub_climber.linearActuatorStop();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    Robot.sub_climber.ClimberPull();
+    Robot.sub_climber.LinearActuatorExtend();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -42,7 +44,7 @@ public class cmdClimberPull extends Command
   @Override
   protected void end() 
   {
-    Robot.sub_climber.climberStop();
+    Robot.sub_climber.linearActuatorStop();
   }
 
   // Called when another command which requires one or more of the same
@@ -50,6 +52,6 @@ public class cmdClimberPull extends Command
   @Override
   protected void interrupted() 
   {
-    Robot.sub_climber.climberStop();
+    Robot.sub_climber.linearActuatorStop();
   }
 }

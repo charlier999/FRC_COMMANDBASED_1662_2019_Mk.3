@@ -46,26 +46,14 @@ public class Climber extends Subsystem
     }
   }
 
-  public void ClimberPull(boolean climberPullDirection, Double climberPullSpeed)
+  public void ClimberPull()
   {
-    climberPullSpeed = Math.abs(climberPullSpeed);
-    if(climberPullDirection)
-    {
-      climberWheel.set(1);
-    }else{
-      climberWheel.set(-1);
-    }
+    climberWheel.set(-1);
   }
 
-  public void LinearActuatorExtend(boolean linearActuatorDirection, double linearActuatorSpeed)
+  public void LinearActuatorExtend()
   {
-    linearActuatorSpeed = Math.abs(linearActuatorSpeed);
-    if(linearActuatorDirection)
-    {
-      linearActuator.set(1);
-    }else{
-      linearActuator.set(-1);
-    }
+    linearActuator.set(1);
   }
 
   public void climberStop()

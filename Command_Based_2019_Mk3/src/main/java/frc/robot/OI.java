@@ -14,8 +14,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.cmdBallIntake;
 import frc.robot.commands.cmdShift;
 import frc.robot.commands.cmdClawDrop;
-// import frc.robot.commands.cmdClimberPull;
+import frc.robot.commands.cmdClimberPull;
 import frc.robot.commands.cmdGrabberOC;
+import frc.robot.commands.cmdLinearActuator;
 
 public class OI {
   
@@ -38,6 +39,8 @@ public class OI {
 
   public Button climberPullButton = new JoystickButton(operator, 4);
 
+  public Button linearActuatorButton = new JoystickButton(operator, 3);
+
 
 
   public Joystick getDriverJoystick()
@@ -56,8 +59,9 @@ public class OI {
     outakeButton.whileHeld(new cmdBallIntake(false, 1));
     shifterButton.whenReleased(new cmdShift());
     clawDropButton.whenPressed(new cmdClawDrop());
-    // climberPullButton.whileHeld(new cmdClimberPull(false, 1));
+    climberPullButton.whileHeld(new cmdClimberPull());
     gripperToggle.whenReleased(new cmdGrabberOC());
+    linearActuatorButton.whileHeld(new cmdLinearActuator());
 
   }
 

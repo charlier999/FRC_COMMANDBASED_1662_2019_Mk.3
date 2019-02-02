@@ -24,11 +24,14 @@ import frc.robot.subsystems.Grabber;
 // Commands
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.cmdDrive;
-import frc.robot.commands.cmdBallIntake;
 import frc.robot.commands.cmdJoystickElevator;
 import frc.robot.commands.cmdJoystickElevatorTest;
 import frc.robot.commands.cmdWristJoystick;
 import frc.robot.commands.cmdShift;
+import frc.robot.commands.cmdClawDrop;
+import frc.robot.commands.cmdGrabberOC;
+import frc.robot.commands.cmdLinearActuator;
+// import frc.robot.commands.cmd
 //import frc.robot.commands.cmdOpenClose;
 
 
@@ -51,8 +54,10 @@ public class Robot extends TimedRobot
   public static OI m_oi;
 
   // Commands
+  Command cmdLinearActuator       = new cmdLinearActuator();
+  Command cmdGrabberOC            = new cmdGrabberOC();
+  Command cmdClawDrop             = new cmdClawDrop();
   Command cmdDrive                = new cmdDrive();
-  Command cmdBallIntake           = new cmdBallIntake();
   Command cmdJoystickElevator     = new cmdJoystickElevator();
   Command cmdJoystickElevatorTest = new cmdJoystickElevatorTest();
   Command cmdWristJoystick        = new cmdWristJoystick();
@@ -158,7 +163,6 @@ public class Robot extends TimedRobot
     // continue until interrupted by another command, remove
     // this line or comment it out.
     cmdDrive.start();
-    cmdBallIntake.start();
     cmdWristJoystick.start();
     cmdJoystickElevator.start();
     cmdWristJoystick.start();

@@ -28,9 +28,6 @@ public class cmdBallIntake extends Command
     // eg. requires(chassis);
   }
 
-  public cmdBallIntake() {
-}
-
 // Called just before this Command runs the first time
   @Override
   protected void initialize() 
@@ -42,7 +39,7 @@ public class cmdBallIntake extends Command
   @Override
   protected void execute() 
   {
-    // Robot.sub_grabber.intake(direction, speed);
+    Robot.sub_grabber.intake(direction, speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
