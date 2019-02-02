@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 
 
@@ -42,11 +43,6 @@ public class Grabber extends Subsystem {
   {
     GripperMotor.stopMotor();
   }
-
-  public void WristStop()
-  {
-    wristMotor.stopMotor();
-  }
   
   public void wristButtonActuation(boolean wristDirection, double wristSpeed)
   {
@@ -64,6 +60,20 @@ public class Grabber extends Subsystem {
     wristMotor.set(joystick.getRawAxis(5));
   }
 
+  public void WristStop()
+  {
+    wristMotor.stopMotor();
+  }
+
+  public void GrabberOC()
+  {
+    if(p_gripper.get() == Value.kForward)
+    {
+      p_gripper.set(Value.kReverse);
+    }else{
+      p_gripper.set(Value.kForward);
+    }
+  }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

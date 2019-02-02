@@ -15,8 +15,6 @@ public class cmdShift extends Command
   public cmdShift() 
   {
     requires(Robot.sub_drive);
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
@@ -30,7 +28,7 @@ public class cmdShift extends Command
   @Override
   protected void execute() 
   {
-
+    Robot.sub_drive.Shifters();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -52,6 +50,6 @@ public class cmdShift extends Command
   @Override
   protected void interrupted() 
   {
-    
+
   }
 }

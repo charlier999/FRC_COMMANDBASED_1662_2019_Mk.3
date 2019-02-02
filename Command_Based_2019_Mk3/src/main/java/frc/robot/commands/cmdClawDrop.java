@@ -7,42 +7,28 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
-public class cmdBallIntake extends Command 
+public class cmdClawDrop extends Command 
 {
-
-  Boolean direction;
-  Double speed;
-
-  public cmdBallIntake(boolean direction, double speed) 
+  public cmdClawDrop() 
   {
-    requires(Robot.sub_grabber);
-
-    this.direction = direction;
-    // direction = true;
-    this.speed = speed;
-    // speed = 1;
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.sub_climber);
   }
 
-  public cmdBallIntake() {
-}
-
-// Called just before this Command runs the first time
+  // Called just before this Command runs the first time
   @Override
   protected void initialize() 
   {
-    Robot.sub_grabber.Gripperstop();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    // Robot.sub_grabber.intake(direction, speed);
+    Robot.sub_climber.ClawRelease();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -56,7 +42,7 @@ public class cmdBallIntake extends Command
   @Override
   protected void end() 
   {
-    Robot.sub_grabber.Gripperstop();
+
   }
 
   // Called when another command which requires one or more of the same
@@ -64,6 +50,6 @@ public class cmdBallIntake extends Command
   @Override
   protected void interrupted() 
   {
-    Robot.sub_grabber.Gripperstop();
+
   }
 }

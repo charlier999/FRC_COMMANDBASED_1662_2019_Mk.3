@@ -33,10 +33,10 @@ public class RobotMap {
   public static int leftElevatorMotor = 7;
 
   //Climber Linear Actuators
-  public static int rightLinearActuator = 8;
+  public static int linearActuator = 8;
 
   //Climber Wheel Motors
-  public static int rightClimberWheel = 9;    
+  public static int climberWheel = 9;    
     
   // Wrist Motor
   public static int wristMotor = 10;

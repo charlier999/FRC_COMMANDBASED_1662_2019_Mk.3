@@ -12,10 +12,11 @@ import edu.wpi.first.wpilibj.Joystick;
 
 // Commmands
 import frc.robot.commands.cmdBallIntake;
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
+import frc.robot.commands.cmdShift;
+import frc.robot.commands.cmdClawDrop;
+// import frc.robot.commands.cmdClimberPull;
+import frc.robot.commands.cmdGrabberOC;
+
 public class OI {
   
   // Joysticks
@@ -33,6 +34,10 @@ public class OI {
 
   public Button gripperToggle  = new JoystickButton(driver, 5);
 
+  public Button clawDropButton = new JoystickButton(operator, 10);
+
+  public Button climberPullButton = new JoystickButton(operator, 4);
+
 
 
   public Joystick getDriverJoystick()
@@ -49,10 +54,12 @@ public class OI {
   {
     intakeButton.whileHeld(new cmdBallIntake(true, 1));
     outakeButton.whileHeld(new cmdBallIntake(false, 1));
+    shifterButton.whenReleased(new cmdShift());
+    clawDropButton.whenPressed(new cmdClawDrop());
+    // climberPullButton.whileHeld(new cmdClimberPull(false, 1));
+    gripperToggle.whenReleased(new cmdGrabberOC());
+
   }
-
-  // Operator Buttons
-
 
 
   // Button Pannel Buttons
@@ -68,9 +75,6 @@ public class OI {
   Button ballPickUpButton = new JoystickButton(buttonPannel, 1);
 
   Button climberButton = new JoystickButton(buttonPannel, 1);
-  */
-
- /* 
   //Drive Controller Axis's
  public double driverAxis0 = driver.getRawAxis(0);  // Left Thumb Stick  ~ X axis ~ +/- input
   public double driverAxis1 = driver.getRawAxis(1);  // Left Thumb Stick  ~ Y axis ~ +/- input
@@ -89,32 +93,5 @@ public class OI {
   // public double operatorAxis3;  // Right Trigger              ~ only positive input
   // public double operatorAxis4;  // Right Thumb Stick ~ X axis ~ +/- input
   // public double operatorAxis5;  // Right Thumb Stick ~ Y axis ~ +/- input
-
- /* CREATING BUTTONS
-  * One type of button is a joystick button which is any button on a
-  * joystick.
-  * You create one by telling it which joystick it's on and which button
-  * Joystick stick = new Joystick(port);
-  * Button button = new JoystickButton(stick, buttonNumber);
-  *
-  * There are a few additional built in buttons you can use. Additionally,
-  * by subclassing Button you can create custom triggers and bind those to
-  * commands the same as any other Button.
-  *
-  * TRIGGERING COMMANDS WITH BUTTONS
-  * Once you have a button, it's trivial to bind it to a button in one of
-  * three ways:
-  *
-  * Start the command when the button is pressed and let it run the command
-  * until it is finished as determined by it's isFinished method.
-  * button.whenPressed(new ExampleCommand());
-  *
-  * Run the command while the button is being held down and interrupt it once
-  * the button is released.
-  * button.whileHeld(new ExampleCommand());
-  *
-  * Start the command when the button is released and let it run the command
-  * until it is finished as determined by it's isFinished method.
-  * button.whenReleased(new ExampleCommand());
-  */
+*/
 }

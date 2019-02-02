@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -61,21 +62,21 @@ public class Drive extends Subsystem {
     // driveBase = new DifferentialDrive(leftDriveBase, rightDriveBase);
   }
 
-  public void Shifters(DoubleSolenoid doubleSolenoid, Boolean state)
+  public void Shifters()
   {
-    // if(state)
-    // {
-    //   shifters.set(shifters.Value.forward);
-    //   Shifters(shifters.Forward);
-    //   shifters.set(shifters.Value.kForward);
-    // }
+    if(shifters.get() == Value.kReverse)
+    {
+      shifters.set(DoubleSolenoid.Value.kForward);
+    }else{
+      shifters.set(DoubleSolenoid.Value.kReverse);
+    }
   }
 
   public void driverJoystick(Joystick joystick) 
   {
     // driveBase.tankDrive(joystick.getRawAxis(1), joystick.getRawAxis(5));
     leftDriveBase.set(joystick.getRawAxis(1));
-    rightDriveBase.set(joystick.getRawAxis(5));
+    rightDriveBase.set(-joystick.getRawAxis(5));
   }
 
   public void autoDrive(double speed, double rotationSpeed)

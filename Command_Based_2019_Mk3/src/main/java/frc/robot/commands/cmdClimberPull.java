@@ -7,42 +7,32 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
-public class cmdBallIntake extends Command 
+public class cmdClimberPull extends Command
 {
-
-  Boolean direction;
-  Double speed;
-
-  public cmdBallIntake(boolean direction, double speed) 
+  Boolean climberPullDirection;
+  Double climberPullSpeed;
+  public cmdClimberPull(Boolean climberPullDirection, Double climberPullSpeed) 
   {
-    requires(Robot.sub_grabber);
-
-    this.direction = direction;
-    // direction = true;
-    this.speed = speed;
-    // speed = 1;
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.sub_climber);
+    this.climberPullDirection = climberPullDirection;
+    this.climberPullSpeed = climberPullSpeed;
   }
 
-  public cmdBallIntake() {
-}
-
-// Called just before this Command runs the first time
+  // Called just before this Command runs the first time
   @Override
   protected void initialize() 
   {
-    Robot.sub_grabber.Gripperstop();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    // Robot.sub_grabber.intake(direction, speed);
+    Robot.sub_climber.ClimberPull(climberPullDirection, climberPullSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -56,7 +46,7 @@ public class cmdBallIntake extends Command
   @Override
   protected void end() 
   {
-    Robot.sub_grabber.Gripperstop();
+
   }
 
   // Called when another command which requires one or more of the same
@@ -64,6 +54,6 @@ public class cmdBallIntake extends Command
   @Override
   protected void interrupted() 
   {
-    Robot.sub_grabber.Gripperstop();
+
   }
 }
