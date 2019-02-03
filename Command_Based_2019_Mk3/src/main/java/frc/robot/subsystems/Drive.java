@@ -7,14 +7,17 @@
 
 package frc.robot.subsystems;
 
+
+
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+// import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+// import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.RobotMap;
 
 /**
@@ -27,12 +30,16 @@ public class Drive extends Subsystem {
 
  //public Joystick driver = new Joystick(OI.driver);
 
-  public DoubleSolenoid shifters = new DoubleSolenoid(1 , 2);
+  // public DoubleSolenoid shifters = new DoubleSolenoid(1 , 2);
 
   public double driverAxis1 = driver.getRawAxis(1);  // Left Thumb Stick  ~ Y axis ~ +/- input
   public double driverAxis5 = driver.getRawAxis(5);  // Right Thumb Stick ~ Y axis ~ +/- input
   
+  public Encoder e_driveRight   = new Encoder(12, 13, false, Encoder.EncodingType.k4X);
+  public Encoder e_driveLeft    = new Encoder(10, 11, false, Encoder.EncodingType.k4X);
 
+  int driveRightDistance;
+  int driveLeftDistance;
  
   // Drive base motors
   WPI_VictorSPX leftMotorA           = new WPI_VictorSPX(RobotMap.leftMotorA);
@@ -62,15 +69,15 @@ public class Drive extends Subsystem {
     // driveBase = new DifferentialDrive(leftDriveBase, rightDriveBase);
   }
 
-  public void Shifters()
-  {
-    if(shifters.get() == Value.kReverse)
-    {
-      shifters.set(DoubleSolenoid.Value.kForward);
-    }else{
-      shifters.set(DoubleSolenoid.Value.kReverse);
-    }
-  }
+//  public void Shifters()
+//   {
+//     if(shifters.get() == Value.kReverse)
+//     {
+//       shifters.set(DoubleSolenoid.Value.kForward);
+//     }else{ 
+//       shifters.set(DoubleSolenoid.Value.kReverse);
+//     }
+//   }
 
   public void driverJoystick(Joystick joystick) 
   {
@@ -88,6 +95,25 @@ public class Drive extends Subsystem {
   {
     leftDriveBase.set(0);
     rightDriveBase.set(0);
+  }
+
+  public void encoderConsole() 
+{
+  driveRightDistance = e_driveRight.getRaw();
+  driveLeftDistance = e_driveLeft.getRaw();
+
+}
+
+public void output()
+{
+  System.out.println (driveRightDistance);
+  System.out.println (driveLeftDistance );
+}
+
+  public void driveEncoderReset()
+  {
+    e_driveRight.reset();
+    e_driveLeft.reset();
   }
 
   @Override

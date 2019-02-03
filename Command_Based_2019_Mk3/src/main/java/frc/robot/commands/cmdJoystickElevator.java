@@ -45,7 +45,7 @@ public class cmdJoystickElevator extends Command
   @Override
   protected void end() 
   {
-    Robot.sub_elevator.stop();
+    Robot.sub_elevator.ElevatorHold();
   }
 
   // Called when another command which requires one or more of the same

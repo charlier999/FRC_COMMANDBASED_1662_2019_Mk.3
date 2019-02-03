@@ -9,13 +9,13 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
 import frc.robot.RobotMap;
 
 public class Climber extends Subsystem 
@@ -24,8 +24,11 @@ public class Climber extends Subsystem
 
   public DoubleSolenoid p_climberClaws = new DoubleSolenoid(1 , 2);
 
-  WPI_VictorSPX linearActuator = new WPI_VictorSPX(RobotMap.linearActuator);
+  WPI_TalonSRX linearActuator = new WPI_TalonSRX(RobotMap.linearActuator);
   WPI_VictorSPX climberWheel = new WPI_VictorSPX(RobotMap.climberWheel);
+
+  public Encoder e_linearAct    = new Encoder(16, 17, false, Encoder.EncodingType.k4X);
+  int linearActDistance;
 
   public Climber()
   {
@@ -34,6 +37,11 @@ public class Climber extends Subsystem
 
     linearActuator.setSafetyEnabled(false);
     climberWheel.setSafetyEnabled(false);
+  }
+
+  public void linearActuatorEncoderReset()
+  {
+    e_linearAct.reset();
   }
 
   public void ClawRelease()
@@ -59,6 +67,15 @@ public class Climber extends Subsystem
   public void climberStop()
   {
     climberWheel.set(0);
+  }
+
+  public void encoderConsole()
+  {
+    //SmartDashboard PutString("DB/String 0", "This is a string");
+    //SmartDashboard PutString()
+
+    linearActDistance = e_linearAct.getRaw();
+    System.out.println (linearActDistance);  
   }
 
   public void linearActuatorStop()

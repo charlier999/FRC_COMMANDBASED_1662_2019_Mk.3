@@ -31,7 +31,7 @@ import frc.robot.commands.cmdShift;
 import frc.robot.commands.cmdClawDrop;
 import frc.robot.commands.cmdGrabberOC;
 import frc.robot.commands.cmdLinearActuator;
-// import frc.robot.commands.cmd
+import frc.robot.commands.cmdSmartDashboard;
 //import frc.robot.commands.cmdOpenClose;
 
 
@@ -62,6 +62,7 @@ public class Robot extends TimedRobot
   Command cmdJoystickElevatorTest = new cmdJoystickElevatorTest();
   Command cmdWristJoystick        = new cmdWristJoystick();
   Command cmdShift                = new cmdShift();
+  Command cmdSmartDashboard       = new cmdSmartDashboard();
   // Command cmdOpenClose = new cmdOpenClose();
 
   Compressor compressor = new Compressor(0);
@@ -84,6 +85,7 @@ public class Robot extends TimedRobot
 
     compressor.setClosedLoopControl(true);
     compressor.start();
+    cmdSmartDashboard.start();
   }
 
   /**
@@ -131,6 +133,10 @@ public class Robot extends TimedRobot
   public void autonomousInit() 
   {
     m_autonomousCommand = m_chooser.getSelected();
+    cmdDrive.start();
+    cmdWristJoystick.start();
+    cmdJoystickElevator.start();
+    cmdWristJoystick.start();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",

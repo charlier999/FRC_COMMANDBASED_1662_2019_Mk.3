@@ -10,11 +10,15 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class cmdShift extends Command 
+public class cmdEncoderReset extends Command 
 {
-  public cmdShift() 
+  public cmdEncoderReset() 
   {
+    requires(Robot.sub_elevator);
     requires(Robot.sub_drive);
+    requires(Robot.sub_climber);
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
@@ -28,7 +32,9 @@ public class cmdShift extends Command
   @Override
   protected void execute() 
   {
-    // Robot.sub_drive.Shifters();
+    Robot.sub_climber.linearActuatorEncoderReset();
+    Robot.sub_drive.driveEncoderReset();
+    Robot.sub_elevator.elevatorEncoderReset();
   }
 
   // Make this return true when this Command no longer needs to run execute()

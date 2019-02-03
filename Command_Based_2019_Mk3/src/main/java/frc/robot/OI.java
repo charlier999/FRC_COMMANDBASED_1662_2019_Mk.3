@@ -17,6 +17,7 @@ import frc.robot.commands.cmdClawDrop;
 import frc.robot.commands.cmdClimberPull;
 import frc.robot.commands.cmdGrabberOC;
 import frc.robot.commands.cmdLinearActuator;
+import frc.robot.commands.cmdEncoderReset;
 
 public class OI {
   
@@ -24,6 +25,14 @@ public class OI {
   public Joystick driver       = new Joystick(0);
   public Joystick operator     = new Joystick(1);
   // public Joystick buttonPannel = new Joystick(2);
+  public Joystick encoderReset = new Joystick(3);
+
+public Button encoderResetButton = new JoystickButton(encoderReset, 1);
+public Button encoderDriveLeftConsole = new JoystickButton(encoderReset, 2);
+public Button encoderDriveRightConsole = new JoystickButton(encoderReset, 3);
+public Button encoderElevatorConsole = new JoystickButton(encoderReset, 4);
+public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
+
 
   // Driver Buttons
   public Button shifterButton  = new JoystickButton(driver, 1);
@@ -62,7 +71,7 @@ public class OI {
     climberPullButton.whileHeld(new cmdClimberPull());
     gripperToggle.whenReleased(new cmdGrabberOC());
     linearActuatorButton.whileHeld(new cmdLinearActuator());
-
+    encoderResetButton.whenReleased(new cmdEncoderReset());
   }
 
 

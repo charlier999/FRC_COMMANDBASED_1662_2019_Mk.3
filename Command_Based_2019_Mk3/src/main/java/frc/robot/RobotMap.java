@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-import java.beans.Encoder;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
@@ -21,22 +21,22 @@ public class RobotMap {
 
   //Drive Motors
   public static int leftMotorA = 1;
-  public static int leftMotorB = 2;
-  public static int rightMotorA = 3;
+  public static int leftMotorB = 3;
+  public static int rightMotorA = 2;
   public static int rightMotorB = 4;
 
   //Intake Motors
-  public static int GripperMotor = 5;
+  public static int GripperMotor = 9;
 
   //Elevator Motors
-  public static int rightElevatorMotor = 6;
+  public static int rightElevatorMotor = 8;
   public static int leftElevatorMotor = 7;
 
   //Climber Linear Actuators
-  public static int linearActuator = 8;
+  public static int linearActuator = 5;
 
   //Climber Wheel Motors
-  public static int climberWheel = 9;    
+  public static int climberWheel = 6;    
     
   // Wrist Motor
   public static int wristMotor = 10;
@@ -47,27 +47,10 @@ public class RobotMap {
   public DoubleSolenoid p_climberClaws = new DoubleSolenoid(5, 6);
 
   //Encoders
-  public Encoder e_driveLeft;
-  public Encoder e_driveRight;
-  public Encoder e_elevatorDrum;
+  public Encoder e_driveRight   = new Encoder(12, 13, false, Encoder.EncodingType.k4X);
+  public Encoder e_driveLeft    = new Encoder(10, 11, false, Encoder.EncodingType.k4X);
+  public Encoder e_elevatorDrum = new Encoder(14, 15, false, Encoder.EncodingType.k4X);
+  public Encoder e_linearAct    = new Encoder(16, 17, false, Encoder.EncodingType.k4X);
 
   public AnalogPotentiometer ap_gripper;
-  
-
-
-  /*
-  e_driveLeft = new Encoder(0, false, Encoder.EncodingType.k4X);
-  e_driveRight = new Encoder(1, false, Encoder.EncodingType.k4X);
-  e_elevatorDrum = new Encoder(2, false, Encoder.EncodingType.k4X);
-  */
-
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
-
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
 }

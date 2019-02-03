@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.Encoder;
 
 public class Elevator extends Subsystem {
 
@@ -19,6 +20,11 @@ WPI_VictorSPX rightElevatorMotor  = new WPI_VictorSPX(RobotMap.rightElevatorMoto
 WPI_VictorSPX leftElevatorMotor   = new WPI_VictorSPX(RobotMap.leftElevatorMotor);
 
 public DifferentialDrive elevatorBase;
+
+//public static int  elevatorDistance = new 
+public Encoder e_elevatorDrum = new Encoder(14, 15, false, Encoder.EncodingType.k4X);
+//int elevatorDistance;
+
 
 
 public Elevator()
@@ -46,6 +52,12 @@ public void joystickElevator(Joystick joystick)
   leftElevatorMotor.set(operator.getRawAxis(1));
 }
 
+public void ElevatorHold()
+{
+  rightElevatorMotor.set(-0.3);
+  leftElevatorMotor.set(-0.3);
+}
+
 public void testElevator(Joystick joystick)
 {
   rightElevatorMotor.set(operator.getRawAxis(1));
@@ -55,6 +67,18 @@ public void stop()
 {
   rightElevatorMotor.set(0);
   leftElevatorMotor.set(0);
+}
+
+public void encoderConsole() 
+{
+  
+  //elevatorDistance = e_elevatorDrum.getRaw();
+  //System.out.println (elevatorDistance);
+}
+
+public void elevatorEncoderReset() 
+{
+  e_elevatorDrum.reset();
 }
   @Override
   public void initDefaultCommand() {
