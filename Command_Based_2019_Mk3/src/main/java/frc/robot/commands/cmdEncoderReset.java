@@ -33,7 +33,7 @@ public class cmdEncoderReset extends Command
   protected void execute() 
   {
     Robot.sub_climber.linearActuatorEncoderReset();
-    Robot.sub_drive.driveEncoderReset();
+   // Robot.sub_drive.driveEncoderReset();
     Robot.sub_elevator.elevatorEncoderReset();
   }
 

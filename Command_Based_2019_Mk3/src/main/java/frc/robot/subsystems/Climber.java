@@ -25,7 +25,7 @@ public class Climber extends Subsystem
   public DoubleSolenoid p_climberClaws = new DoubleSolenoid(1 , 2);
 
   WPI_TalonSRX linearActuator = new WPI_TalonSRX(RobotMap.linearActuator);
-  WPI_VictorSPX climberWheel = new WPI_VictorSPX(RobotMap.climberWheel);
+  WPI_VictorSPX climberWheel  = new WPI_VictorSPX(RobotMap.climberWheel);
 
   public Encoder e_linearAct    = new Encoder(16, 17, false, Encoder.EncodingType.k4X);
   int linearActDistance;

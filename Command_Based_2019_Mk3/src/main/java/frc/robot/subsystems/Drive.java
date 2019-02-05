@@ -48,7 +48,7 @@ public class Drive extends Subsystem {
   WPI_VictorSPX rightMotorB          = new WPI_VictorSPX(RobotMap.rightMotorB);
 
   // Speed Controller Groups
-  SpeedControllerGroup leftDriveBase = new SpeedControllerGroup(leftMotorA, leftMotorB); 
+  SpeedControllerGroup leftDriveBase  = new SpeedControllerGroup(leftMotorA, leftMotorB); 
   SpeedControllerGroup rightDriveBase = new SpeedControllerGroup(rightMotorA, rightMotorB);
 
   // Differential Drive
