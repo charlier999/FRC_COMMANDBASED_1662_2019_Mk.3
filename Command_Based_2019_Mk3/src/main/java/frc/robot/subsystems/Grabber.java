@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Timer;
+// import edu.wpi.first.wpilibj.Timer;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 public class Grabber extends Subsystem {
 
   public Joystick operator     = new Joystick(1);
-  public DoubleSolenoid p_gripper = new DoubleSolenoid(3, 4);
+  public DoubleSolenoid p_gripper = new DoubleSolenoid(4, 5);
   public WPI_VictorSPX GripperMotor = new WPI_VictorSPX(RobotMap.GripperMotor);
   public WPI_VictorSPX wristMotor = new WPI_VictorSPX(RobotMap.wristMotor);
   public AnalogPotentiometer ap_gripper = new AnalogPotentiometer(1);
@@ -66,20 +66,26 @@ public class Grabber extends Subsystem {
     wristMotor.stopMotor();
   }
 
-  public void GrabberOC()
+  public void GrabberOC(boolean direction)
   {
-    double interim = 1; //can only toggle every 2 seconds
-    double previous = 0;
+    if (direction)
+    {
+      p_gripper.set(Value.kForward);
+    }else{
+      p_gripper.set(Value.kReverse);
+    }
+    // double interim = 3; //can only toggle every 2 seconds
+    // double previous = 0;
 
-      /*check if interim time has passed since previous check*/
-      if(Timer.getFPGATimestamp() - previous >= interim) {
-        previous = Timer.getFPGATimestamp();
-        if(p_gripper.get() == Value.kForward) {
-          p_gripper.set(Value.kReverse);
-        } else {
-          p_gripper.set(Value.kForward);
-        }
-      }
+    //   /*check if interim time has passed since previous check*/
+    //   if(Timer.getFPGATimestamp() - previous >= interim) {
+    //     previous = Timer.getFPGATimestamp();
+    //     if(p_gripper.get() == Value.kForward) {
+    //       p_gripper.set(Value.kReverse);
+    //     } else {
+    //       p_gripper.set(Value.kForward);
+    //     }
+    //   }
   }
   @Override
   public void initDefaultCommand() {

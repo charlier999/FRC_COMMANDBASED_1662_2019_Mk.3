@@ -12,11 +12,11 @@ import frc.robot.Robot;
 
 public class cmdGrabberOC extends Command 
 {
-  // Boolean direction;
-  public cmdGrabberOC() 
+  Boolean direction;
+  public cmdGrabberOC(boolean direction) 
   {
     requires(Robot.sub_grabber);
-    // this.direction = direction;
+    this.direction = direction;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -32,7 +32,7 @@ public class cmdGrabberOC extends Command
   @Override
   protected void execute() 
   {
-    Robot.sub_grabber.GrabberOC();
+    Robot.sub_grabber.GrabberOC(direction);
   }
 
   // Make this return true when this Command no longer needs to run execute()

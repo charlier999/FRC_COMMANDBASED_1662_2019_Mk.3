@@ -13,8 +13,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.Timer;
+//import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+// import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -35,7 +35,7 @@ public class Drive extends Subsystem {
   int driveRightDistance;
   int driveLeftDistance;
 
-  public DoubleSolenoid shifters     = new DoubleSolenoid(1, 0);
+  public DoubleSolenoid p_shifters     = new DoubleSolenoid(0, 1);
  
   // Drive base motors
   WPI_VictorSPX leftMotorA           = new WPI_VictorSPX(RobotMap.leftMotorA);
@@ -65,22 +65,28 @@ public class Drive extends Subsystem {
     // driveBase = new DifferentialDrive(leftDriveBase, rightDriveBase);
   }
 
-  public void Shifters()
+  public void Shifters(boolean direction)
   {
-    double interim = 1; //can only toggle every 2 seconds
-    double previous = 0;
+    if (direction)
+    {
+      p_shifters.set(DoubleSolenoid.Value.kForward);
+    }else{
+      p_shifters.set(DoubleSolenoid.Value.kReverse);
+    }
+    // double interim = 1; //can only toggle every 2 seconds
+    // double previous = 0;
 
-      /*check if interim time has passed since previous check*/
-      if(Timer.getFPGATimestamp() - previous >= interim) 
-      {
-        previous = Timer.getFPGATimestamp();
-        if(shifters.get() == Value.kForward) 
-        {
-          shifters.set(Value.kReverse);
-        } else {
-          shifters.set(Value.kForward);
-        }
-      }
+    //   /*check if interim time has passed since previous check*/
+    //   if(Timer.getFPGATimestamp() - previous >= interim) 
+    //   {
+    //     previous = Timer.getFPGATimestamp();
+    //     if(shifters.get() == Value.kForward) 
+    //     {
+    //       shifters.set(Value.kReverse);
+    //     } else {
+    //       shifters.set(Value.kForward);
+    //     }
+    //   }
   }
 
   public void driverJoystick(Joystick joystick) 

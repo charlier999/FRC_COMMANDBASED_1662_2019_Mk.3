@@ -36,7 +36,12 @@ public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
 
 
   // Driver Buttons
-  public Button shifterButton  = new JoystickButton(driver, 1);
+  // public Button shifterButton  = new JoystickButton(driver, 1);
+  //public Button shifterUp         = new JoystickButton(driver, 7);
+  //public Button shifterDown       = new JoystickButton(driver, 8);
+
+  public Button shifterUp = new JoystickButton(driver, 7);
+  public Button shifterDown = new JoystickButton(driver, 8);
   
   public Button intakeButton   = new JoystickButton(driver, 2);
   // intakeButton.whileHeld(Ball_Intake);
@@ -68,15 +73,19 @@ public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
   {
     intakeButton.whileHeld(new cmdBallIntake(true, 1));
     outakeButton.whileHeld(new cmdBallIntake(false, 1));
-    shifterButton.whenReleased(new cmdShift());
+
+    // shifterButton.whenReleased(new cmdShift());
+    shifterUp.whenPressed(new cmdShift(true));
+    shifterDown.whenPressed(new cmdShift(false));
+
     clawDropButton.whenPressed(new cmdClawDrop());
     climberPullButton.whileHeld(new cmdClimberPull());
 
-    gripperToggleClose.whenPressed(new cmdGrabberOC());
-    // gripperToggleOpen.whenPressed(new cmdGrabberOC());
+    gripperToggleClose.whenPressed(new cmdGrabberOC(true));
+    gripperToggleOpen.whenPressed(new cmdGrabberOC(false));
     // gripperToggle.whenPressed(new cmdGrabberOC());
 
-    linearActuatorButton.whileHeld(new cmdLinearActuator(true));
+    linearActuatorButton.whileHeld(new cmdLinearActuator(false));
     encoderResetButton.whenReleased(new cmdEncoderReset());
   }
 

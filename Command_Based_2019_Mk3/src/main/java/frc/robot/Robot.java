@@ -27,7 +27,7 @@ import frc.robot.commands.cmdDrive;
 import frc.robot.commands.cmdJoystickElevator;
 import frc.robot.commands.cmdJoystickElevatorTest;
 import frc.robot.commands.cmdWristJoystick;
-import frc.robot.commands.cmdShift;
+// import frc.robot.commands.cmdShift;
 import frc.robot.commands.cmdClawDrop;
 // import frc.robot.commands.cmdGrabberOC;
 // import frc.robot.commands.cmdLinearActuator;
@@ -61,7 +61,7 @@ public class Robot extends TimedRobot
   Command cmdJoystickElevator     = new cmdJoystickElevator();
   Command cmdJoystickElevatorTest = new cmdJoystickElevatorTest();
   Command cmdWristJoystick        = new cmdWristJoystick();
-  Command cmdShift                = new cmdShift();
+  // Command cmdShift                = new cmdShift();
   Command cmdSmartDashboard       = new cmdSmartDashboard();
   // Command cmdOpenClose = new cmdOpenClose();
 

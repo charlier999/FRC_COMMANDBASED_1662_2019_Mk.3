@@ -22,7 +22,7 @@ public class Climber extends Subsystem
 {
   Joystick operator = new Joystick(1);
 
-  public DoubleSolenoid p_climberClaws = new DoubleSolenoid(1 , 2);
+  public DoubleSolenoid p_climberClaws = new DoubleSolenoid(2 , 3);
 
   WPI_TalonSRX linearActuator = new WPI_TalonSRX(RobotMap.linearActuator);
   WPI_VictorSPX climberWheel  = new WPI_VictorSPX(RobotMap.climberWheel);
