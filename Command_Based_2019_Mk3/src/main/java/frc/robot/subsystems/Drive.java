@@ -13,24 +13,18 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-// import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-// import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.RobotMap;
 
-/**
- * Add your docs here.
- */
 
 public class Drive extends Subsystem {
 
   public Joystick driver       = new Joystick(0);
-
- //public Joystick driver = new Joystick(OI.driver);
-
-  // public DoubleSolenoid shifters = new DoubleSolenoid(1 , 2);
 
   public double driverAxis1 = driver.getRawAxis(1);  // Left Thumb Stick  ~ Y axis ~ +/- input
   public double driverAxis5 = driver.getRawAxis(5);  // Right Thumb Stick ~ Y axis ~ +/- input
@@ -40,6 +34,8 @@ public class Drive extends Subsystem {
 
   int driveRightDistance;
   int driveLeftDistance;
+
+  public DoubleSolenoid shifters     = new DoubleSolenoid(1, 0);
  
   // Drive base motors
   WPI_VictorSPX leftMotorA           = new WPI_VictorSPX(RobotMap.leftMotorA);
@@ -69,15 +65,23 @@ public class Drive extends Subsystem {
     // driveBase = new DifferentialDrive(leftDriveBase, rightDriveBase);
   }
 
-//  public void Shifters()
-//   {
-//     if(shifters.get() == Value.kReverse)
-//     {
-//       shifters.set(DoubleSolenoid.Value.kForward);
-//     }else{ 
-//       shifters.set(DoubleSolenoid.Value.kReverse);
-//     }
-//   }
+  public void Shifters()
+  {
+    double interim = 1; //can only toggle every 2 seconds
+    double previous = 0;
+
+      /*check if interim time has passed since previous check*/
+      if(Timer.getFPGATimestamp() - previous >= interim) 
+      {
+        previous = Timer.getFPGATimestamp();
+        if(shifters.get() == Value.kForward) 
+        {
+          shifters.set(Value.kReverse);
+        } else {
+          shifters.set(Value.kForward);
+        }
+      }
+  }
 
   public void driverJoystick(Joystick joystick) 
   {

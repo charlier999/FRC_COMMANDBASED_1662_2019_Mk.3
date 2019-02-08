@@ -35,7 +35,7 @@ public class Climber extends Subsystem
     linearActuator.setInverted(false);
     climberWheel.setInverted(false);
 
-    linearActuator.setSafetyEnabled(false);
+    linearActuator.setSafetyEnabled(true);
     climberWheel.setSafetyEnabled(false);
   }
 
@@ -59,9 +59,14 @@ public class Climber extends Subsystem
     climberWheel.set(-1);
   }
 
-  public void LinearActuatorExtend()
+  public void LinearActuatorExtend(Boolean direction)
   {
-    linearActuator.set(1);
+    if(direction)
+    {
+      linearActuator.set(1);
+    }else{
+      linearActuator.set(-1);
+    }
   }
 
   public void climberStop()

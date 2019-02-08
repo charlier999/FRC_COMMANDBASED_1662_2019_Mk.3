@@ -10,12 +10,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class cmdJoystickElevator extends Command 
+public class cmdElevatorBrake extends Command 
 {
-  public cmdJoystickElevator() 
+  Boolean active;
+  public cmdElevatorBrake(boolean active) 
   {
-    requires(Robot.sub_elevator);
-
+    requires(Robot.sub_grabber);
+    this.active = active;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -24,15 +25,14 @@ public class cmdJoystickElevator extends Command
   @Override
   protected void initialize() 
   {
-    Robot.sub_elevator.stop();
-    // Robot.sub_elevator.elevatorBrake(false);
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    Robot.sub_elevator.joystickElevator(Robot.m_oi.operator);
+    Robot.sub_elevator.elevatorBrake(active);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -46,8 +46,7 @@ public class cmdJoystickElevator extends Command
   @Override
   protected void end() 
   {
-    Robot.sub_elevator.stop();
-    // Robot.sub_elevator.elevatorBrake(true);
+
   }
 
   // Called when another command which requires one or more of the same
@@ -55,6 +54,6 @@ public class cmdJoystickElevator extends Command
   @Override
   protected void interrupted() 
   {
-    Robot.sub_elevator.stop();
+
   }
 }

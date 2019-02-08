@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Timer;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -67,12 +68,18 @@ public class Grabber extends Subsystem {
 
   public void GrabberOC()
   {
-    if(p_gripper.get() == Value.kForward)
-    {
-      p_gripper.set(Value.kReverse);
-    }else{
-      p_gripper.set(Value.kForward);
-    }
+    double interim = 1; //can only toggle every 2 seconds
+    double previous = 0;
+
+      /*check if interim time has passed since previous check*/
+      if(Timer.getFPGATimestamp() - previous >= interim) {
+        previous = Timer.getFPGATimestamp();
+        if(p_gripper.get() == Value.kForward) {
+          p_gripper.set(Value.kReverse);
+        } else {
+          p_gripper.set(Value.kForward);
+        }
+      }
   }
   @Override
   public void initDefaultCommand() {

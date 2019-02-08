@@ -12,9 +12,11 @@ import frc.robot.Robot;
 
 public class cmdLinearActuator extends Command 
 {
-  public cmdLinearActuator() 
+  Boolean direction;
+  public cmdLinearActuator(Boolean direction) 
   {
     requires(Robot.sub_climber);
+    this.direction = direction;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -30,7 +32,7 @@ public class cmdLinearActuator extends Command
   @Override
   protected void execute() 
   {
-    Robot.sub_climber.LinearActuatorExtend();
+    Robot.sub_climber.LinearActuatorExtend(direction);
   }
 
   // Make this return true when this Command no longer needs to run execute()

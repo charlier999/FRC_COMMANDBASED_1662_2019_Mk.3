@@ -42,9 +42,10 @@ public class RobotMap {
   public static int wristMotor = 10;
 
   //Double Soleniods
-  public DoubleSolenoid p_shifters     = new DoubleSolenoid(1, 2);
-  public DoubleSolenoid p_gripper      = new DoubleSolenoid(3, 4); //Use to open and close grabber
-  public DoubleSolenoid p_climberClaws = new DoubleSolenoid(5, 6);
+  public DoubleSolenoid p_shifters     = new DoubleSolenoid(0, 1); // Shifters 
+  public DoubleSolenoid p_gripper      = new DoubleSolenoid(2, 3); // Use to open and close grabber
+  public DoubleSolenoid p_climberClaws = new DoubleSolenoid(4, 5); // used to Drop the climbing claws 
+  public DoubleSolenoid p_elevatorBrake= new DoubleSolenoid(6, 7); // 
 
   //Encoders
   public Encoder e_driveRight   = new Encoder(12, 13, false, Encoder.EncodingType.k4X);
@@ -54,3 +55,4 @@ public class RobotMap {
 
   public AnalogPotentiometer ap_gripper;
 }
+

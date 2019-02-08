@@ -20,7 +20,8 @@ import frc.robot.commands.cmdLinearActuator;
 import frc.robot.commands.cmdEncoderReset;
 
 public class OI {
-  
+  public Boolean b_Grabber;
+
   // Joysticks
   public Joystick driver       = new Joystick(0);
   public Joystick operator     = new Joystick(1);
@@ -42,7 +43,8 @@ public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
 
   public Button outakeButton   = new JoystickButton(driver, 3);
 
-  public Button gripperToggle  = new JoystickButton(driver, 5);
+  public Button gripperToggleClose  = new JoystickButton(driver, 5);
+  public Button gripperToggleOpen = new JoystickButton(driver, 6);
 
   public Button clawDropButton = new JoystickButton(operator, 10);
 
@@ -69,8 +71,12 @@ public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
     shifterButton.whenReleased(new cmdShift());
     clawDropButton.whenPressed(new cmdClawDrop());
     climberPullButton.whileHeld(new cmdClimberPull());
-    gripperToggle.whenReleased(new cmdGrabberOC());
-    linearActuatorButton.whileHeld(new cmdLinearActuator());
+
+    gripperToggleClose.whenPressed(new cmdGrabberOC());
+    // gripperToggleOpen.whenPressed(new cmdGrabberOC());
+    // gripperToggle.whenPressed(new cmdGrabberOC());
+
+    linearActuatorButton.whileHeld(new cmdLinearActuator(true));
     encoderResetButton.whenReleased(new cmdEncoderReset());
   }
 
@@ -88,7 +94,7 @@ public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
   Button ballPickUpButton = new JoystickButton(buttonPannel, 1);
 
   Button climberButton = new JoystickButton(buttonPannel, 1);
-  
+
   //Drive Controller Axis's
  public double driverAxis0 = driver.getRawAxis(0);  // Left Thumb Stick  ~ X axis ~ +/- input
   public double driverAxis1 = driver.getRawAxis(1);  // Left Thumb Stick  ~ Y axis ~ +/- input
