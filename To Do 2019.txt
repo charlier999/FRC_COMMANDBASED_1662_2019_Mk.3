@@ -1,0 +1,99 @@
+-------------------High---------------------
+
+Intake Rollers not running on command
+  - When the intake and outake buttons are pressed,
+     they do not run all the time
+  - When buttons held, rollers would randomly run
+     for a split second 
+  - Inconsistant in when they randomly run
+  - Motor Controller  9
+
+Elevator Brake randomly actuate
+  - The brake solenoid would randomly acutate when 
+     the Joystick is not moved.
+  - The speed of the actuations vary from high speed
+     to once every 30 sec's
+  - solenoid (6, 7) 
+
+
+-------------------Med----------------------
+Encoders set up
+
+Drive Encoders for logging
+
+Linear Act Encode logging
+
+Potentiometer logging
+
+Elevator Encoder logging
+
+
+
+-------------------Low-----------------------
+
+Cammra lol
+
+
+
+
+
+-----------------------Finnished-----------------------------------
+
+Linear Actuator is not responding to commands		Not our Probblem [reslolved]	
+  - Check the code to see if it is on our end
+  - If it is not a code problem, communicate the 
+     issue to the build team
+
+
+Drive Train stopping					Not our Probblem [resolved
+  - The drive train is stopping after a few minnutes 
+     of use
+  - is not disabling the drive station
+  - If it is not a code issue, communicate the issue 
+     to the build team
+
+
+Elevator Brake (pnumatic)				
+  - when the elevator stops, the pnumatic brake enables
+  - when the elevator is moving, the pnumatic brake 
+     in not enables
+
+Grabber Studder						
+  - The pnumatic o/c is studdering in the solinoid
+  - find a way for a the grabber button to stay as 
+     a toggle and fix the studder
+
+Comment out the elevator            
+ back spin for the pnumatic brake   
+
+Ball intake 
+in  			  	    
+out 			  	    
+
+DriveTrain with Joysticks	    
+
+DriveTrain with Auto	 	    
+
+DriveTrain Shifters		   
+
+Elevator with Joystick	   	    
+
+Elevator hold with back spin	    
+
+Elevator with Joystick for testing  
+
+Wrist with Joystick 		    
+
+Climber Mech Open		    
+
+Climber Mech Close		    
+
+Climber Mech Wheel with Button	    
+
+Rear Climber Linear Actuator button 
+
+Gripper
+Open				    
+Close				    
+
+
