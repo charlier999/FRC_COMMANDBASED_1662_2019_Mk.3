@@ -37,16 +37,18 @@ public Elevator()
   rightElevatorMotor.setInverted(false);
   leftElevatorMotor.setInverted(false);
 }
+// public void elevatorBaseV2
 
 public void elevatorBrake(Joystick joystick)
 {
-  if(joystick.getRawAxis(1) < .45 && joystick.getRawAxis(1) > -.45)
+  if(joystick.getRawAxis(1) < .45 && joystick.getRawAxis(1) > -.45) 
   {
     p_elevatorBrake.set(Value.kForward);
   }else{
     p_elevatorBrake.set(Value.kReverse);
   }
 }
+
 
 public void autoElevator(boolean elevatorDirection, double elevatorSpeed) 
 {
@@ -64,14 +66,14 @@ public void autoElevator(boolean elevatorDirection, double elevatorSpeed)
 
 public void joystickElevator(Joystick joystick)
 {
-  if(operator.getRawAxis(1) == 0)
-  {
-    p_elevatorBrake.set(Value.kForward);
-  }else{
-    p_elevatorBrake.set(Value.kReverse);
+  // if(operator.getRawAxis(1) == 0)
+  // {
+  //   //p_elevatorBrake.set(Value.kForward);
+  // }else{
+  //   //p_elevatorBrake.set(Value.kReverse);
     rightElevatorMotor.set(operator.getRawAxis(1));
     leftElevatorMotor.set(operator.getRawAxis(1));
-  }
+  // }
 }
 
 // public void ElevatorHold()

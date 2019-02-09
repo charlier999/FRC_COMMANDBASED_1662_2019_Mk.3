@@ -27,6 +27,7 @@ import frc.robot.commands.cmdDrive;
 import frc.robot.commands.cmdJoystickElevator;
 import frc.robot.commands.cmdJoystickElevatorTest;
 import frc.robot.commands.cmdWristJoystick;
+// import frc.robot.commands.cmdBallIntake;
 // import frc.robot.commands.cmdShift;
 // import frc.robot.commands.cmdClawDrop;
 // import frc.robot.commands.cmdGrabberOC;
@@ -61,6 +62,7 @@ public class Robot extends TimedRobot
   Command cmdJoystickElevator     = new cmdJoystickElevator();
   Command cmdJoystickElevatorTest = new cmdJoystickElevatorTest();
   Command cmdWristJoystick        = new cmdWristJoystick();
+  // Command cmdBallIntake           = new cmdBallIntake();
   // Command cmdShift                = new cmdShift();
   Command cmdSmartDashboard       = new cmdSmartDashboard();
   // Command cmdOpenClose = new cmdOpenClose();
@@ -137,6 +139,7 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     cmdJoystickElevator.start();
     cmdWristJoystick.start();
+    // cmdBallIntake.start();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -172,6 +175,7 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     cmdJoystickElevator.start();
     cmdWristJoystick.start();
+    // cmdBallIntake.start();
 
     if (m_autonomousCommand != null) 
     {
@@ -190,6 +194,7 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     cmdJoystickElevator.start();
     cmdWristJoystick.start();
+    // cmdBallIntake.start();
   }
 
   /**

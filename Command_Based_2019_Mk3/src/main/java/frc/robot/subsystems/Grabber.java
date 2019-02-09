@@ -25,27 +25,49 @@ public class Grabber extends Subsystem
   // public Toggle grabberToggle = new Toggle(false);
   public Joystick operator     = new Joystick(1);
   public DoubleSolenoid p_gripper = new DoubleSolenoid(2, 3);
-  public WPI_VictorSPX GripperMotor = new WPI_VictorSPX(RobotMap.GripperMotor);
+  // public WPI_VictorSPX GripperMotor = new WPI_VictorSPX(RobotMap.GripperMotor);
+  public WPI_VictorSPX gripperMotorV2 = new WPI_VictorSPX(RobotMap.gripperMotorV2);
   public WPI_VictorSPX wristMotor = new WPI_VictorSPX(RobotMap.wristMotor);
   public AnalogPotentiometer ap_gripper = new AnalogPotentiometer(1);
 
+  // public void IntakeV3(Joystick joystick)
+  // {
+  //   // gripperMotorV2.set(joystick.getRawAxis(2));
+  //   // gripperMotorV2.set(-joystick.getRawAxis(3));
+  // }
 
-  public void intake(boolean intakeDirection, double intakeSpeed)
+  // public void intakeV2(boolean intakeDirection, double intakeSpeed)
+  // {
+  //   intakeSpeed = Math.abs(intakeSpeed);
+
+  //   if(intakeDirection)
+  //   {
+  //     gripperMotorV2.set(intakeSpeed);
+  //   }else{
+  //     gripperMotorV2.set(intakeSpeed);
+  //   }
+  // }
+
+  public void intake(boolean direction, double speed) 
   {
-    intakeSpeed = Math.abs(intakeSpeed);
+    speed = Math.abs(speed);
     
-    if(intakeDirection)
+    if(direction) 
     {
-      GripperMotor.set(intakeSpeed);
+      gripperMotorV2.set(speed);
     }else{
-      GripperMotor.set(-intakeSpeed);
+      gripperMotorV2.set(-speed);
     }
   }
-
-  public void Gripperstop()
+  public void GrabberStop()
   {
-    GripperMotor.stopMotor();
+    gripperMotorV2.stopMotor();
   }
+
+  // public void Gripperstop()
+  // {
+  //   GripperMotor.stopMotor();
+  // }
   
   public void wristButtonActuation(boolean wristDirection, double wristSpeed)
   {

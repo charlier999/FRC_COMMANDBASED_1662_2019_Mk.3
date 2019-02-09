@@ -45,7 +45,7 @@ public class OI {
   
   public Button intakeButton   = new JoystickButton(driver, 2);
   // intakeButton.whileHeld(Ball_Intake);
-  public Button intakeButtonv2 = new JoystickButton(driver, 4);
+  // public Button intakeButtonv2 = new JoystickButton(driver, 4);
 
   public Button outakeButton   = new JoystickButton(driver, 3);
 
@@ -74,7 +74,7 @@ public class OI {
   public OI()
   {
     intakeButton.whileHeld(new cmdBallIntake(true, 1));
-    intakeButtonv2.whileHeld(new cmdBallIntake(true, 1));
+    // intakeButtonv2.whileHeld(new cmdBallIntake(true, 1));
     outakeButton.whileHeld(new cmdBallIntake(false, 1));
 
     // shifterButton.whenReleased(new cmdShift());

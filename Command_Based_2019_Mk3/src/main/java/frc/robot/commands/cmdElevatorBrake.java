@@ -16,7 +16,7 @@ public class cmdElevatorBrake extends Command
   public cmdElevatorBrake(boolean active) 
   {
     requires(Robot.sub_grabber);
-    // this.active = active;
+    //this.active = active;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

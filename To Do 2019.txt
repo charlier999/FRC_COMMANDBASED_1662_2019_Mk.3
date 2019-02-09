@@ -8,13 +8,6 @@ Intake Rollers not running on command
   - Inconsistant in when they randomly run
   - Motor Controller  9
 
-Elevator Brake randomly actuate
-  - The brake solenoid would randomly acutate when 
-     the Joystick is not moved.
-  - The speed of the actuations vary from high speed
-     to once every 30 sec's
-  - solenoid (6, 7) 
-
 
 -------------------Med----------------------
 Encoders set up
@@ -38,6 +31,14 @@ Cammra lol
 
 
 -----------------------Finnished-----------------------------------
+
+Elevator Brake randomly actuate				Not our Problem [vaccume]
+  - The brake solenoid would randomly acutate when 
+     the Joystick is not moved.
+  - The speed of the actuations vary from high speed
+     to once every 30 sec's
+  - solenoid (6, 7) 
+
 
 Linear Actuator is not responding to commands		Not our Probblem [reslolved]	
   - Check the code to see if it is on our end
