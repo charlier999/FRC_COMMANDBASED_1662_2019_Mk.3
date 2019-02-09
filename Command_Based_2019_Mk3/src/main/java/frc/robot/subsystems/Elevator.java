@@ -22,7 +22,7 @@ public Joystick operator     = new Joystick(1);
 WPI_TalonSRX rightElevatorMotor  = new WPI_TalonSRX(RobotMap.rightElevatorMotor);
 WPI_VictorSPX leftElevatorMotor   = new WPI_VictorSPX(RobotMap.leftElevatorMotor);
 
-public DoubleSolenoid p_elevatorBrake= new DoubleSolenoid(6, 7);
+public DoubleSolenoid p_elevatorBrake = new DoubleSolenoid(6, 7);
 
 public DifferentialDrive elevatorBase;
 
@@ -40,7 +40,7 @@ public Elevator()
 
 public void elevatorBrake(Joystick joystick)
 {
-  if(joystick.getRawAxis(1) == 0)
+  if(joystick.getRawAxis(1) < .45 && joystick.getRawAxis(1) > -.45)
   {
     p_elevatorBrake.set(Value.kForward);
   }else{

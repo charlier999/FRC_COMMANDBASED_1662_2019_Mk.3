@@ -32,7 +32,7 @@ public class cmdBallIntake extends Command
   @Override
   protected void initialize() 
   {
-    Robot.sub_grabber.Gripperstop();
+    // Robot.sub_grabber.Gripperstop();
   }
 
   // Called repeatedly when this Command is scheduled to run

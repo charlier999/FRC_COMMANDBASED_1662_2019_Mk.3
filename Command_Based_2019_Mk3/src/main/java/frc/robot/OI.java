@@ -17,7 +17,7 @@ import frc.robot.commands.cmdClawDrop;
 import frc.robot.commands.cmdClimberPull;
 import frc.robot.commands.cmdGrabberOC;
 import frc.robot.commands.cmdLinearActuator;
-import frc.robot.commands.cmdEncoderReset;
+// import frc.robot.commands.cmdEncoderReset;
 
 public class OI {
   public Boolean b_Grabber;
@@ -26,13 +26,13 @@ public class OI {
   public Joystick driver       = new Joystick(0);
   public Joystick operator     = new Joystick(1);
   // public Joystick buttonPannel = new Joystick(2);
-  public Joystick encoderReset = new Joystick(3);
+  // public Joystick encoderReset = new Joystick(3);
 
-public Button encoderResetButton = new JoystickButton(encoderReset, 1);
-public Button encoderDriveLeftConsole = new JoystickButton(encoderReset, 2);
-public Button encoderDriveRightConsole = new JoystickButton(encoderReset, 3);
-public Button encoderElevatorConsole = new JoystickButton(encoderReset, 4);
-public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
+// public Button encoderResetButton = new JoystickButton(encoderReset, 1);
+// public Button encoderDriveLeftConsole = new JoystickButton(encoderReset, 2);
+// public Button encoderDriveRightConsole = new JoystickButton(encoderReset, 3);
+// public Button encoderElevatorConsole = new JoystickButton(encoderReset, 4);
+// public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
 
 
   // Driver Buttons
@@ -45,6 +45,7 @@ public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
   
   public Button intakeButton   = new JoystickButton(driver, 2);
   // intakeButton.whileHeld(Ball_Intake);
+  public Button intakeButtonv2 = new JoystickButton(driver, 4);
 
   public Button outakeButton   = new JoystickButton(driver, 3);
 
@@ -73,6 +74,7 @@ public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
   public OI()
   {
     intakeButton.whileHeld(new cmdBallIntake(true, 1));
+    intakeButtonv2.whileHeld(new cmdBallIntake(true, 1));
     outakeButton.whileHeld(new cmdBallIntake(false, 1));
 
     // shifterButton.whenReleased(new cmdShift());
@@ -88,7 +90,7 @@ public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
 
     linearActuatorButtonIn.whileHeld(new cmdLinearActuator(false));
     linearActuatorButtonOut.whileHeld(new cmdLinearActuator(true));
-    encoderResetButton.whenReleased(new cmdEncoderReset());
+    // encoderResetButton.whenReleased(new cmdEncoderReset());
   }
 
 
