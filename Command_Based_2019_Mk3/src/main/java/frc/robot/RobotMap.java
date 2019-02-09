@@ -42,7 +42,7 @@ public class RobotMap {
   public static int wristMotor = 10;
 
   //Double Soleniods
-  // public DoubleSolenoid p_shifters     = new DoubleSolenoid(0, 1); // 
+  public DoubleSolenoid p_shifters     = new DoubleSolenoid(0, 1); 
   public DoubleSolenoid p_gripper      = new DoubleSolenoid(2, 3); // Use to open and close grabber
   public DoubleSolenoid p_climberClaws = new DoubleSolenoid(4, 5); // used to Drop the climbing claws 
   public DoubleSolenoid p_elevatorBrake= new DoubleSolenoid(6, 7); // 

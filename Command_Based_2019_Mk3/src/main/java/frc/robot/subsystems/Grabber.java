@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import frc.robot.Toggle;
 // import edu.wpi.first.wpilibj.Timer;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Joystick;
@@ -19,10 +20,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 
 
-public class Grabber extends Subsystem {
-
+public class Grabber extends Subsystem 
+{
+  // public Toggle grabberToggle = new Toggle(false);
   public Joystick operator     = new Joystick(1);
-  public DoubleSolenoid p_gripper = new DoubleSolenoid(4, 5);
+  public DoubleSolenoid p_gripper = new DoubleSolenoid(2, 3);
   public WPI_VictorSPX GripperMotor = new WPI_VictorSPX(RobotMap.GripperMotor);
   public WPI_VictorSPX wristMotor = new WPI_VictorSPX(RobotMap.wristMotor);
   public AnalogPotentiometer ap_gripper = new AnalogPotentiometer(1);
@@ -74,19 +76,21 @@ public class Grabber extends Subsystem {
     }else{
       p_gripper.set(Value.kReverse);
     }
-    // double interim = 3; //can only toggle every 2 seconds
-    // double previous = 0;
-
-    //   /*check if interim time has passed since previous check*/
-    //   if(Timer.getFPGATimestamp() - previous >= interim) {
-    //     previous = Timer.getFPGATimestamp();
-    //     if(p_gripper.get() == Value.kForward) {
-    //       p_gripper.set(Value.kReverse);
-    //     } else {
-    //       p_gripper.set(Value.kForward);
-    //     }
-    //   }
   }
+
+  public void GrabberOCv2()
+  {
+    Toggle grabberToggle = new Toggle(false);
+    if(grabberToggle.getToggle())
+    {
+      p_gripper.set(Value.kForward);
+      grabberToggle.toggleVar(true);
+    }else{
+      p_gripper.set(Value.kReverse);
+      grabberToggle.toggleVar(false);
+    }
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

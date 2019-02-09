@@ -12,9 +12,11 @@ import frc.robot.Robot;
 
 public class cmdClawDrop extends Command 
 {
-  public cmdClawDrop() 
+  Boolean direction;
+  public cmdClawDrop(boolean direction) 
   {
     requires(Robot.sub_climber);
+    this.direction = direction;
   }
 
   // Called just before this Command runs the first time
@@ -28,7 +30,7 @@ public class cmdClawDrop extends Command
   @Override
   protected void execute() 
   {
-    Robot.sub_climber.ClawRelease();
+    Robot.sub_climber.ClawRelease(direction);
   }
 
   // Make this return true when this Command no longer needs to run execute()

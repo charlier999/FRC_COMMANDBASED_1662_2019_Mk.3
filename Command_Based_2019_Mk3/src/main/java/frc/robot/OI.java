@@ -55,7 +55,8 @@ public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
 
   public Button climberPullButton = new JoystickButton(operator, 4);
 
-  public Button linearActuatorButton = new JoystickButton(operator, 3);
+  public Button linearActuatorButtonIn  = new JoystickButton(operator, 3);
+  public Button linearActuatorButtonOut = new JoystickButton(operator, 2);
 
 
 
@@ -78,14 +79,15 @@ public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
     shifterUp.whenPressed(new cmdShift(true));
     shifterDown.whenPressed(new cmdShift(false));
 
-    clawDropButton.whenPressed(new cmdClawDrop());
+    clawDropButton.whenPressed(new cmdClawDrop(false));
     climberPullButton.whileHeld(new cmdClimberPull());
 
     gripperToggleClose.whenPressed(new cmdGrabberOC(true));
     gripperToggleOpen.whenPressed(new cmdGrabberOC(false));
     // gripperToggle.whenPressed(new cmdGrabberOC());
 
-    linearActuatorButton.whileHeld(new cmdLinearActuator(false));
+    linearActuatorButtonIn.whileHeld(new cmdLinearActuator(false));
+    linearActuatorButtonOut.whileHeld(new cmdLinearActuator(true));
     encoderResetButton.whenReleased(new cmdEncoderReset());
   }
 

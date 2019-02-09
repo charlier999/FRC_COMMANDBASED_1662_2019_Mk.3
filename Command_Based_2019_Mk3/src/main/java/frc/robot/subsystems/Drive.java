@@ -35,7 +35,7 @@ public class Drive extends Subsystem {
   int driveRightDistance;
   int driveLeftDistance;
 
-  public DoubleSolenoid p_shifters     = new DoubleSolenoid(0, 1);
+  private DoubleSolenoid p_shifters     = new DoubleSolenoid(0, 1);
  
   // Drive base motors
   WPI_VictorSPX leftMotorA           = new WPI_VictorSPX(RobotMap.leftMotorA);

@@ -12,11 +12,11 @@ import frc.robot.Robot;
 
 public class cmdElevatorBrake extends Command 
 {
-  Boolean active;
+  // Boolean active;
   public cmdElevatorBrake(boolean active) 
   {
     requires(Robot.sub_grabber);
-    this.active = active;
+    // this.active = active;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -32,7 +32,7 @@ public class cmdElevatorBrake extends Command
   @Override
   protected void execute() 
   {
-    Robot.sub_elevator.elevatorBrake(active);
+    // Robot.sub_elevator.elevatorBrake(active);
   }
 
   // Make this return true when this Command no longer needs to run execute()

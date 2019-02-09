@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -18,7 +19,7 @@ import edu.wpi.first.wpilibj.Encoder;
 public class Elevator extends Subsystem {
 
 public Joystick operator     = new Joystick(1);
-WPI_VictorSPX rightElevatorMotor  = new WPI_VictorSPX(RobotMap.rightElevatorMotor);
+WPI_TalonSRX rightElevatorMotor  = new WPI_TalonSRX(RobotMap.rightElevatorMotor);
 WPI_VictorSPX leftElevatorMotor   = new WPI_VictorSPX(RobotMap.leftElevatorMotor);
 
 public DoubleSolenoid p_elevatorBrake= new DoubleSolenoid(6, 7);
@@ -37,9 +38,9 @@ public Elevator()
   leftElevatorMotor.setInverted(false);
 }
 
-public void elevatorBrake(boolean active)
+public void elevatorBrake(Joystick joystick)
 {
-  if(active)
+  if(joystick.getRawAxis(1) == 0)
   {
     p_elevatorBrake.set(Value.kForward);
   }else{

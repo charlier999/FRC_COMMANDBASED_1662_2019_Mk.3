@@ -12,10 +12,13 @@ import frc.robot.Robot;
 
 public class cmdShift extends Command 
 {
+
   Boolean direction;
+
   public cmdShift(boolean direction) 
   {
     requires(Robot.sub_drive);
+    this.direction = direction;
   }
 
   // Called just before this Command runs the first time

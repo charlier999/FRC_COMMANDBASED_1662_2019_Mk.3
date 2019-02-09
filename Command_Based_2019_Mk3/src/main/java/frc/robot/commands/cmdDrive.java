@@ -24,7 +24,7 @@ public class cmdDrive extends Command
   @Override
   protected void initialize() 
   {
-    Robot.sub_drive.stop();
+   // Robot.sub_drive.stop();
   }
 
   // Called repeatedly when this Command is scheduled to run

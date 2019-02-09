@@ -9,7 +9,6 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -22,9 +21,9 @@ public class Climber extends Subsystem
 {
   Joystick operator = new Joystick(1);
 
-  public DoubleSolenoid p_climberClaws = new DoubleSolenoid(2 , 3);
+  public DoubleSolenoid p_climberClaws = new DoubleSolenoid(4 , 5);
 
-  WPI_TalonSRX linearActuator = new WPI_TalonSRX(RobotMap.linearActuator);
+  WPI_VictorSPX linearActuator = new WPI_VictorSPX(RobotMap.linearActuator);
   WPI_VictorSPX climberWheel  = new WPI_VictorSPX(RobotMap.climberWheel);
 
   public Encoder e_linearAct    = new Encoder(16, 17, false, Encoder.EncodingType.k4X);
@@ -44,9 +43,9 @@ public class Climber extends Subsystem
     e_linearAct.reset();
   }
 
-  public void ClawRelease()
+  public void ClawRelease(boolean direction)
   {
-    if(p_climberClaws.get() == Value.kForward)
+    if(direction)
     {
       p_climberClaws.set(Value.kReverse);
     }else{
@@ -56,7 +55,7 @@ public class Climber extends Subsystem
 
   public void ClimberPull()
   {
-    climberWheel.set(-1);
+    climberWheel.set(1);
   }
 
   public void LinearActuatorExtend(Boolean direction)

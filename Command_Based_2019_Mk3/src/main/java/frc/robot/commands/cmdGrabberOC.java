@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+//import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
@@ -33,6 +34,7 @@ public class cmdGrabberOC extends Command
   protected void execute() 
   {
     Robot.sub_grabber.GrabberOC(direction);
+    // Robot.sub_grabber.GrabberOCv2();
   }
 
   // Make this return true when this Command no longer needs to run execute()

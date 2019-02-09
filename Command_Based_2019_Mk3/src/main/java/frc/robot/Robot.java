@@ -28,7 +28,7 @@ import frc.robot.commands.cmdJoystickElevator;
 import frc.robot.commands.cmdJoystickElevatorTest;
 import frc.robot.commands.cmdWristJoystick;
 // import frc.robot.commands.cmdShift;
-import frc.robot.commands.cmdClawDrop;
+// import frc.robot.commands.cmdClawDrop;
 // import frc.robot.commands.cmdGrabberOC;
 // import frc.robot.commands.cmdLinearActuator;
 import frc.robot.commands.cmdSmartDashboard;
@@ -56,7 +56,7 @@ public class Robot extends TimedRobot
   // Commands
   // Command cmdLinearActuator       = new cmdLinearActuator();
   // Command cmdGrabberOC            = new cmdGrabberOC();
-  Command cmdClawDrop             = new cmdClawDrop();
+  // Command cmdClawDrop             = new cmdClawDrop();
   Command cmdDrive                = new cmdDrive();
   Command cmdJoystickElevator     = new cmdJoystickElevator();
   Command cmdJoystickElevatorTest = new cmdJoystickElevatorTest();
@@ -186,6 +186,10 @@ public class Robot extends TimedRobot
   public void teleopPeriodic() 
   {
     Scheduler.getInstance().run();
+    cmdDrive.start();
+    cmdWristJoystick.start();
+    cmdJoystickElevator.start();
+    cmdWristJoystick.start();
   }
 
   /**
