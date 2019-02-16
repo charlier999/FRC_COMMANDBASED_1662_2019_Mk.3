@@ -109,7 +109,7 @@ public class Robot extends TimedRobot
     compressor.setClosedLoopControl(true);
     compressor.start();
     cmdSmartDashboard.start();
-    cmdEncoderPrint.start();
+    // cmdEncoderPrint.start();
     }
 
   /**
@@ -123,7 +123,7 @@ public class Robot extends TimedRobot
   @Override
   public void robotPeriodic() 
   {
-    cmdEncoderPrint.start();
+    // cmdEncoderPrint.start();
   }
 
   /**

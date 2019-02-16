@@ -28,7 +28,7 @@ public class cmdEncoderPrint extends Command
   @Override
   protected void execute() 
   {
-    Robot.sub_drive.DriveEncoderPrint();
+    // Robot.sub_drive.DriveEncoderPrint();
   }
 
   // Make this return true when this Command no longer needs to run execute()
