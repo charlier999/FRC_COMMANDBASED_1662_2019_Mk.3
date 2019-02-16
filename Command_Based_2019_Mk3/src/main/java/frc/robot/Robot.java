@@ -16,14 +16,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
 
 // Cammra Imports
-import org.opencv.core.Mat;
-import org.opencv.imgproc.Imgproc;
-import edu.wpi.cscore.VideoMode;
+// import org.opencv.core.Mat;
+// import org.opencv.imgproc.Imgproc;
+// import edu.wpi.cscore.VideoMode;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
+// import edu.wpi.cscore.CvSink;
+// import edu.wpi.cscore.CvSource;
+// import edu.wpi.cscore.UsbCamera;
+// import edu.wpi.first.wpilibj.CameraServer;
 // import 
 
 // Subsystem Imports
@@ -47,6 +47,7 @@ import frc.robot.commands.cmdWristJoystick;
 // import frc.robot.commands.cmdLinearActuator;
 import frc.robot.commands.cmdSmartDashboard;
 //import frc.robot.commands.cmdOpenClose;
+import frc.robot.commands.cmdEncoderPrint;
 
 
 /**
@@ -79,6 +80,7 @@ public class Robot extends TimedRobot
   // Command cmdBallIntake           = new cmdBallIntake();
   // Command cmdShift                = new cmdShift();
   Command cmdSmartDashboard       = new cmdSmartDashboard();
+  Command cmdEncoderPrint         = new cmdEncoderPrint();
   // Command cmdOpenClose = new cmdOpenClose();
 
   Compressor compressor = new Compressor(0);
@@ -94,20 +96,21 @@ public class Robot extends TimedRobot
   @Override
   public void robotInit() 
   {
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    camera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 480, 60);
+    // UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    // camera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 480, 60);
     
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    CameraServer.getInstance().startAutomaticCapture();
+    // CameraServer.getInstance().startAutomaticCapture();
 
     compressor.setClosedLoopControl(true);
     compressor.start();
     cmdSmartDashboard.start();
-  }
+    cmdEncoderPrint.start();
+    }
 
   /**
    * This function is called every robot packet, no matter the mode. Use
@@ -120,6 +123,7 @@ public class Robot extends TimedRobot
   @Override
   public void robotPeriodic() 
   {
+    cmdEncoderPrint.start();
   }
 
   /**

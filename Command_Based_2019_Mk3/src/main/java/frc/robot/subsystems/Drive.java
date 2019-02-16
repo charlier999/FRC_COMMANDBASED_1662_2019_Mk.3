@@ -70,23 +70,11 @@ public class Drive extends Subsystem {
     if (direction)
     {
       p_shifters.set(DoubleSolenoid.Value.kForward);
+      System.out.println("Shift Up");
     }else{
       p_shifters.set(DoubleSolenoid.Value.kReverse);
+      System.out.println("Shift Down");
     }
-    // double interim = 1; //can only toggle every 2 seconds
-    // double previous = 0;
-
-    //   /*check if interim time has passed since previous check*/
-    //   if(Timer.getFPGATimestamp() - previous >= interim) 
-    //   {
-    //     previous = Timer.getFPGATimestamp();
-    //     if(shifters.get() == Value.kForward) 
-    //     {
-    //       shifters.set(Value.kReverse);
-    //     } else {
-    //       shifters.set(Value.kForward);
-    //     }
-    //   }
   }
 
   public void driverJoystick(Joystick joystick) 
@@ -106,31 +94,23 @@ public class Drive extends Subsystem {
     leftDriveBase.set(0);
     rightDriveBase.set(0);
   }
-
-  public void encoderConsole() 
-{
-  driveRightDistance = e_driveRight.getRaw();
-  driveLeftDistance = e_driveLeft.getRaw();
-
-}
-
-public void output()
-{
-  System.out.println (driveRightDistance);
-  System.out.println (driveLeftDistance );
-}
-
+  
   public void driveEncoderReset()
   {
     e_driveRight.reset();
     e_driveLeft.reset();
   }
 
+  public void DriveEncoderPrint()
+  {
+    System.out.println(e_driveLeft.getRate());
+    System.out.println(e_driveRight.getRate());
+  }
+
   @Override
   public void initDefaultCommand() 
   {
-    //driveBase.tankDrive(  );
-  }
-  
+
+  }  
 }
  
