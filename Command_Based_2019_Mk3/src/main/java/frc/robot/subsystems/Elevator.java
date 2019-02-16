@@ -27,8 +27,8 @@ public DoubleSolenoid p_elevatorBrake = new DoubleSolenoid(6, 7);
 // public DifferentialDrive elevatorBase;
 
 //public static int  elevatorDistance = new 
-public Encoder e_elevatorDrum = new Encoder(14, 15, false, Encoder.EncodingType.k4X);
-//int elevatorDistance;
+public Encoder elevatorEncoder = new Encoder(14, 15, false, Encoder.EncodingType.k4X);
+int elevatorDistance;
 
 
 
@@ -89,8 +89,9 @@ public void stop()
   leftElevatorMotor.set(0);
 }
 
-public void encoderConsole() 
+public void encoderHatchLevelHeights() 
 {
+
   
   //elevatorDistance = e_elevatorDrum.getRaw();
   //bvaaSystem.out.println (elevatorDistance);
@@ -98,8 +99,11 @@ public void encoderConsole()
 
 public void elevatorEncoderReset() 
 {
-  e_elevatorDrum.reset();
+  elevatorEncoder.reset();
 }
+
+
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

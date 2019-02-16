@@ -18,6 +18,16 @@ import frc.robot.commands.cmdClawDrop;
 import frc.robot.commands.cmdClimberPull;
 import frc.robot.commands.cmdGrabberOC;
 import frc.robot.commands.cmdLinearActuator;
+
+import frc.robot.commands.cmdhatchLevel1;
+import frc.robot.commands.cmdhatchLevel2;
+import frc.robot.commands.cmdhatchLevel3;
+
+import frc.robot.commands.cmdballLevel1;
+import frc.robot.commands.cmdballLevel2;
+import frc.robot.commands.cmdballLevel3;
+
+import frc.robot.commands.cmdballPickUp;
 // import frc.robot.commands.cmdEncoderReset;
 
 public class OI {
@@ -26,7 +36,7 @@ public class OI {
   // Joysticks
   public Joystick driver       = new Joystick(0);
   public Joystick operator     = new Joystick(1);
-  // public Joystick buttonPannel = new Joystick(2);
+  public Joystick buttonPannel = new Joystick(2);
   // public Joystick encoderReset = new Joystick(3);
 
 // public Button encoderResetButton = new JoystickButton(encoderReset, 1);
@@ -61,7 +71,17 @@ public class OI {
   public Button linearActuatorButtonIn  = new JoystickButton(operator, 3);
   public Button linearActuatorButtonOut = new JoystickButton(operator, 2);
 
+// Button Pannel Buttons
+public Button hatchLevel1 = new JoystickButton(buttonPannel, 1);
+public Button hatchLevel2 = new JoystickButton(buttonPannel, 2);
+public Button hatchLevel3 = new JoystickButton(buttonPannel, 3);
 
+public Button ballLevel1 = new JoystickButton(buttonPannel, 1);
+public Button ballLevel2 = new JoystickButton(buttonPannel, 2);
+public Button ballLevel3 = new JoystickButton(buttonPannel, 3);
+
+public Button ballPickUpButton = new JoystickButton(buttonPannel, 1);
+public Button climberButton = new JoystickButton(buttonPannel, 1); //This is auto climb
 
   public Joystick getDriverJoystick()
   {
@@ -96,30 +116,30 @@ public class OI {
     linearActuatorButtonIn.whileHeld(new cmdLinearActuator(false));
     linearActuatorButtonOut.whileHeld(new cmdLinearActuator(true));
     // encoderResetButton.whenReleased(new cmdEncoderReset());
+
+    //Button Pannel
+    hatchLevel1.whenPressed(new cmdhatchLevel1());
+    hatchLevel2.whenPressed(new cmdhatchLevel2());
+    hatchLevel3.whenPressed(new cmdhatchLevel3());
+
+    ballLevel1.whenPressed(new cmdballLevel1());
+    ballLevel2.whenPressed(new cmdballLevel2());
+    ballLevel3.whenPressed(new cmdballLevel3());
+
+    ballPickUpButton.whenPressed(new cmdballPickUp());
+
+
+
+
   }
 
-
-  // Button Pannel Buttons
-  /*
-  Button hatchLevel1Button = new JoystickButton(buttonPannel, 1);
-  Button hatchLevel2Button = new JoystickButton(buttonPannel, 2);
-  Button hatchLevel3Button = new JoystickButton(buttonPannel, 3);
-
-  Button ballLevel1Button = new JoystickButton(buttonPannel, 1);
-  Button ballLevel2Button = new JoystickButton(buttonPannel, 2);
-  Button ballLevel3button = new JoystickButton(buttonPannel, 3);
-
-  Button ballPickUpButton = new JoystickButton(buttonPannel, 1);
-
-  Button climberButton = new JoystickButton(buttonPannel, 1);
-
   //Drive Controller Axis's
- public double driverAxis0 = driver.getRawAxis(0);  // Left Thumb Stick  ~ X axis ~ +/- input
-  public double driverAxis1 = driver.getRawAxis(1);  // Left Thumb Stick  ~ Y axis ~ +/- input
-  public double driverAxis2 = driver.getRawAxis(2);  // Left Trigger               ~ only positive input
-  public double driverAxis3 = driver.getRawAxis(3);  // Right Trigger              ~ only positive input
-  public double driverAxis4 = driver.getRawAxis(4);  // Right Thumb Stick ~ X axis ~ +/- input
-  public double driverAxis5 = driver.getRawAxis(5);  // Right Thumb Stick ~ Y axis ~ +/- input
+//  public double driverAxis0 = driver.getRawAxis(0);  // Left Thumb Stick  ~ X axis ~ +/- input
+//   public double driverAxis1 = driver.getRawAxis(1);  // Left Thumb Stick  ~ Y axis ~ +/- input
+//   public double driverAxis2 = driver.getRawAxis(2);  // Left Trigger               ~ only positive input
+//   public double driverAxis3 = driver.getRawAxis(3);  // Right Trigger              ~ only positive input
+//   public double driverAxis4 = driver.getRawAxis(4);  // Right Thumb Stick ~ X axis ~ +/- input
+//   public double driverAxis5 = driver.getRawAxis(5);  // Right Thumb Stick ~ Y axis ~ +/- input
   
 //  driverAxis0 = driver.getRawAxis(0);
 //  driverAxis1 = driver.getRawAxis(1);
@@ -131,5 +151,4 @@ public class OI {
   // public double operatorAxis3;  // Right Trigger              ~ only positive input
   // public double operatorAxis4;  // Right Thumb Stick ~ X axis ~ +/- input
   // public double operatorAxis5;  // Right Thumb Stick ~ Y axis ~ +/- input
-*/
 }
