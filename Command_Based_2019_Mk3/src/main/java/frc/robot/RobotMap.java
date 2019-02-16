@@ -27,14 +27,14 @@ public class RobotMap {
 
   //Intake Motors
   // public static int GripperMotor = 9;
-  public static int gripperMotorV2 = 9;
+  public static int gripperMotorV2 = 9; //9
 
   //Elevator Motors
   public static int rightElevatorMotor = 8;
   public static int leftElevatorMotor = 7;
 
   //Climber Linear Actuators
-  public static int linearActuator = 5;
+  public static int linearActuator = 5; //5
 
   //Climber Wheel Motors
   public static int climberWheel = 6;    

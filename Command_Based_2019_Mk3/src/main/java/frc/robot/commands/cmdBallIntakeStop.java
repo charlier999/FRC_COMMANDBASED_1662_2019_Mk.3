@@ -10,50 +10,40 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class cmdElevatorBrake extends Command 
+public class cmdBallIntakeStop extends Command 
 {
-  // Boolean active;
-  public cmdElevatorBrake(boolean active) 
+  public cmdBallIntakeStop() 
   {
-    requires(Robot.sub_elevator);
-    //this.active = active;
+    requires(Robot.sub_grabberOC);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() 
-  {
-
+  protected void initialize() {
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() 
-  {
-    // Robot.sub_elevator.elevatorBrake(active);
+  protected void execute() {
+    Robot.sub_grabberOC.IntakeStop();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() 
-  {
+  protected boolean isFinished() {
     return false;
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() 
-  {
-
+  protected void end() {
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() 
-  {
-
+  protected void interrupted() {
   }
 }

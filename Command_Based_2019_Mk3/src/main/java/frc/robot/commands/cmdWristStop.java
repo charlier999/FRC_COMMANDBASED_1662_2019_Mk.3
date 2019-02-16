@@ -10,13 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class cmdElevatorBrake extends Command 
+public class cmdWristStop extends Command 
 {
-  // Boolean active;
-  public cmdElevatorBrake(boolean active) 
+  public cmdWristStop() 
   {
-    requires(Robot.sub_elevator);
-    //this.active = active;
+    requires(Robot.sub_grabberOC);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -32,7 +30,7 @@ public class cmdElevatorBrake extends Command
   @Override
   protected void execute() 
   {
-    // Robot.sub_elevator.elevatorBrake(active);
+    // Robot.sub_grabberOC.WristStop();
   }
 
   // Make this return true when this Command no longer needs to run execute()

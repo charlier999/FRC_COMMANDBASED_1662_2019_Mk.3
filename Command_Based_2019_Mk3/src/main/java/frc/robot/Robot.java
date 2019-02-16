@@ -19,7 +19,8 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Grabber;
+// import frc.robot.subsystems.Grabber; 
+import frc.robot.subsystems.GrabberOpenClose;
 
 // Commands
 import frc.robot.commands.ExampleCommand;
@@ -51,7 +52,8 @@ public class Robot extends TimedRobot
   public static Climber sub_climber            = new Climber();
   public static Drive sub_drive                = new Drive();
   public static Elevator sub_elevator          = new Elevator();
-  public static Grabber sub_grabber            = new Grabber();
+  // public static Grabber sub_grabber            = new Grabber();
+  public static GrabberOpenClose sub_grabberOC = new GrabberOpenClose();
   public static OI m_oi;
 
   // Commands

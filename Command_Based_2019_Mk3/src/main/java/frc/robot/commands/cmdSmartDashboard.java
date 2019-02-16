@@ -17,7 +17,7 @@ public class cmdSmartDashboard extends Command
   {
     requires(Robot.sub_climber);
     requires(Robot.sub_drive);
-    requires(Robot.sub_grabber);
+    // requires(Robot.sub_grabber);
     requires(Robot.sub_elevator);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -34,7 +34,7 @@ public class cmdSmartDashboard extends Command
   @Override
   protected void execute() 
   {
-    SmartDashboard.putNumber("Wrist Potentometer", Robot.sub_grabber.ap_gripper.get());
+    // SmartDashboard.putNumber("Wrist Potentometer", Robot.sub_grabber.ap_gripper.get());
     SmartDashboard.putNumber("Elevator Hight", Robot.sub_elevator.e_elevatorDrum.getDistance());
     SmartDashboard.putNumber("Linear Actuator Extention", Robot.sub_climber.e_linearAct.getDistance());
     SmartDashboard.putNumber("Drive Train Left", Robot.sub_drive.e_driveLeft.getDistance());

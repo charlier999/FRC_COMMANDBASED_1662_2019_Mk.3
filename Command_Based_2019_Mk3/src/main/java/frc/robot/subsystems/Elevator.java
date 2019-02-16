@@ -11,7 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+// import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Encoder;
@@ -24,7 +24,7 @@ WPI_VictorSPX leftElevatorMotor   = new WPI_VictorSPX(RobotMap.leftElevatorMotor
 
 public DoubleSolenoid p_elevatorBrake = new DoubleSolenoid(6, 7);
 
-public DifferentialDrive elevatorBase;
+// public DifferentialDrive elevatorBase;
 
 //public static int  elevatorDistance = new 
 public Encoder e_elevatorDrum = new Encoder(14, 15, false, Encoder.EncodingType.k4X);
@@ -37,11 +37,10 @@ public Elevator()
   rightElevatorMotor.setInverted(false);
   leftElevatorMotor.setInverted(false);
 }
-// public void elevatorBaseV2
 
 public void elevatorBrake(Joystick joystick)
 {
-  if(joystick.getRawAxis(1) < .45 && joystick.getRawAxis(1) > -.45) 
+  if(joystick.getRawAxis(1) < .35 && joystick.getRawAxis(1) > -.35) 
   {
     p_elevatorBrake.set(Value.kForward);
   }else{
@@ -66,14 +65,11 @@ public void autoElevator(boolean elevatorDirection, double elevatorSpeed)
 
 public void joystickElevator(Joystick joystick)
 {
-  // if(operator.getRawAxis(1) == 0)
-  // {
-  //   //p_elevatorBrake.set(Value.kForward);
-  // }else{
-  //   //p_elevatorBrake.set(Value.kReverse);
-    rightElevatorMotor.set(operator.getRawAxis(1));
-    leftElevatorMotor.set(operator.getRawAxis(1));
-  // }
+  rightElevatorMotor.set(joystick.getRawAxis(1));
+
+  leftElevatorMotor.set(joystick.getRawAxis(1));
+
+
 }
 
 // public void ElevatorHold()

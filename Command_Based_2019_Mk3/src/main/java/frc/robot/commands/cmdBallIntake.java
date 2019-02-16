@@ -22,7 +22,7 @@ public class cmdBallIntake extends Command
   public cmdBallIntake(boolean direction, double speed)
   // public cmdBallIntake()
   {
-    requires(Robot.sub_grabber);
+    requires(Robot.sub_grabberOC);
 
     // this.intakeDirection = intakeDirection;
     this.direction = direction;
@@ -45,7 +45,7 @@ public class cmdBallIntake extends Command
   {
     // Robot.sub_grabber.IntakeV3(Robot.m_oi.driver);
     // Robot.sub_grabber.intakeV2(intakeDirection, intakeSpeed); 
-    Robot.sub_grabber.intake(direction, speed);
+    Robot.sub_grabberOC.Intake(direction); //Origanl Intake(direction, speed)
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -60,7 +60,7 @@ public class cmdBallIntake extends Command
   protected void end() 
   {
     // Robot.sub_grabber.intakeV2(false, 0);
-    Robot.sub_grabber.GrabberStop();
+    Robot.sub_grabberOC.IntakeStop(); //GrabberStop
   }
 
   // Called when another command which requires one or more of the same

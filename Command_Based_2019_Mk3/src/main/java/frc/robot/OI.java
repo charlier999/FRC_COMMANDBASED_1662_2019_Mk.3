@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 // Commmands
 import frc.robot.commands.cmdBallIntake;
+import frc.robot.commands.cmdBallIntakeStop;
 import frc.robot.commands.cmdShift;
 import frc.robot.commands.cmdClawDrop;
 import frc.robot.commands.cmdClimberPull;
@@ -53,6 +54,7 @@ public class OI {
   public Button gripperToggleOpen = new JoystickButton(driver, 6);
 
   public Button clawDropButton = new JoystickButton(operator, 10);
+  public Button clawUpButton   = new JoystickButton(operator, 9);
 
   public Button climberPullButton = new JoystickButton(operator, 4);
 
@@ -74,14 +76,17 @@ public class OI {
   public OI()
   {
     intakeButton.whileHeld(new cmdBallIntake(true, 1));
+    intakeButton.whenReleased(new cmdBallIntakeStop());
     // intakeButtonv2.whileHeld(new cmdBallIntake(true, 1));
     outakeButton.whileHeld(new cmdBallIntake(false, 1));
+    outakeButton.whenReleased(new cmdBallIntakeStop());
 
     // shifterButton.whenReleased(new cmdShift());
     shifterUp.whenPressed(new cmdShift(true));
     shifterDown.whenPressed(new cmdShift(false));
 
     clawDropButton.whenPressed(new cmdClawDrop(false));
+    clawUpButton.whenPressed(new cmdClawDrop(true));
     climberPullButton.whileHeld(new cmdClimberPull());
 
     gripperToggleClose.whenPressed(new cmdGrabberOC(true));
