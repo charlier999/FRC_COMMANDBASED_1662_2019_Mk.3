@@ -7,12 +7,24 @@
 
 package frc.robot;
 
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
+
+// Cammra Imports
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+import edu.wpi.cscore.VideoMode;
+
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
+// import 
 
 // Subsystem Imports
 import frc.robot.subsystems.ExampleSubsystem;
@@ -82,10 +94,15 @@ public class Robot extends TimedRobot
   @Override
   public void robotInit() 
   {
+    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    camera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 480, 60);
+    
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+    CameraServer.getInstance().startAutomaticCapture();
 
     compressor.setClosedLoopControl(true);
     compressor.start();
