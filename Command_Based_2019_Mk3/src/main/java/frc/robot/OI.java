@@ -44,14 +44,14 @@ public class OI {
   public Button shifterUp = new JoystickButton(driver, 7);
   public Button shifterDown = new JoystickButton(driver, 8);
   
-  public Button intakeButton   = new JoystickButton(driver, 2);
+  public Button intakeButton   = new JoystickButton(driver, 6); //2
   // intakeButton.whileHeld(Ball_Intake);
   // public Button intakeButtonv2 = new JoystickButton(driver, 4);
 
-  public Button outakeButton   = new JoystickButton(driver, 3);
+  public Button outakeButton   = new JoystickButton(driver, 5); //3
 
-  public Button gripperToggleClose  = new JoystickButton(driver, 5);
-  public Button gripperToggleOpen = new JoystickButton(driver, 6);
+  public Button gripperToggleClose  = new JoystickButton(driver, 3); //5
+  public Button gripperToggleOpen = new JoystickButton(driver, 2); //6
 
   public Button clawDropButton = new JoystickButton(operator, 10);
   public Button clawUpButton   = new JoystickButton(operator, 9);
