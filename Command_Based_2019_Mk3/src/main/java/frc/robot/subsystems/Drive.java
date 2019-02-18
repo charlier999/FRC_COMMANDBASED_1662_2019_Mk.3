@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -38,10 +39,10 @@ public class Drive extends Subsystem {
   private DoubleSolenoid p_shifters     = new DoubleSolenoid(0, 1);
  
   // Drive base motors
-  WPI_VictorSPX leftMotorA           = new WPI_VictorSPX(RobotMap.leftMotorA);
+  WPI_TalonSRX leftMotorA           = new WPI_TalonSRX(RobotMap.leftMotorA);
   WPI_VictorSPX leftMotorB           = new WPI_VictorSPX(RobotMap.leftMotorB);
-  WPI_VictorSPX rightMotorA          = new WPI_VictorSPX(RobotMap.rightMotorA);
-  WPI_VictorSPX rightMotorB          = new WPI_VictorSPX(RobotMap.rightMotorB);
+  WPI_TalonSRX rightMotorA          = new WPI_TalonSRX(RobotMap.rightMotorA);
+  WPI_TalonSRX rightMotorB          = new WPI_TalonSRX(RobotMap.rightMotorB);
 
   // Speed Controller Groups
   SpeedControllerGroup leftDriveBase  = new SpeedControllerGroup(leftMotorA, leftMotorB); 
