@@ -18,7 +18,7 @@ import frc.robot.commands.cmdClawDrop;
 import frc.robot.commands.cmdClimberPull;
 import frc.robot.commands.cmdGrabberOC;
 import frc.robot.commands.cmdLinearActuator;
-// import frc.robot.commands.cmdHatch1;
+import frc.robot.commands.cmdElevatorHeight;
 // import frc.robot.commands.cmdEncoderReset;
 
 public class OI {
@@ -98,6 +98,19 @@ public class OI {
     linearActuatorButtonIn.whileHeld(new cmdLinearActuator(false));
     linearActuatorButtonOut.whileHeld(new cmdLinearActuator(true));
     // encoderResetButton.whenReleased(new cmdEncoderReset());
+
+    hatchLevel1Button.whenPressed(new cmdElevatorHeight(5));
+    hatchLevel2Button.whenPressed(new cmdElevatorHeight(10));
+    hatchLevel3Button.whenPressed(new cmdElevatorHeight(15));
+
+    ballLevel1Button.whenPressed(new cmdElevatorHeight(7));
+    ballLevel2Button.whenPressed(new cmdElevatorHeight(14));
+    ballLevel3button.whenPressed(new cmdElevatorHeight(21));
+
+    ballPickUpButton.whenPressed(new cmdElevatorHeight(2));
+
+    //climberButton.whenPressed(new SomeOtherCmd());
+
   }
 
 

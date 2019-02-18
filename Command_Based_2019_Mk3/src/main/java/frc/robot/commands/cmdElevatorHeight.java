@@ -8,9 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
-public class cmdBallLevel1 extends Command {
-  public cmdBallLevel1() {
+public class cmdElevatorHeight extends Command 
+{
+  double elevatorHight;
+  public cmdElevatorHeight(double elevatorHight) 
+  {
+    requires(Robot.sub_elevator);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -22,7 +27,9 @@ public class cmdBallLevel1 extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  protected void execute() 
+  {
+    Robot.sub_elevator.ElevatorHightset(elevatorHight);
   }
 
   // Make this return true when this Command no longer needs to run execute()
