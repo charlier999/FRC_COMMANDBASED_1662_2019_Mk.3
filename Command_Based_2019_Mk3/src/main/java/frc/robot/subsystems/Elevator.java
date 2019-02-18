@@ -28,7 +28,8 @@ public DoubleSolenoid p_elevatorBrake = new DoubleSolenoid(6, 7);
 
 //public static int  elevatorDistance = new 
 public Encoder e_elevatorDrum = new Encoder(14, 15, false, Encoder.EncodingType.k4X);
-//int elevatorDistance;
+double elevatorDistance;
+double currentElevatorHight;
 
 
 
@@ -72,12 +73,6 @@ public void joystickElevator(Joystick joystick)
 
 }
 
-// public void ElevatorHold()
-// {
-//   rightElevatorMotor.set(-0.3);
-//   leftElevatorMotor.set(-0.3);
-// }
-
 public void testElevator(Joystick joystick)
 {
   rightElevatorMotor.set(operator.getRawAxis(1));
@@ -92,13 +87,36 @@ public void stop()
 public void encoderConsole() 
 {
   
-  //elevatorDistance = e_elevatorDrum.getRaw();
-  //bvaaSystem.out.println (elevatorDistance);
+  elevatorDistance = e_elevatorDrum.getRaw();
+  System.out.println (elevatorDistance);
 }
 
 public void elevatorEncoderReset() 
 {
   e_elevatorDrum.reset();
+}
+
+public void ElevatorHightset(double elevatorHight)
+{
+  currentElevatorHight = e_elevatorDrum.getDistance();
+  if(currentElevatorHight < elevatorHight)
+  {
+    p_elevatorBrake.set(Value.kReverse);
+    rightElevatorMotor.set(1);
+    leftElevatorMotor.set(1);
+  }
+  if(currentElevatorHight > elevatorHight);
+  {
+    p_elevatorBrake.set(Value.kReverse);
+    rightElevatorMotor.set(-1);
+    leftElevatorMotor.set(-1);
+  }
+  if(currentElevatorHight == elevatorHight)
+  {
+    p_elevatorBrake.set(Value.kForward);
+    rightElevatorMotor.stopMotor();
+    leftElevatorMotor.stopMotor();
+  }
 }
   @Override
   public void initDefaultCommand() {

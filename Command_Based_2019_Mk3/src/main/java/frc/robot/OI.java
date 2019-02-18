@@ -18,17 +18,7 @@ import frc.robot.commands.cmdClawDrop;
 import frc.robot.commands.cmdClimberPull;
 import frc.robot.commands.cmdGrabberOC;
 import frc.robot.commands.cmdLinearActuator;
-
-import frc.robot.commands.cmdHatchLevel1;
-import frc.robot.commands.cmdHatchLevel2;
-import frc.robot.commands.cmdHatchLevel3;
-
-import frc.robot.commands.cmdBallLevel1;
-import frc.robot.commands.cmdBallLevel2;
-import frc.robot.commands.cmdBallLevel3;
-
-import frc.robot.commands.cmdBallPickUp;
-
+// import frc.robot.commands.cmdHatch1;
 // import frc.robot.commands.cmdEncoderReset;
 
 public class OI {
@@ -38,52 +28,37 @@ public class OI {
   public Joystick driver       = new Joystick(0);
   public Joystick operator     = new Joystick(1);
   public Joystick buttonPannel = new Joystick(2);
-  // public Joystick encoderReset = new Joystick(3);
-
-// public Button encoderResetButton = new JoystickButton(encoderReset, 1);
-// public Button encoderDriveLeftConsole = new JoystickButton(encoderReset, 2);
-// public Button encoderDriveRightConsole = new JoystickButton(encoderReset, 3);
-// public Button encoderElevatorConsole = new JoystickButton(encoderReset, 4);
-// public Button encoderLinearActConsole = new JoystickButton(encoderReset, 5);
-
 
   // Driver Buttons
-  // public Button shifterButton  = new JoystickButton(driver, 1);
-  //public Button shifterUp         = new JoystickButton(driver, 7);
-  //public Button shifterDown       = new JoystickButton(driver, 8);
+  public Button gripperToggleClose      = new JoystickButton(driver, 3);
+  public Button gripperToggleOpen       = new JoystickButton(driver, 2);
+  public Button outakeButton            = new JoystickButton(driver, 5);
+  public Button intakeButton            = new JoystickButton(driver, 6); 
 
-  public Button shifterUp = new JoystickButton(driver, 7);
-  public Button shifterDown = new JoystickButton(driver, 8);
+  public Button shifterUp               = new JoystickButton(driver, 7);
+  public Button shifterDown             = new JoystickButton(driver, 8);
   
-  public Button intakeButton   = new JoystickButton(driver, 6); //2
-  // intakeButton.whileHeld(Ball_Intake);
-  // public Button intakeButtonv2 = new JoystickButton(driver, 4);
+  // Operator Buttons
+  public Button clawDropButton          = new JoystickButton(operator, 10);
+  public Button clawUpButton            = new JoystickButton(operator, 9);
 
-  public Button outakeButton   = new JoystickButton(driver, 5); //3
-
-  public Button gripperToggleClose  = new JoystickButton(driver, 3); //5
-  public Button gripperToggleOpen = new JoystickButton(driver, 2); //6
-
-  public Button clawDropButton = new JoystickButton(operator, 10);
-  public Button clawUpButton   = new JoystickButton(operator, 9);
-
-  public Button climberPullButton = new JoystickButton(operator, 4);
+  public Button climberPullButton       = new JoystickButton(operator, 4);
 
   public Button linearActuatorButtonIn  = new JoystickButton(operator, 3);
   public Button linearActuatorButtonOut = new JoystickButton(operator, 2);
 
-  // Button Pannel Buttons
-  Button hatchLevel1Button = new JoystickButton(buttonPannel, 1);
-  Button hatchLevel2Button = new JoystickButton(buttonPannel, 2);
-  Button hatchLevel3Button = new JoystickButton(buttonPannel, 3);
-  
-  Button ballLevel1Button = new JoystickButton(buttonPannel, 1);
-  Button ballLevel2Button = new JoystickButton(buttonPannel, 2);
-  Button ballLevel3button = new JoystickButton(buttonPannel, 3);
-  
-  Button ballPickUpButton = new JoystickButton(buttonPannel, 1);
-  
-  //Button climberButton = new JoystickButton(buttonPannel, 1);
+  //Button Pannel Buttons
+  public Button hatchLevel1Button       = new JoystickButton(buttonPannel, 1);
+  public Button hatchLevel2Button       = new JoystickButton(buttonPannel, 2);
+  public Button hatchLevel3Button       = new JoystickButton(buttonPannel, 3);
+
+  public Button ballLevel1Button        = new JoystickButton(buttonPannel, 4);
+  public Button ballLevel2Button        = new JoystickButton(buttonPannel, 5);
+  public Button ballLevel3button        = new JoystickButton(buttonPannel, 6);
+
+  public Button ballPickUpButton        = new JoystickButton(buttonPannel, 7);
+
+  public Button climberButton           = new JoystickButton(buttonPannel, 8);
 
 
   public Joystick getDriverJoystick()
@@ -98,20 +73,24 @@ public class OI {
 
   public OI()
   {
+    // Intake
     intakeButton.whileHeld(new cmdBallIntake(true, 1));
     intakeButton.whenReleased(new cmdBallIntakeStop());
-    // intakeButtonv2.whileHeld(new cmdBallIntake(true, 1));
+
+    // Outake
     outakeButton.whileHeld(new cmdBallIntake(false, 1));
     outakeButton.whenReleased(new cmdBallIntakeStop());
 
-    // shifterButton.whenReleased(new cmdShift());
+    // Shifters
     shifterUp.whenPressed(new cmdShift(true));
     shifterDown.whenPressed(new cmdShift(false));
 
+    // Climbing Arms
     clawDropButton.whenPressed(new cmdClawDrop(false));
     clawUpButton.whenPressed(new cmdClawDrop(true));
     climberPullButton.whileHeld(new cmdClimberPull());
 
+    // 
     gripperToggleClose.whenPressed(new cmdGrabberOC(true));
     gripperToggleOpen.whenPressed(new cmdGrabberOC(false));
     // gripperToggle.whenPressed(new cmdGrabberOC());
@@ -119,28 +98,16 @@ public class OI {
     linearActuatorButtonIn.whileHeld(new cmdLinearActuator(false));
     linearActuatorButtonOut.whileHeld(new cmdLinearActuator(true));
     // encoderResetButton.whenReleased(new cmdEncoderReset());
-
-    hatchLevel1Button.whenPressed(new cmdHatchLevel1());
-    hatchLevel2Button.whenPressed(new cmdHatchLevel2());
-    hatchLevel3Button.whenPressed(new cmdHatchLevel3());
-
-    ballLevel1Button.whenPressed(new cmdBallLevel1());
-    ballLevel2Button.whenPressed(new cmdBallLevel2());
-    ballLevel3button.whenPressed(new cmdBallLevel3());
-
-    ballPickUpButton.whenPressed(new cmdBallPickUp());
-
   }
 
-  /*
 
-  //Drive Controller Axis's
- public double driverAxis0 = driver.getRawAxis(0);  // Left Thumb Stick  ~ X axis ~ +/- input
-  public double driverAxis1 = driver.getRawAxis(1);  // Left Thumb Stick  ~ Y axis ~ +/- input
-  public double driverAxis2 = driver.getRawAxis(2);  // Left Trigger               ~ only positive input
-  public double driverAxis3 = driver.getRawAxis(3);  // Right Trigger              ~ only positive input
-  public double driverAxis4 = driver.getRawAxis(4);  // Right Thumb Stick ~ X axis ~ +/- input
-  public double driverAxis5 = driver.getRawAxis(5);  // Right Thumb Stick ~ Y axis ~ +/- input
+//   //Drive Controller Axis's
+//   public double driverAxis0 = driver.getRawAxis(0);  // Left Thumb Stick  ~ X axis ~ +/- input
+//   public double driverAxis1 = driver.getRawAxis(1);  // Left Thumb Stick  ~ Y axis ~ +/- input
+//   public double driverAxis2 = driver.getRawAxis(2);  // Left Trigger               ~ only positive input
+//   public double driverAxis3 = driver.getRawAxis(3);  // Right Trigger              ~ only positive input
+//   public double driverAxis4 = driver.getRawAxis(4);  // Right Thumb Stick ~ X axis ~ +/- input
+//   public double driverAxis5 = driver.getRawAxis(5);  // Right Thumb Stick ~ Y axis ~ +/- input
   
 //  driverAxis0 = driver.getRawAxis(0);
 //  driverAxis1 = driver.getRawAxis(1);
@@ -152,5 +119,4 @@ public class OI {
   // public double operatorAxis3;  // Right Trigger              ~ only positive input
   // public double operatorAxis4;  // Right Thumb Stick ~ X axis ~ +/- input
   // public double operatorAxis5;  // Right Thumb Stick ~ Y axis ~ +/- input
-*/
 }
