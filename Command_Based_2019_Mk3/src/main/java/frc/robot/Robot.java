@@ -164,7 +164,7 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     cmdJoystickElevator.start();
     cmdWristJoystick.start();
-    cmdAutoShift.start();
+    // cmdAutoShift.start();
     // cmdBallIntake.start();
 
     /*
@@ -202,7 +202,7 @@ public class Robot extends TimedRobot
     cmdJoystickElevator.start();
     cmdWristJoystick.start();
     // cmdBallIntake.start();
-    cmdAutoShift.start();
+    // cmdAutoShift.start();
 
     if (m_autonomousCommand != null) 
     {
@@ -221,7 +221,7 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     cmdJoystickElevator.start();
     cmdWristJoystick.start();
-    cmdAutoShift.start();
+    // cmdAutoShift.start();
     // cmdBallIntake.start();
   }
 

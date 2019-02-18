@@ -101,19 +101,19 @@ public void ElevatorHightset(double elevatorHight)
   currentElevatorHight = e_elevatorDrum.getDistance();
   if(currentElevatorHight < elevatorHight)
   {
-    p_elevatorBrake.set(Value.kReverse);
+    p_elevatorBrake.set(Value.kForward);
     rightElevatorMotor.set(1);
     leftElevatorMotor.set(1);
   }
   if(currentElevatorHight > elevatorHight);
   {
-    p_elevatorBrake.set(Value.kReverse);
+    p_elevatorBrake.set(Value.kForward);
     rightElevatorMotor.set(-1);
     leftElevatorMotor.set(-1);
   }
   if(currentElevatorHight == elevatorHight)
   {
-    p_elevatorBrake.set(Value.kForward);
+    p_elevatorBrake.set(Value.kReverse);
     rightElevatorMotor.stopMotor();
     leftElevatorMotor.stopMotor();
   }
