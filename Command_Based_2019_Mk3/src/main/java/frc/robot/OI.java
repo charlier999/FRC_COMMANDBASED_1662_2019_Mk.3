@@ -27,8 +27,8 @@ public class OI {
   // Joysticks
   public Joystick driver       = new Joystick(0);
   public Joystick operator     = new Joystick(1);
-  public Joystick buttonPannel = new Joystick(2);
-  public Joystick testPannel   = new Joystick(3);
+  //public Joystick buttonPannel = new Joystick(2);
+  public Joystick testPannel   = new Joystick(2);
 
   // Driver Buttons
   public Button gripperToggleClose      = new JoystickButton(driver, 3);
@@ -61,15 +61,15 @@ public class OI {
 
   // public Button climberButton           = new JoystickButton(buttonPannel, 8);
 
-  public Button hatchLevel1Button       = new JoystickButton(testPannel, 1);
-  public Button hatchLevel2Button       = new JoystickButton(testPannel, 2);
-  public Button hatchLevel3Button       = new JoystickButton(testPannel, 3);
+  public Button hatchLevel1Button       = new JoystickButton(testPannel, 1); //A
+  public Button hatchLevel2Button       = new JoystickButton(testPannel, 2); //B
+  public Button hatchLevel3Button       = new JoystickButton(testPannel, 3); //X
 
-  public Button ballLevel1Button        = new JoystickButton(testPannel, 4);
-  public Button ballLevel2Button        = new JoystickButton(testPannel, 5);
-  public Button ballLevel3button        = new JoystickButton(testPannel, 6);
+  public Button ballLevel1Button        = new JoystickButton(testPannel, 4); //Y
+  public Button ballLevel2Button        = new JoystickButton(testPannel, 5); //LB
+  public Button ballLevel3button        = new JoystickButton(testPannel, 6); //RB
 
-  public Button ballPickUpButton        = new JoystickButton(testPannel, 7);
+  public Button ballPickUpButton        = new JoystickButton(testPannel, 10); //Press right Joystick
 
   public Button climberButton           = new JoystickButton(testPannel, 8);
 
