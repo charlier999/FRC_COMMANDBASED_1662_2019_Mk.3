@@ -41,7 +41,7 @@ public class Drive extends Subsystem {
   // Drive base motors
   WPI_TalonSRX leftMotorA           = new WPI_TalonSRX(RobotMap.leftMotorA);
   WPI_VictorSPX leftMotorB           = new WPI_VictorSPX(RobotMap.leftMotorB);
-  WPI_TalonSRX rightMotorA          = new WPI_TalonSRX(RobotMap.rightMotorA);
+  WPI_VictorSPX rightMotorA          = new WPI_VictorSPX(RobotMap.rightMotorA);
   WPI_TalonSRX rightMotorB          = new WPI_TalonSRX(RobotMap.rightMotorB);
 
   // Speed Controller Groups

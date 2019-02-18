@@ -8,6 +8,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -23,7 +24,7 @@ public class Climber extends Subsystem
 
   public DoubleSolenoid p_climberClaws = new DoubleSolenoid(4 , 5);
 
-  WPI_VictorSPX linearActuator = new WPI_VictorSPX(RobotMap.linearActuator);
+  WPI_TalonSRX linearActuator = new WPI_TalonSRX(RobotMap.linearActuator);
   WPI_VictorSPX climberWheel  = new WPI_VictorSPX(RobotMap.climberWheel);
 
   public Encoder e_linearAct    = new Encoder(16, 17, false, Encoder.EncodingType.k4X);
