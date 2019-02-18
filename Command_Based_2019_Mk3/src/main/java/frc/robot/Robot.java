@@ -48,6 +48,7 @@ import frc.robot.commands.cmdWristJoystick;
 import frc.robot.commands.cmdSmartDashboard;
 //import frc.robot.commands.cmdOpenClose;
 import frc.robot.commands.cmdEncoderPrint;
+import frc.robot.commands.cmdAutoShift;
 
 
 /**
@@ -81,6 +82,7 @@ public class Robot extends TimedRobot
   // Command cmdShift                = new cmdShift();
   Command cmdSmartDashboard       = new cmdSmartDashboard();
   Command cmdEncoderPrint         = new cmdEncoderPrint();
+  Command cmdAutoShift            = new cmdAutoShift();
   // Command cmdOpenClose = new cmdOpenClose();
 
   Compressor compressor = new Compressor(0);
@@ -162,6 +164,7 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     cmdJoystickElevator.start();
     cmdWristJoystick.start();
+    cmdAutoShift.start();
     // cmdBallIntake.start();
 
     /*
@@ -199,6 +202,7 @@ public class Robot extends TimedRobot
     cmdJoystickElevator.start();
     cmdWristJoystick.start();
     // cmdBallIntake.start();
+    cmdAutoShift.start();
 
     if (m_autonomousCommand != null) 
     {
@@ -217,6 +221,7 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     cmdJoystickElevator.start();
     cmdWristJoystick.start();
+    cmdAutoShift.start();
     // cmdBallIntake.start();
   }
 

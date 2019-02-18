@@ -28,6 +28,7 @@ public class OI {
   public Joystick driver       = new Joystick(0);
   public Joystick operator     = new Joystick(1);
   public Joystick buttonPannel = new Joystick(2);
+  public Joystick testPannel   = new Joystick(3);
 
   // Driver Buttons
   public Button gripperToggleClose      = new JoystickButton(driver, 3);
@@ -47,18 +48,30 @@ public class OI {
   public Button linearActuatorButtonIn  = new JoystickButton(operator, 3);
   public Button linearActuatorButtonOut = new JoystickButton(operator, 2);
 
-  //Button Pannel Buttons
-  public Button hatchLevel1Button       = new JoystickButton(buttonPannel, 1);
-  public Button hatchLevel2Button       = new JoystickButton(buttonPannel, 2);
-  public Button hatchLevel3Button       = new JoystickButton(buttonPannel, 3);
+  // //Button Pannel Buttons
+  // public Button hatchLevel1Button       = new JoystickButton(buttonPannel, 1);
+  // public Button hatchLevel2Button       = new JoystickButton(buttonPannel, 2);
+  // public Button hatchLevel3Button       = new JoystickButton(buttonPannel, 3);
 
-  public Button ballLevel1Button        = new JoystickButton(buttonPannel, 4);
-  public Button ballLevel2Button        = new JoystickButton(buttonPannel, 5);
-  public Button ballLevel3button        = new JoystickButton(buttonPannel, 6);
+  // public Button ballLevel1Button        = new JoystickButton(buttonPannel, 4);
+  // public Button ballLevel2Button        = new JoystickButton(buttonPannel, 5);
+  // public Button ballLevel3button        = new JoystickButton(buttonPannel, 6);
 
-  public Button ballPickUpButton        = new JoystickButton(buttonPannel, 7);
+  // public Button ballPickUpButton        = new JoystickButton(buttonPannel, 7);
 
-  public Button climberButton           = new JoystickButton(buttonPannel, 8);
+  // public Button climberButton           = new JoystickButton(buttonPannel, 8);
+
+  public Button hatchLevel1Button       = new JoystickButton(testPannel, 1);
+  public Button hatchLevel2Button       = new JoystickButton(testPannel, 2);
+  public Button hatchLevel3Button       = new JoystickButton(testPannel, 3);
+
+  public Button ballLevel1Button        = new JoystickButton(testPannel, 4);
+  public Button ballLevel2Button        = new JoystickButton(testPannel, 5);
+  public Button ballLevel3button        = new JoystickButton(testPannel, 6);
+
+  public Button ballPickUpButton        = new JoystickButton(testPannel, 7);
+
+  public Button climberButton           = new JoystickButton(testPannel, 8);
 
 
   public Joystick getDriverJoystick()

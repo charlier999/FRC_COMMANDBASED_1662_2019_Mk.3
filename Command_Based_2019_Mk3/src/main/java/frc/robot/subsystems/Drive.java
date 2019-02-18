@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 //import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 // import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -51,6 +52,8 @@ public class Drive extends Subsystem {
   // Differential Drive
   public DifferentialDrive driveBase;
 
+  double downShift = 5;
+  double upShift = 10;
 
   public Drive() 
   {
@@ -65,6 +68,23 @@ public class Drive extends Subsystem {
     rightMotorB.setSafetyEnabled(false);
     // driveBase = new DifferentialDrive(leftDriveBase, rightDriveBase);
   }
+
+  public void AutoShifters()
+  {
+    if (p_shifters.get() == Value.kReverse)
+    {
+      if (downShift >= e_driveRight.getRate() && downShift >= e_driveLeft.getRate())
+      {
+        p_shifters.set(Value.kForward);
+      } 
+    }else{
+      if (upShift <= e_driveRight.getRate() && upShift <= e_driveLeft.getRate())
+      {
+        p_shifters.set(Value.kReverse);
+      }
+    }
+  }
+
 
   public void Shifters(boolean direction)
   {
