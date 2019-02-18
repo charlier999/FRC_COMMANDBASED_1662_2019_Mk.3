@@ -99,15 +99,15 @@ public class OI {
     linearActuatorButtonOut.whileHeld(new cmdLinearActuator(true));
     // encoderResetButton.whenReleased(new cmdEncoderReset());
 
-    hatchLevel1Button.whenPressed(new cmdElevatorHeight(5));
-    hatchLevel2Button.whenPressed(new cmdElevatorHeight(10));
-    hatchLevel3Button.whenPressed(new cmdElevatorHeight(15));
+    hatchLevel1Button.whenPressed(new cmdElevatorHeight(354));
+    hatchLevel2Button.whenPressed(new cmdElevatorHeight(186));
+    hatchLevel3Button.whenPressed(new cmdElevatorHeight(18));
 
-    ballLevel1Button.whenPressed(new cmdElevatorHeight(7));
-    ballLevel2Button.whenPressed(new cmdElevatorHeight(14));
-    ballLevel3button.whenPressed(new cmdElevatorHeight(21));
+    ballLevel1Button.whenPressed(new cmdElevatorHeight(405));
+    ballLevel2Button.whenPressed(new cmdElevatorHeight(237));
+    ballLevel3button.whenPressed(new cmdElevatorHeight(69));
 
-    ballPickUpButton.whenPressed(new cmdElevatorHeight(2));
+    ballPickUpButton.whenPressed(new cmdElevatorHeight(0));
 
     //climberButton.whenPressed(new SomeOtherCmd());
 
