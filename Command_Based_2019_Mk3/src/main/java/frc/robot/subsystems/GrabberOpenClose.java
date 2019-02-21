@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-// import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -19,17 +18,10 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 import frc.robot.RobotMap;
 
-//import edu.wpi.first.wpilibj.Joystick;
-
-//import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-
-
-/**
- * Add your docs here.
- */
-public class GrabberOpenClose extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+//-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
+  
+public class GrabberOpenClose extends Subsystem 
+{
   // public AnalogPotentiometer ap_gripper = new AnalogPotentiometer(1);
   public Joystick opwerator = new Joystick(1);
 
@@ -45,45 +37,56 @@ public class GrabberOpenClose extends Subsystem {
     gripperMotorV2.setSafetyEnabled(true);
   }
 
+
+  // User //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
+  
   public void wristJoystickActuation(Joystick joystick)
+  // Changes the angle of the grabber wrist based on user input via joystick
   {
     wristMotor.set(joystick.getRawAxis(5));
+    // sets the wrist motor to the joystick input
   }
 
-  // public void WristStop()
-  // {
-  //   wristMotor.set(0);
-  // }
-
   public void GrabberOC(boolean direction)
+  // Open and closes the grabber based on user input
   {
     if (direction)
     {
       p_gripper.set(Value.kForward);
+      // closes the grabber arms
     }else{
       p_gripper.set(Value.kReverse);
+      // opens the grabber arms
     }
   }
 
   public void Intake(Boolean direction)
+  // Controlls the intake speed based on user input
   {
     if(direction)
     {
       gripperMotorV2.set(1);
+      // sets the grabber motor to full speed positive
     }else{
       gripperMotorV2.set(-1);
+      // sets the grabber motor to full speed negitive
     }
   }
 
+
+  // Auto //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
+
   public void IntakeStop()
+  // Stops all voltake to intake motor
   {
-    // gripperMotorV2.stopMotor();
+    gripperMotorV2.stopMotor();
   }
 
+  //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
 
   @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+  public void initDefaultCommand() 
+  {
+
   }
 }

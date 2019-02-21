@@ -12,9 +12,11 @@ import frc.robot.Robot;
 
 public class cmdClimberPull extends Command
 {
-  public cmdClimberPull() 
+  boolean direction;
+  public cmdClimberPull(boolean direction) 
   {
     requires(Robot.sub_climber);
+    this.direction = direction;
   }
 
   // Called just before this Command runs the first time
@@ -28,7 +30,7 @@ public class cmdClimberPull extends Command
   @Override
   protected void execute() 
   {
-    Robot.sub_climber.ClimberPull();
+    Robot.sub_climber.ClimbingWheel(direction);
   }
 
   // Make this return true when this Command no longer needs to run execute()

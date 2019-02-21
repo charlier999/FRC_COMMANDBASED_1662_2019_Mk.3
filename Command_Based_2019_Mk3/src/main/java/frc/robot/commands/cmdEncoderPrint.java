@@ -10,39 +10,46 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-
-public class cmdhatchLevel3 extends Command {
-  public cmdhatchLevel3() {
-
-    requires(Robot.sub_elevator);
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+public class cmdEncoderPrint extends Command 
+{
+  public cmdEncoderPrint() 
+  {
+    requires(Robot.sub_drive);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
+  protected void initialize() 
+  {
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  protected void execute() 
+  {
+    // Robot.sub_drive.DriveEncoderPrint();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() {
+  protected boolean isFinished() 
+  {
     return false;
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
+  protected void end() 
+  {
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {
+  protected void interrupted() 
+  {
+
   }
 }
