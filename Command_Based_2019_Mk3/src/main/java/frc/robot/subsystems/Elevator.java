@@ -50,17 +50,21 @@ public class Elevator extends Subsystem
     // if the joystick axis is at 35 or gratter deggres at any angle,
     //  the brake will be released 
     {
-      p_elevatorBrake.set(Value.kForward); // released brake
+      p_elevatorBrake.set(Value.kForward); 
+      // released brake
     }else{
-      p_elevatorBrake.set(Value.kReverse); // brake is applied
+      p_elevatorBrake.set(Value.kReverse); 
+      // brake is applied
     }
   }
   
   public void joystickElevator(Joystick joystick)
   // The elevator motors are spinned based on the user input
   {
-    rightElevatorMotor.set(joystick.getRawAxis(1)); // 
+    rightElevatorMotor.set(joystick.getRawAxis(1)); 
+    // The right elevator motor speed is set to the joystick input
     leftElevatorMotor.set(joystick.getRawAxis(1));
+    // The left elevator motor speed is set to the joystick inptut
   }
 
 
@@ -70,63 +74,88 @@ public class Elevator extends Subsystem
 
 
   public void autoElevator(boolean elevatorDirection, double elevatorSpeed) 
+  // Controll of the elevator for computor controlled robot
   {
-    elevatorSpeed = Math.abs(elevatorSpeed);
+    elevatorSpeed = Math.abs(elevatorSpeed); 
+    // Learn how this actualy works so it can be properly commented
     if(elevatorDirection)
     {
       rightElevatorMotor.set(elevatorSpeed);
+      // Sets the right elevator motor to the elevator speed given by the computer
       leftElevatorMotor.set(elevatorSpeed);
+      // Sets the left elevator motor to the elevator speed given by the computer
     }else{
       rightElevatorMotor.set(-elevatorSpeed);
+      // Sets the right elevator motor to the elevator speed given by the computer at negitive
       leftElevatorMotor.set(-elevatorSpeed);
+      // Set the left elevator motor to the elevator
     }
   }
 
   public void stop()
+  // Stops all voltage to the elevator motors
   {
-    rightElevatorMotor.set(0);
-   leftElevatorMotor.set(0);
+    rightElevatorMotor.stopMotor();
+    leftElevatorMotor.stopMotor();
   }
 
   public void encoderConsole() 
+  // Outputs the encoder distance to the drive station console
   {
-   elevatorDistance = e_elevatorDrum.getRaw();
+   elevatorDistance = e_elevatorDrum.getDistance();
+    // Sets elevatorDistance to the encoder's recorded distance
     System.out.println (elevatorDistance);
+    // Prints the elevatorDistance value to the driver station console
   }
 
   public void elevatorEncoderReset() 
+  // Resets the encoder's zero
   {
     e_elevatorDrum.reset();
   }
 
   public void ElevatorHightset(double elevatorHight)
+  // Sets the elvator motors to raise or lower the diffrent highs on the robot
   {
     currentElevatorHight = e_elevatorDrum.getDistance();
+    // sets the varaible currentElevatorHight to the encoders recorded distance
     if(currentElevatorHight < elevatorHight)
+    // if current elevator hight is less then set elevaor hight
     {
       p_elevatorBrake.set(Value.kForward);
+      // Opens the elevator brake
       rightElevatorMotor.set(1);
+      // Sets the right elevator motor to full speed positive 
       leftElevatorMotor.set(1);
+      // Sets the left elevator motor to full speed positive
     }
 
     if(currentElevatorHight > elevatorHight);
+    // if current elevaor hight is grater than the set elevator hight
     {
       p_elevatorBrake.set(Value.kForward);
+      // opens the elevator brake
       rightElevatorMotor.set(-1);
+      // Sets the right elevator motor to full speed negitve
       leftElevatorMotor.set(-1);
+      // Sets the left elevator motor to full speed negitve
     }
 
     if(currentElevatorHight == elevatorHight)
+    // If the current hight is equel to the set elevator hight
     {
       p_elevatorBrake.set(Value.kReverse);
+      // closes the elevator brake
       rightElevatorMotor.stopMotor();
+      // stops the right elevator motor
       leftElevatorMotor.stopMotor();
+      // stops the left elevator motor
     }
   }
 
-
-
-
+  
+//-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
+  
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
