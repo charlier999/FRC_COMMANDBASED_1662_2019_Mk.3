@@ -50,6 +50,14 @@ public class OI {
   public Button linearActuatorButtonIn  = new JoystickButton(operator, 3);
   public Button linearActuatorButtonOut = new JoystickButton(operator, 2);
 
+// Button Pannel Buttons
+public Button hatchLevel1 = new JoystickButton(buttonPannel, 1);
+public Button hatchLevel2 = new JoystickButton(buttonPannel, 2);
+public Button hatchLevel3 = new JoystickButton(buttonPannel, 3);
+
+public Button ballLevel1 = new JoystickButton(buttonPannel, 1);
+public Button ballLevel2 = new JoystickButton(buttonPannel, 2);
+public Button ballLevel3 = new JoystickButton(buttonPannel, 3);
 
   // Button Pannel Buttons // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
@@ -108,6 +116,14 @@ public class OI {
     linearActuatorButtonIn.whileHeld(new cmdLinearActuator(false));
     linearActuatorButtonOut.whileHeld(new cmdLinearActuator(true));
 
+    //Button Pannel
+    hatchLevel1.whenPressed(new cmdhatchLevel1());
+    hatchLevel2.whenPressed(new cmdhatchLevel2());
+    hatchLevel3.whenPressed(new cmdhatchLevel3());
+
+    ballLevel1.whenPressed(new cmdballLevel1());
+    ballLevel2.whenPressed(new cmdballLevel2());
+    ballLevel3.whenPressed(new cmdballLevel3());
 
     // Button Pannel // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
