@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.Joystick;
 
 // Commmands // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
-import frc.robot.commands.cmdBallIntake;
-import frc.robot.commands.cmdBallIntakeStop;
 import frc.robot.commands.cmdShift;
 import frc.robot.commands.cmdClawDrop;
 import frc.robot.commands.cmdClimberPull;
@@ -30,26 +28,20 @@ public class OI {
 
   // Driver Buttons -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
-  public Button gripperClose      = new JoystickButton(driver, 3);
-  public Button gripperOpen       = new JoystickButton(driver, 2);
-
-  public Button outakeButton            = new JoystickButton(driver, 5);
-  public Button intakeButton            = new JoystickButton(driver, 6); 
-
-  public Button shifterUp               = new JoystickButton(driver, 7);
-  public Button shifterDown             = new JoystickButton(driver, 8);
+  public Button shifterButton           = new JoystickButton(driver, 5);
+  public Button grabberButton           = new JoystickButton(driver, 6);
+  public Button hatchButton             = new JoystickButton(driver, 1);
    
 
   // Operator Buttons // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
-  public Button clawDropButton          = new JoystickButton(operator, 10);
-  public Button clawUpButton            = new JoystickButton(operator, 9);
+  public Button linearActuatorUp        = new JoystickButton(operator, 3);
+  public Button linearActuatorDown      = new JoystickButton(operator, 2);
 
-  public Button climberPullButton       = new JoystickButton(operator, 4);
+  public Button climbingWheel           = new JoystickButton(operator, 5);
 
-  public Button linearActuatorButtonIn  = new JoystickButton(operator, 3);
-  public Button linearActuatorButtonOut = new JoystickButton(operator, 2);
-
+  public Button releaseClimbingClaw     = new JoystickButton(operator, 7);
+  public Button attachClimbingClaw      = new JoystickButton(operator, 8);
 
   // Button Pannel Buttons // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
@@ -80,33 +72,24 @@ public class OI {
   {
     // Driver // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
  
-    // Intake
-    intakeButton.whileHeld(new cmdBallIntake(true, 1));
-    intakeButton.whenReleased(new cmdBallIntakeStop());
-
-    // Outake
-    outakeButton.whileHeld(new cmdBallIntake(false, 1));
-    outakeButton.whenReleased(new cmdBallIntakeStop());
-
     // Shifters
-    shifterUp.whenPressed(new cmdShift(true));
-    shifterDown.whenPressed(new cmdShift(false));
+    shifterButton.whenPressed(new cmdShift());
        
     // Grabber Open or Close
-    gripperClose.whenPressed(new cmdGrabberOC(true));
-    gripperOpen.whenPressed(new cmdGrabberOC(false));
-
+    
+    grabberButton.whenPressed(new cmdGrabberOC());
 
     // Operator // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
    
     // Climbing Arms
-    clawDropButton.whenPressed(new cmdClawDrop(true));
-    clawUpButton.whenPressed(new cmdClawDrop(false));
-    climberPullButton.whileHeld(new cmdClimberPull(true));
+    
+    releaseClimbingClaw.whenPressed(new cmdClawDrop(true));
+    attachClimbingClaw.whenPressed(new cmdClawDrop(false));
+    climbingWheel.whileHeld(new cmdClimberPull(true));
 
     // Linear Actuator
-    linearActuatorButtonIn.whileHeld(new cmdLinearActuator(false));
-    linearActuatorButtonOut.whileHeld(new cmdLinearActuator(true));
+    linearActuatorDown.whileHeld(new cmdLinearActuator(true));
+    linearActuatorUp.whileHeld(new cmdLinearActuator(false));
 
 
     // Button Pannel // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 

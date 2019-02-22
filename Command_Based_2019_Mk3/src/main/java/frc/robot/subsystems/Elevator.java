@@ -114,12 +114,12 @@ public class Elevator extends Subsystem
     e_elevatorDrum.reset();
   }
 
-  public void ElevatorHightset(double elevatorHight)
+  public void ElevatorHightset(double setElevatorHight)
   // Sets the elvator motors to raise or lower the diffrent highs on the robot
   {
     currentElevatorHight = e_elevatorDrum.getDistance();
     // sets the varaible currentElevatorHight to the encoders recorded distance
-    if(currentElevatorHight < elevatorHight)
+    if(currentElevatorHight < setElevatorHight)
     // if current elevator hight is less then set elevaor hight
     {
       p_elevatorBrake.set(Value.kForward);
@@ -130,7 +130,7 @@ public class Elevator extends Subsystem
       // Sets the left elevator motor to full speed positive
     }
 
-    if(currentElevatorHight > elevatorHight);
+    if(currentElevatorHight > setElevatorHight);
     // if current elevaor hight is grater than the set elevator hight
     {
       p_elevatorBrake.set(Value.kForward);
@@ -141,7 +141,7 @@ public class Elevator extends Subsystem
       // Sets the left elevator motor to full speed negitve
     }
 
-    if(currentElevatorHight == elevatorHight)
+    if(currentElevatorHight == setElevatorHight)
     // If the current hight is equel to the set elevator hight
     {
       p_elevatorBrake.set(Value.kReverse);

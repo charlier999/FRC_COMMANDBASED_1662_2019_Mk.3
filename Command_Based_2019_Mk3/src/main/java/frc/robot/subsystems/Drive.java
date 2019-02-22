@@ -65,16 +65,26 @@ public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
   // User Input //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
 
-  public void Shifters(boolean direction)
-  // Actuates the shifters to high or low based on user input
+  // public void Shifters(boolean direction)
+  // // Actuates the shifters to high or low based on user input
+  // {
+  //   if (direction)
+  //   {
+  //     p_shifters.set(DoubleSolenoid.Value.kForward);  // Up Shift
+  //     System.out.println("Shift Up");
+  //   }else{
+  //     p_shifters.set(DoubleSolenoid.Value.kReverse);  // Down Shift
+  //     System.out.println("Shift Down");
+  //   }
+  // }
+
+  public void Shifters()
   {
-    if (direction)
+    if (p_shifters.get() == Value.kForward)
     {
-      p_shifters.set(DoubleSolenoid.Value.kForward);  // Up Shift
-      System.out.println("Shift Up");
+      p_shifters.set(Value.kReverse);
     }else{
-      p_shifters.set(DoubleSolenoid.Value.kReverse);  // Down Shift
-      System.out.println("Shift Down");
+      p_shifters.set(Value.kForward);
     }
   }
 

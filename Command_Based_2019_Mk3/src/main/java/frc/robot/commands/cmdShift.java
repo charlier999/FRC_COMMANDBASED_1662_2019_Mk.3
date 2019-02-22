@@ -12,13 +12,12 @@ import frc.robot.Robot;
 
 public class cmdShift extends Command 
 {
+  // Boolean direction;
 
-  Boolean direction;
-
-  public cmdShift(boolean direction) 
+  public cmdShift() 
   {
     requires(Robot.sub_drive);
-    this.direction = direction;
+    // this.direction = direction;
   }
 
   // Called just before this Command runs the first time
@@ -32,7 +31,7 @@ public class cmdShift extends Command
   @Override
   protected void execute() 
   {
-    Robot.sub_drive.Shifters(direction);
+    Robot.sub_drive.Shifters();
   }
 
   // Make this return true when this Command no longer needs to run execute()

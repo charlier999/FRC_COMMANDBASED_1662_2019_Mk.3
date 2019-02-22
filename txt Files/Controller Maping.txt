@@ -1,0 +1,66 @@
+	Logitech Gamepad F310
+
+	Axises
+0 ~ Left Thumb Stick X-Axis
+1 ~ Left Thumb Stick Y-Axis
+2 ~ Left Trigger
+3 ~ Right Trigger
+4 ~ Right Thumb Stick X-Axis
+5 ~ Right Thumb Stick Y-Axis
+
+	Button
+1  ~ A
+2  ~ B
+3  ~ X
+4  ~ Y
+5  ~ Left Bumper
+6  ~ Right Bumper
+7  ~ Back
+8  ~ Start
+9  ~ Left Thumb Stick Click
+10 ~ Right Thumb Stick Click
+
+
+		Driver	
+	Axises
+0 ~ none
+1 ~ Left Drive Train
+2 ~ Intake Out
+3 ~ Intake In
+4 ~ none
+5 ~ Right Drive Train
+
+	Button
+1  ~ Hatch Detach
+2  ~ none
+3  ~ none
+4  ~ none
+5  ~ Shifter Toggle
+6  ~ Grabber Open Close Toggle
+7  ~ none
+8  ~ none
+9  ~ none
+10 ~ none
+
+-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
+
+		Operator
+	Axises
+0 ~ none
+1 ~ Elevator Up/Down
+2 ~ 
+3 ~ 
+4 ~ 
+5 ~ Wrist Up/Down
+
+	Button
+1  ~ none
+2  ~ Linear Actuator Down
+3  ~ Linear Actuator Up
+4  ~ none
+5  ~ Climbing Claws Wheel
+6  ~ none
+7  ~ Release Climbing Claws
+8  ~ Attach Climbing Claws
+9  ~ none
+10 ~ none

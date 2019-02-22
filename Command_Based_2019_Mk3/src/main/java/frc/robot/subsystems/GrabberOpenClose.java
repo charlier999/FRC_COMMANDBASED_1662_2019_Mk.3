@@ -47,17 +47,23 @@ public class GrabberOpenClose extends Subsystem
     // sets the wrist motor to the joystick input
   }
 
-  public void GrabberOC(boolean direction)
+  public void GrabberOC()
   // Open and closes the grabber based on user input
   {
-    if (direction)
+    if (p_gripper.get() == Value.kForward)
     {
-      p_gripper.set(Value.kForward);
-      // closes the grabber arms
-    }else{
       p_gripper.set(Value.kReverse);
-      // opens the grabber arms
+    }else{
+      p_gripper.set(Value.kForward);
     }
+    // if (direction)
+    // {
+    //   p_gripper.set(Value.kForward);
+    //   // closes the grabber arms
+    // }else{
+    //   p_gripper.set(Value.kReverse);
+    //   // opens the grabber arms
+    // }
   }
 
   public void Intake(Boolean direction)
