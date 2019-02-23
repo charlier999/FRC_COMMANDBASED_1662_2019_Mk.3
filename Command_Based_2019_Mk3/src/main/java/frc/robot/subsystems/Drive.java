@@ -99,6 +99,12 @@ public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
   // Automatic Input // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
   
+  public void AutoDrive(double leftSpeed, double rightSpeed)
+  {
+    leftDriveBase.set(leftSpeed);
+    rightDriveBase.set(rightSpeed);
+  }
+
   public void AutoShifters()
   // Automaticly shifts the drive train shifters based on the rpm of the drive train
   {

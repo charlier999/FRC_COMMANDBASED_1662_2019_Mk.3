@@ -79,6 +79,22 @@ public class GrabberOpenClose extends Subsystem
     }
   }
 
+  public void Intake(Joystick joystick)
+  {
+    if(joystick.getRawAxis(2) < joystick.getRawAxis(3))
+    {
+      gripperMotorV2.set(1);
+    }
+    if(joystick.getRawAxis(2) > joystick.getRawAxis(3))
+    {
+      gripperMotorV2.set(-1);
+    }
+    if(joystick.getRawAxis(2) == joystick.getRawAxis(3))
+    {
+      gripperMotorV2.set(0);
+    }
+  }
+
 
   // Auto //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
 
