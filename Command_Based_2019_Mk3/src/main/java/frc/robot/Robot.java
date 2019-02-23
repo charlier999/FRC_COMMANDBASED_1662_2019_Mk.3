@@ -37,6 +37,7 @@ import frc.robot.commands.cmdWristJoystick;
 import frc.robot.commands.cmdSmartDashboard;
 import frc.robot.commands.cmdEncoderPrint;
 import frc.robot.commands.cmdAutoShift;
+import frc.robot.commands.cmdTriggerIntake;
 
 
 public class Robot extends TimedRobot 
@@ -57,6 +58,7 @@ public class Robot extends TimedRobot
   Command cmdSmartDashboard       = new cmdSmartDashboard();
   Command cmdEncoderPrint         = new cmdEncoderPrint();
   Command cmdAutoShift            = new cmdAutoShift();
+  Command cmdTriggerIntake        = new cmdTriggerIntake();
 
   // Other Components // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   
@@ -108,6 +110,7 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     // cmdAutoShift.start();
     // cmdBallIntake.start();
+    cmdTriggerIntake.start();
     
   }
 
@@ -126,6 +129,7 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     // cmdBallIntake.start();
     // cmdAutoShift.start();
+    cmdTriggerIntake.start();
   }
 
   @Override
@@ -138,6 +142,7 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     // cmdAutoShift.start();
     // cmdBallIntake.start();
+    cmdTriggerIntake.start();
   }
 
   @Override

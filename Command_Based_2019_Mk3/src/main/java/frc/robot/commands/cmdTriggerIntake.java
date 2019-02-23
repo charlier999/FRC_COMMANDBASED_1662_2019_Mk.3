@@ -10,13 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class cmdElevatorHeight extends Command 
+public class cmdTriggerIntake extends Command 
 {
-  double elevatorHight;
-  public cmdElevatorHeight(double elevatorHight) 
+  public cmdTriggerIntake() 
   {
-    requires(Robot.sub_elevator);
-    this.elevatorHight = elevatorHight;
+    requires(Robot.sub_grabberOC);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -28,9 +26,8 @@ public class cmdElevatorHeight extends Command
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() 
-  {
-    Robot.sub_elevator.ElevatorHightset(elevatorHight);
+  protected void execute() {
+    Robot.sub_grabberOC.Intake(Robot.m_oi.driver);
   }
 
   // Make this return true when this Command no longer needs to run execute()
