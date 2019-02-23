@@ -31,6 +31,9 @@ public class Climber extends Subsystem //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -
 
   double linearActDistance;
 
+  double linearActStopMax;
+  double linearActStopMin;
+
 
   //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
   
@@ -57,11 +60,16 @@ public class Climber extends Subsystem //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -
   public void LinearActuatorExtend(Boolean direction)
   // Extends or Retracts the linear actuator based on user input  
   {
-    if(direction)
+    if(e_linearAct.getDistance() != linearActStopMax && e_linearAct.getDistance() != linearActStopMin)
     {
-      linearActuator.set(1);  // Extend at full speed (+)
+      if(direction)
+      {
+       linearActuator.set(1);  // Extend at full speed (+)
+      }else{
+       linearActuator.set(-1); // Retract at full speed (-)
+      }
     }else{
-      linearActuator.set(-1); // Retract at full speed (-)
+      linearActuator.set(0.0);
     }
   }
 
@@ -84,6 +92,7 @@ public class Climber extends Subsystem //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -
   {
     e_linearAct.reset(); // resets the encoder zero
   }
+
 
   public void encoderConsole() // Testing //
   // Prints the encoder data to the console

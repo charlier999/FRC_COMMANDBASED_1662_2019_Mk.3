@@ -6,14 +6,20 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
+
 import edu.wpi.first.wpilibj.Joystick;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.Subsystem;
-// import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+
 import frc.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.Encoder;
 
 public class Elevator extends Subsystem 
@@ -23,11 +29,9 @@ public class Elevator extends Subsystem
   WPI_TalonSRX rightElevatorMotor  = new WPI_TalonSRX(RobotMap.rightElevatorMotor);
   WPI_VictorSPX leftElevatorMotor   = new WPI_VictorSPX(RobotMap.leftElevatorMotor);
 
+  SensorCollection rightElevatorSensor = new SensorCollection(rightElevatorMotor);
   public DoubleSolenoid p_elevatorBrake = new DoubleSolenoid(6, 7);
 
-  // public DifferentialDrive elevatorBase;
-
-  //public static int  elevatorDistance = new 
   public Encoder e_elevatorDrum = new Encoder(14, 15, false, Encoder.EncodingType.k4X);
   double elevatorDistance;
   double currentElevatorHight;
@@ -68,10 +72,7 @@ public class Elevator extends Subsystem
   }
 
 
-
   // Automatic Input // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
-  
-
 
   public void autoElevator(boolean elevatorDirection, double elevatorSpeed) 
   // Controll of the elevator for computor controlled robot
@@ -117,16 +118,16 @@ public class Elevator extends Subsystem
   public void ElevatorHightset(double setElevatorHight)
   // Sets the elvator motors to raise or lower the diffrent highs on the robot
   {
-    currentElevatorHight = e_elevatorDrum.getDistance();
+    currentElevatorHight = rightElevatorSensor.getQuadraturePosition();
     // sets the varaible currentElevatorHight to the encoders recorded distance
     if(currentElevatorHight < setElevatorHight)
     // if current elevator hight is less then set elevaor hight
     {
       p_elevatorBrake.set(Value.kForward);
       // Opens the elevator brake
-      rightElevatorMotor.set(1);
+      rightElevatorMotor.set(0.5);
       // Sets the right elevator motor to full speed positive 
-      leftElevatorMotor.set(1);
+      leftElevatorMotor.set(0.5);
       // Sets the left elevator motor to full speed positive
     }
 
@@ -135,9 +136,9 @@ public class Elevator extends Subsystem
     {
       p_elevatorBrake.set(Value.kForward);
       // opens the elevator brake
-      rightElevatorMotor.set(-1);
+      rightElevatorMotor.set(-0.5);
       // Sets the right elevator motor to full speed negitve
-      leftElevatorMotor.set(-1);
+      leftElevatorMotor.set(-0.5);
       // Sets the left elevator motor to full speed negitve
     }
 

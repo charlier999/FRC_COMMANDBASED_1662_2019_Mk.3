@@ -33,8 +33,11 @@ public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   public Encoder e_driveRight   = new Encoder(12, 13, false, Encoder.EncodingType.k4X);
   public Encoder e_driveLeft    = new Encoder(10, 11, false, Encoder.EncodingType.k4X);
 
-  int driveRightDistance;
-  int driveLeftDistance;
+  double rightDriveRPM;
+  double leftDriveRPM;
+
+  double downShift;
+  double upShift;
 
   private DoubleSolenoid p_shifters     = new DoubleSolenoid(0, 1);
  
@@ -51,8 +54,7 @@ public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   // Differential Drive
   public DifferentialDrive driveBase;
 
-  double downShift;
-  double upShift;
+
 
   public Drive() 
   {
@@ -102,16 +104,19 @@ public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   {
     downShift = 12345;
     upShift   = 12345;
+    rightDriveRPM = e_driveRight.getRate();
+    leftDriveRPM  = e_driveLeft.getRate();
+
     if (p_shifters.get() == Value.kReverse) 
     // Gets the direction of the shifters and compares it to the value
     {
-      if (downShift >= e_driveRight.getRate() && downShift >= e_driveLeft.getRate()) 
+      if (downShift >= rightDriveRPM && downShift >= leftDriveRPM) 
       // If the downShift is grater then the the rpm of both left and right drive encoders
       {
         p_shifters.set(Value.kReverse); // shifts the shifters down
       } 
     }else{
-      if (upShift <= e_driveRight.getRate() && upShift <= e_driveLeft.getRate())
+      if (upShift <= rightDriveRPM && upShift <= leftDriveRPM)
       // If the upShift if less then the rpm of both left and right drive encoders
       {
         p_shifters.set(Value.kForward); // shifts the shifters up
