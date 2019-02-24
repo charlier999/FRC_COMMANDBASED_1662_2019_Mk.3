@@ -56,14 +56,6 @@ public class GrabberOpenClose extends Subsystem
     }else{
       p_gripper.set(Value.kForward);
     }
-    // if (direction)
-    // {
-    //   p_gripper.set(Value.kForward);
-    //   // closes the grabber arms
-    // }else{
-    //   p_gripper.set(Value.kReverse);
-    //   // opens the grabber arms
-    // }
   }
 
   public void Intake(Boolean direction)

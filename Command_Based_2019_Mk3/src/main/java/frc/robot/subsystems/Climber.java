@@ -11,6 +11,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -24,10 +26,22 @@ public class Climber extends Subsystem //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -
 
   public DoubleSolenoid p_climberClaws = new DoubleSolenoid(4 , 5);
 
-  WPI_TalonSRX linearActuator = new WPI_TalonSRX(RobotMap.linearActuator);
+  // WPI_TalonSRX linearActuator = new WPI_TalonSRX(RobotMap.linearActuator);
+  WPI_VictorSPX linearActuator = new WPI_VictorSPX(RobotMap.linearActuator);
   WPI_VictorSPX climberWheel  = new WPI_VictorSPX(RobotMap.climberWheel);
 
   public Encoder e_linearAct  = new Encoder(16, 17, false, Encoder.EncodingType.k4X);
+
+    // Drive base motors
+    WPI_TalonSRX leftMotorA           = new WPI_TalonSRX(RobotMap.leftMotorA);
+    WPI_VictorSPX leftMotorB           = new WPI_VictorSPX(RobotMap.leftMotorB);
+    WPI_VictorSPX rightMotorA          = new WPI_VictorSPX(RobotMap.rightMotorA);
+    WPI_TalonSRX rightMotorB          = new WPI_TalonSRX(RobotMap.rightMotorB);
+  
+    // Speed Controller Groups
+    SpeedControllerGroup leftDriveBase  = new SpeedControllerGroup(leftMotorA, leftMotorB); 
+    SpeedControllerGroup rightDriveBase = new SpeedControllerGroup(rightMotorA, rightMotorB);
+
 
   double linearActDistance;
 
@@ -57,30 +71,32 @@ public class Climber extends Subsystem //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -
     }
   }
 
-  public void LinearActuatorExtend(Boolean direction)
+  public void LinearActuatorExtend(boolean direction)
   // Extends or Retracts the linear actuator based on user input  
   {
-    if(e_linearAct.getDistance() != linearActStopMax && e_linearAct.getDistance() != linearActStopMin)
-    {
+    // if(e_linearAct.getDistance() != linearActStopMax && e_linearAct.getDistance() != linearActStopMin)
+    // {
       if(direction)
       {
-       linearActuator.set(1);  // Extend at full speed (+)
+       linearActuator.set(-1);  // Extend at full speed (+)
       }else{
-       linearActuator.set(-1); // Retract at full speed (-)
+       linearActuator.set(1); // Retract at full speed (-)
       }
-    }else{
-      linearActuator.set(0.0);
-    }
+    // }
   }
 
-  public void ClimbingWheel(Boolean direction)
+  public void ClimbingWheel(boolean direction //, 
+                            // double leftSpeed, double rightSpeed
+                           )
   // Sets the direction of the of the climbing wheel on the climbing arm based on user input
   {
     if(direction)
     {
       climberWheel.set(1); // Spin at full speed (+)
+      // leftDriveBase.set(leftSpeed);
     }else{
       climberWheel.set(-1); // Spin at full speed (-)
+      // rightDriveBase.set(rightSpeed);
     }
   }
 

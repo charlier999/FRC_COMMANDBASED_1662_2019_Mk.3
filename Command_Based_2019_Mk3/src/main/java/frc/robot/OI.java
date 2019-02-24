@@ -17,6 +17,7 @@ import frc.robot.commands.cmdClimberPull;
 import frc.robot.commands.cmdGrabberOC;
 import frc.robot.commands.cmdLinearActuator;
 import frc.robot.commands.cmdElevatorHeight;
+// import frc.robot.commands.cmdLinearActuatorStop;
 
 public class OI {
   // Joysticks // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -89,7 +90,9 @@ public class OI {
 
     // Linear Actuator
     linearActuatorDown.whileHeld(new cmdLinearActuator(true));
+    // linearActuatorUp.whenReleased(new cmdLinearActuatorStop());
     linearActuatorUp.whileHeld(new cmdLinearActuator(false));
+    // linearActuatorDown.whenReleased(new cmdLinearActuatorStop());
 
 
     // Button Pannel // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 

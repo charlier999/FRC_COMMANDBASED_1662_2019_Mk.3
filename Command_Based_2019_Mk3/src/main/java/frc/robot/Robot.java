@@ -137,7 +137,7 @@ public class Robot extends TimedRobot
   {
     Scheduler.getInstance().run();
     cmdDrive.start();
-    cmdWristJoystick.start();
+    // cmdWristJoystick.start();
     cmdJoystickElevator.start();
     cmdWristJoystick.start();
     // cmdAutoShift.start();
