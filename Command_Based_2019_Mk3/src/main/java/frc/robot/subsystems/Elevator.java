@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 
@@ -26,13 +25,13 @@ public class Elevator extends Subsystem
 {
 
   public Joystick operator     = new Joystick(1);
-  WPI_TalonSRX rightElevatorMotor  = new WPI_TalonSRX(RobotMap.rightElevatorMotor);
+  WPI_VictorSPX rightElevatorMotor  = new WPI_VictorSPX(RobotMap.rightElevatorMotor);
   WPI_VictorSPX leftElevatorMotor   = new WPI_VictorSPX(RobotMap.leftElevatorMotor);
 
   SensorCollection rightElevatorSensor = new SensorCollection(rightElevatorMotor);
   public DoubleSolenoid p_elevatorBrake = new DoubleSolenoid(6, 7);
 
-  public Encoder e_elevatorDrum = new Encoder(14, 15, false, Encoder.EncodingType.k4X);
+  public Encoder e_elevator = new Encoder(16, 17, false, Encoder.EncodingType.k4X);
   double elevatorDistance;
   double currentElevatorHight;
 
@@ -103,7 +102,7 @@ public class Elevator extends Subsystem
   public void encoderConsole() 
   // Outputs the encoder distance to the drive station console
   {
-   elevatorDistance = e_elevatorDrum.getDistance();
+   elevatorDistance = e_elevator.getDistance();
     // Sets elevatorDistance to the encoder's recorded distance
     System.out.println (elevatorDistance);
     // Prints the elevatorDistance value to the driver station console
@@ -112,7 +111,7 @@ public class Elevator extends Subsystem
   public void elevatorEncoderReset() 
   // Resets the encoder's zero
   {
-    e_elevatorDrum.reset();
+    e_elevator.reset();
   }
 
   public void ElevatorHightset(double setElevatorHight)
