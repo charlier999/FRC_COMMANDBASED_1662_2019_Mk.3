@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -105,15 +106,6 @@ public class Elevator extends Subsystem
     leftElevatorMotor.stopMotor();
   }
 
-  public void encoderConsole() 
-  // Outputs the encoder distance to the drive station console
-  {
-   elevatorDistance = e_elevator.getDistance();
-    // Sets elevatorDistance to the encoder's recorded distance
-    System.out.println (elevatorDistance);
-    // Prints the elevatorDistance value to the driver station console
-  }
-
   public void elevatorEncoderReset() 
   // Resets the encoder's zero
   {
@@ -123,6 +115,7 @@ public class Elevator extends Subsystem
   public void ElevatorHightset(double setElevatorHight)
   // Sets the elvator motors to raise or lower the diffrent highs on the robot
   {
+    elevatorDistance = setElevatorHight;
     currentElevatorHight = e_elevator.getDistance();
     // sets the varaible currentElevatorHight to the encoders recorded distance
     if(e_elevator.getDistance() < setElevatorHight)
@@ -157,6 +150,10 @@ public class Elevator extends Subsystem
       leftElevatorMotor.stopMotor();
       // stops the left elevator motor
     }
+  }
+  public double ElevatorReturn()
+  {
+    return elevatorDistance;
   }
 
   

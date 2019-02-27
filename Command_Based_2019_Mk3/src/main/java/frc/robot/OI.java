@@ -95,14 +95,14 @@ public class OI {
     // Button Pannel // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
     // Hatch Levels
-    hatchLevel1Button.whenPressed(new cmdElevatorHeight(880.0));
-    hatchLevel2Button.whenPressed(new cmdElevatorHeight(5507.75));
-    hatchLevel3Button.whenPressed(new cmdElevatorHeight(10400.00));
+    hatchLevel1Button.whileHeld(new cmdElevatorHeight(880.0));
+    hatchLevel2Button.whileHeld(new cmdElevatorHeight(5507.75));
+    hatchLevel3Button.whileHeld(new cmdElevatorHeight(10400.00));
 
     // Ball Levels
-    ballLevel1Button.whenPressed(new cmdElevatorHeight(2334.75));
-    ballLevel2Button.whenPressed(new cmdElevatorHeight(6658.25));
-    ballLevel3button.whenPressed(new cmdElevatorHeight(10400.00));
+    ballLevel1Button.whileHeld(new cmdElevatorHeight(2334.75));
+    ballLevel2Button.whileHeld(new cmdElevatorHeight(6658.25));
+    ballLevel3button.whileHeld(new cmdElevatorHeight(10400.00));
 
     ballPickUpButton.whileHeld(new cmdElevatorHeight(0));
 

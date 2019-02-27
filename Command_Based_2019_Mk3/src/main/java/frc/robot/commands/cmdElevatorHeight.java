@@ -35,8 +35,11 @@ public class cmdElevatorHeight extends Command
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() {
-    return false;
+  protected boolean isFinished() 
+  {
+    
+    return Math.abs(Robot.sub_elevator.e_elevator.getDistance() - 
+                    Robot.sub_elevator.ElevatorReturn()) < 0.3;
   }
 
   // Called once after isFinished returns true
