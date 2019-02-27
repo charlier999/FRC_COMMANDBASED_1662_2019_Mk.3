@@ -64,10 +64,16 @@ public class Elevator extends Subsystem
   public void joystickElevator(Joystick joystick)
   // The elevator motors are spinned based on the user input
   {
-    rightElevatorMotor.set(joystick.getRawAxis(1)); 
-    // The right elevator motor speed is set to the joystick input
-    leftElevatorMotor.set(joystick.getRawAxis(1));
-    // The left elevator motor speed is set to the joystick inptut
+    if(e_elevator.getDistance() != 10500.00 && e_elevator.getDistance() != 10.0)
+    {
+      rightElevatorMotor.set(joystick.getRawAxis(1)); 
+      // The right elevator motor speed is set to the joystick input
+      leftElevatorMotor.set(joystick.getRawAxis(1));
+      // The left elevator motor speed is set to the joystick inptut
+    }else{
+      rightElevatorMotor.stopMotor();
+      leftElevatorMotor.stopMotor();
+    }
   }
 
 

@@ -45,17 +45,17 @@ public class OI {
 
   // Button Pannel Buttons // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
-  public Button hatchLevel1Button       = new JoystickButton(buttonPannel, 1);
-  public Button hatchLevel2Button       = new JoystickButton(buttonPannel, 2);
-  public Button hatchLevel3Button       = new JoystickButton(buttonPannel, 3);
+  public Button hatchLevel1Button       = new JoystickButton(buttonPannel, 6);
+  public Button hatchLevel2Button       = new JoystickButton(buttonPannel, 7);
+  public Button hatchLevel3Button       = new JoystickButton(buttonPannel, 8);
 
-  public Button ballLevel1Button        = new JoystickButton(buttonPannel, 4);
-  public Button ballLevel2Button        = new JoystickButton(buttonPannel, 5);
-  public Button ballLevel3button        = new JoystickButton(buttonPannel, 6);
+  public Button ballLevel1Button        = new JoystickButton(buttonPannel, 3);
+  public Button ballLevel2Button        = new JoystickButton(buttonPannel, 4);
+  public Button ballLevel3button        = new JoystickButton(buttonPannel, 5);
 
-  public Button ballPickUpButton        = new JoystickButton(buttonPannel, 7);
+  public Button ballPickUpButton        = new JoystickButton(buttonPannel, 1);
 
-  public Button climberButton           = new JoystickButton(buttonPannel, 8);
+  public Button climberButton           = new JoystickButton(buttonPannel, 2);
 
 
   public Joystick getDriverJoystick()
@@ -95,14 +95,15 @@ public class OI {
     // Button Pannel // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
     // Hatch Levels
-    hatchLevel1Button.whenPressed(new cmdElevatorHeight(354));
-    hatchLevel2Button.whenPressed(new cmdElevatorHeight(186));
-    hatchLevel3Button.whenPressed(new cmdElevatorHeight(18));
+    hatchLevel1Button.whenPressed(new cmdElevatorHeight(880.0));
+    hatchLevel2Button.whenPressed(new cmdElevatorHeight(5507.75));
+    hatchLevel3Button.whenPressed(new cmdElevatorHeight(10400.00));
 
     // Ball Levels
-    ballLevel1Button.whenPressed(new cmdElevatorHeight(405));
-    ballLevel2Button.whenPressed(new cmdElevatorHeight(237));
-    ballLevel3button.whenPressed(new cmdElevatorHeight(69));
+    ballLevel1Button.whenPressed(new cmdElevatorHeight(2334.75));
+    ballLevel2Button.whenPressed(new cmdElevatorHeight(6658.25));
+    ballLevel3button.whenPressed(new cmdElevatorHeight(10400.00));
+    
     ballPickUpButton.whenPressed(new cmdElevatorHeight(0));
 
     // Auto Climb 

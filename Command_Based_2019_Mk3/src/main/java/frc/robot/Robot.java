@@ -11,6 +11,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
 
 // Cammra Imports
@@ -93,10 +94,22 @@ public class Robot extends TimedRobot
 
   }
 
+  public void allPeriodic()
+  {
+    SmartDashboard.putNumber("Current Elevator Height", Robot.sub_elevator.e_elevator.getDistance());
+
+    SmartDashboard.putNumber("Right Drive Train Speed", Robot.sub_drive.e_driveRight.getRate());
+    SmartDashboard.putNumber("Right Drive Train Distance", Robot.sub_drive.e_driveRight.getDistance());
+
+    SmartDashboard.putNumber("Left Drive Train Speed", Robot.sub_drive.e_driveLeft.getRate());
+    SmartDashboard.putNumber("Left Drive Train Distance", Robot.sub_drive.e_driveLeft.getDistance());
+  }
+
   @Override
   public void disabledPeriodic() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   {
     Scheduler.getInstance().run();
+    allPeriodic();
   }
 
   @Override
@@ -115,7 +128,10 @@ public class Robot extends TimedRobot
   public void autonomousPeriodic() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   {
     Scheduler.getInstance().run();
+    allPeriodic();
   }
+
+
 
   @Override
   public void teleopInit() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -136,6 +152,8 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     cmdJoystickElevator.start();
     cmdWristJoystick.start();
+
+    allPeriodic();
     // cmdAutoShift.start();
     // cmdBallIntake.start();
   }
