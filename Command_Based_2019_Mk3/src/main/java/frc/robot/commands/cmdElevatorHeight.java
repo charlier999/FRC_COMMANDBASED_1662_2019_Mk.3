@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
@@ -44,7 +45,10 @@ public class cmdElevatorHeight extends Command
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
+  protected void end() 
+  {
+    Robot.sub_elevator.p_elevatorBrake.set(Value.kForward);
+    Robot.sub_elevator.ElevatorMotorStop();
   }
 
   // Called when another command which requires one or more of the same

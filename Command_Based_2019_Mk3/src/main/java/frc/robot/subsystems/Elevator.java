@@ -151,6 +151,11 @@ public class Elevator extends Subsystem
       // stops the left elevator motor
     }
   }
+  public void ElevatorMotorStop()
+  {
+    rightElevatorMotor.stopMotor();
+    leftElevatorMotor.stopMotor();
+  }
   public double ElevatorReturn()
   {
     return elevatorDistance;
