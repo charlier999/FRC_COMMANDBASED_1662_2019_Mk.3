@@ -123,12 +123,12 @@ public class Elevator extends Subsystem
   public void ElevatorHightset(double setElevatorHight)
   // Sets the elvator motors to raise or lower the diffrent highs on the robot
   {
-    currentElevatorHight = rightElevatorSensor.getQuadraturePosition();
+    currentElevatorHight = e_elevator.getDistance();
     // sets the varaible currentElevatorHight to the encoders recorded distance
-    if(currentElevatorHight < setElevatorHight)
+    if(e_elevator.getDistance() < setElevatorHight)
     // if current elevator hight is less then set elevaor hight
     {
-      p_elevatorBrake.set(Value.kForward);
+      p_elevatorBrake.set(Value.kReverse);
       // Opens the elevator brake
       rightElevatorMotor.set(0.5);
       // Sets the right elevator motor to full speed positive 
@@ -136,10 +136,10 @@ public class Elevator extends Subsystem
       // Sets the left elevator motor to full speed positive
     }
 
-    if(currentElevatorHight > setElevatorHight);
+    if(e_elevator.getDistance() > setElevatorHight);
     // if current elevaor hight is grater than the set elevator hight
     {
-      p_elevatorBrake.set(Value.kForward);
+      p_elevatorBrake.set(Value.kReverse);
       // opens the elevator brake
       rightElevatorMotor.set(-0.5);
       // Sets the right elevator motor to full speed negitve
@@ -147,10 +147,10 @@ public class Elevator extends Subsystem
       // Sets the left elevator motor to full speed negitve
     }
 
-    if(currentElevatorHight == setElevatorHight)
+    if(e_elevator.getDistance() == setElevatorHight)
     // If the current hight is equel to the set elevator hight
     {
-      p_elevatorBrake.set(Value.kReverse);
+      p_elevatorBrake.set(Value.kForward);
       // closes the elevator brake
       rightElevatorMotor.stopMotor();
       // stops the right elevator motor

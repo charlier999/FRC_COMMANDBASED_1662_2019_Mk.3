@@ -16,6 +16,7 @@ public class cmdElevatorHeight extends Command
   public cmdElevatorHeight(double elevatorHight) 
   {
     requires(Robot.sub_elevator);
+    this.elevatorHight = elevatorHight;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
