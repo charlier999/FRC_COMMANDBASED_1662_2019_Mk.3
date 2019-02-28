@@ -25,7 +25,6 @@ public class cmdJoystickElevator extends Command
   protected void initialize() 
   {
     Robot.sub_elevator.stop();
-    // Robot.sub_elevator.elevatorBrake(false);
   }
 
   // Called repeatedly when this Command is scheduled to run

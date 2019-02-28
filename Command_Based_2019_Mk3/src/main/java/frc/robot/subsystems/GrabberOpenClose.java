@@ -49,26 +49,24 @@ public class GrabberOpenClose extends Subsystem
     }else{
       p_gripper.set(Value.kForward);
     }
-    // if (direction)
-    // {
-    //   p_gripper.set(Value.kForward);
-    //   // closes the grabber arms
-    // }else{
-    //   p_gripper.set(Value.kReverse);
-    //   // opens the grabber arms
-    // }
   }
 
-  public void Intake(Boolean direction)
+  public void Intake(Joystick joystick)
   // Controlls the intake speed based on user input
   {
-    if(direction)
+    if(joystick.getRawAxis(2) < .5)
     {
-      gripperMotorV2.set(1);
-      // sets the grabber motor to full speed positive
-    }else{
-      gripperMotorV2.set(-1);
-      // sets the grabber motor to full speed negitive
+      gripperMotorV2.set(joystick.getRawAxis(2));
+    }
+
+    if(joystick.getRawAxis(3) < .5)
+    {
+      gripperMotorV2.set(joystick.getRawAxis(3));
+    }
+
+    if(joystick.getRawAxis(2) == joystick.getRawAxis(3))
+    {
+      gripperMotorV2.stopMotor();
     }
   }
 

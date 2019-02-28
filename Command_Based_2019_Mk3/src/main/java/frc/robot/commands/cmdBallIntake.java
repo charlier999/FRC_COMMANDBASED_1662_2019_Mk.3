@@ -13,16 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
 public class cmdBallIntake extends Command 
 {
-  Boolean direction;
-  Double speed;
-
-  public cmdBallIntake(boolean direction, double speed)
+  public cmdBallIntake()
   {
     requires(Robot.sub_grabberOC);
-
-    this.direction = direction;
-
-    this.speed = speed;
   }
 //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
  
@@ -37,7 +30,7 @@ public class cmdBallIntake extends Command
   @Override
   protected void execute() 
   {
-    Robot.sub_grabberOC.Intake(direction);
+    Robot.sub_grabberOC.Intake(Robot.m_oi.driver);
   }
 
 //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  

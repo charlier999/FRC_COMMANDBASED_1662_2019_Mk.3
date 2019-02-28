@@ -34,7 +34,6 @@ public class cmdGrabberOC extends Command
   protected void execute() 
   {
     Robot.sub_grabberOC.GrabberOC();
-    // Robot.sub_grabber.GrabberOCv2();
   }
 
   // Make this return true when this Command no longer needs to run execute()
