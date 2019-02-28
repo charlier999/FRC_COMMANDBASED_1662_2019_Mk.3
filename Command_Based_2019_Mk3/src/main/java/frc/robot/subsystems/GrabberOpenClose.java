@@ -39,13 +39,6 @@ public class GrabberOpenClose extends Subsystem
 
 
   // User //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
-  
-  public void wristJoystickActuation(Joystick joystick)
-  // Changes the angle of the grabber wrist based on user input via joystick
-  {
-    wristMotor.set(joystick.getRawAxis(5));
-    // sets the wrist motor to the joystick input
-  }
 
   public void GrabberOC()
   // Open and closes the grabber based on user input

@@ -14,7 +14,7 @@ public class cmdWristJoystick extends Command
 {
   public cmdWristJoystick() 
   {
-    requires(Robot.sub_grabberOC);
+    requires(Robot.sub_wrist);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -23,14 +23,14 @@ public class cmdWristJoystick extends Command
   @Override
   protected void initialize() 
   {
-    // Robot.sub_grabberOC.WristStop();
+    Robot.sub_wrist.WristStop();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    Robot.sub_grabberOC.wristJoystickActuation(Robot.m_oi.operator);
+    Robot.sub_wrist.wristJoystickActuation(Robot.m_oi.operator);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -44,7 +44,7 @@ public class cmdWristJoystick extends Command
   @Override
   protected void end() 
   {
-    // Robot.sub_grabberOC.WristStop();
+    Robot.sub_wrist.WristStop();
   }
 
   // Called when another command which requires one or more of the same
@@ -52,6 +52,6 @@ public class cmdWristJoystick extends Command
   @Override
   protected void interrupted() 
   {
-    // Robot.sub_grabberOC.WristStop();
+    Robot.sub_wrist.WristStop();
   }
 }

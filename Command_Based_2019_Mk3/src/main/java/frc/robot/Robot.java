@@ -30,6 +30,7 @@ import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.GrabberOpenClose;
+import frc.robot.subsystems.Wrist;
 
 // Commands //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 import frc.robot.commands.cmdDrive;
@@ -48,6 +49,7 @@ public class Robot extends TimedRobot
   public static Drive sub_drive                = new Drive();
   public static Elevator sub_elevator          = new Elevator();
   public static GrabberOpenClose sub_grabberOC = new GrabberOpenClose();
+  public static Wrist sub_wrist                = new Wrist();
   public static OI m_oi;
 
   // Commands // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
