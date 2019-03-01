@@ -33,7 +33,6 @@ public class cmdSmartDashboard extends Command
   {
     // SmartDashboard.putNumber("Wrist Potentometer", Robot.sub_grabber.ap_gripper.get());
     SmartDashboard.putNumber("Elevator Hight", Robot.sub_elevator.e_elevator.getDistance());
-    SmartDashboard.putNumber("Linear Actuator Extention", Robot.sub_climber.e_linearAct.getDistance());
     SmartDashboard.putNumber("Drive Train Left", Robot.sub_drive.e_driveLeft.getDistance());
     SmartDashboard.putNumber("Drive Train Right", Robot.sub_drive.e_driveRight.getDistance());
   }

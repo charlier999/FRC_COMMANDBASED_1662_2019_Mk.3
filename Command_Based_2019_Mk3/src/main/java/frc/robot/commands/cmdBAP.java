@@ -8,31 +8,30 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import frc.robot.Robot;
 
-public class cmdLinearActuator extends Command 
+public class cmdBAP extends Command 
 {
   Boolean direction;
-  public cmdLinearActuator(Boolean direction) 
+  public cmdBAP(Boolean direction) 
   {
     requires(Robot.sub_climber);
     this.direction = direction;
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() 
   {
-    Robot.sub_climber.linearActuatorStop();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    Robot.sub_climber.LinearActuatorExtend(direction);
+    Robot.sub_climber.BAPToggle(direction);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -46,7 +45,7 @@ public class cmdLinearActuator extends Command
   @Override
   protected void end() 
   {
-    Robot.sub_climber.linearActuatorStop();
+
   }
 
   // Called when another command which requires one or more of the same
@@ -54,6 +53,6 @@ public class cmdLinearActuator extends Command
   @Override
   protected void interrupted() 
   {
-    Robot.sub_climber.linearActuatorStop();
+
   }
 }

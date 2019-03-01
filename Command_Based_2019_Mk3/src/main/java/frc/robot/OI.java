@@ -15,8 +15,8 @@ import frc.robot.commands.cmdShift;
 import frc.robot.commands.cmdClawDrop;
 import frc.robot.commands.cmdClimberPull;
 import frc.robot.commands.cmdGrabberOC;
-import frc.robot.commands.cmdLinearActuator;
 import frc.robot.commands.cmdElevatorHeight;
+import frc.robot.commands.cmdBAP;
 
 public class OI {
   // Joysticks // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -68,6 +68,11 @@ public class OI {
     return operator;
   }
 
+  public Joystick getButtonPannelJoystick()
+  {
+    return buttonPannel;
+  }
+
   public OI()
   {
     // Driver // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -88,8 +93,8 @@ public class OI {
     climbingWheel.whileHeld(new cmdClimberPull(true));
 
     // Linear Actuator
-    linearActuatorDown.whileHeld(new cmdLinearActuator(true));
-    linearActuatorUp.whileHeld(new cmdLinearActuator(false));
+    linearActuatorDown.whileHeld(new cmdBAP(true));
+    linearActuatorUp.whileHeld(new cmdBAP(false));
 
 
     // Button Pannel // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 

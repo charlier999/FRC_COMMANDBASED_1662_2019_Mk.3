@@ -31,7 +31,7 @@ public class cmdElevatorHeight extends Command
   @Override
   protected void execute() 
   {
-    Robot.sub_elevator.ElevatorHightset(elevatorHight);
+    Robot.sub_elevator.ElevatorHightset(elevatorHight, Robot.m_oi.buttonPannel);
   }
 
   // Make this return true when this Command no longer needs to run execute()

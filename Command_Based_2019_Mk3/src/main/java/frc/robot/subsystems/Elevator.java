@@ -9,6 +9,8 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.Timer;
+
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -17,15 +19,15 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Encoder;
 
 public class Elevator extends Subsystem 
 {
-
-  public Joystick operator     = new Joystick(1);
   WPI_VictorSPX rightElevatorMotor  = new WPI_VictorSPX(RobotMap.rightElevatorMotor);
   WPI_VictorSPX leftElevatorMotor   = new WPI_VictorSPX(RobotMap.leftElevatorMotor);
 
@@ -34,12 +36,15 @@ public class Elevator extends Subsystem
 
   public Encoder e_elevator = new Encoder(16, 17, false, Encoder.EncodingType.k4X);
 
+  boolean elevatorHeightSafe;
+  Integer elevatorDirection;
+
   double elevatorDistance;
   double currentElevatorHight;
   double maxElevatorHeight;
   double minElevatorHeight;
 
-
+  Timer timer = new Timer();
 
   public Elevator()
   {
@@ -75,9 +80,6 @@ public class Elevator extends Subsystem
       leftElevatorMotor.set(joystick.getRawAxis(1));
       // The left elevator motor speed is set to the joystick inptut
     // }else{
-    //   rightElevatorMotor.stopMotor();
-    //   leftElevatorMotor.stopMotor();
-    // }
   }
 
 
@@ -115,84 +117,236 @@ public class Elevator extends Subsystem
     e_elevator.reset();
   }
 
+// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
+  
   public void ElevatorHightset(double setElevatorHight)
   // Sets the elvator motors to raise or lower the diffrent highs on the robot
   {
-    currentElevatorHight = e_elevator.getDistance();
 
-    // if(currentElevatorHight > setElevatorHight)
-    // {
+    if(e_elevator.getDistance() < 100)
+    {
 
-    //   p_elevatorBrake.set(Value.kReverse);
-    //   rightElevatorMotor.set(-.5);
+      elevatorHeightSafe = false;
 
-    //   while(currentElevatorHight > setElevatorHight)
-    //   {
+    }
 
-    //     currentElevatorHight = e_elevator.getDistance();
+    if(e_elevator.getDistance() > 10500)
+    {
 
-    //     if(currentElevatorHight % 100 == 0)
-    //     {
+      elevatorHeightSafe = false;
 
-    //     System.out.print("Elevator             UP ");
-    //     System.out.print(currentElevatorHight);
+    } 
 
-    //     }
-    //   }
-    // }
+    if(e_elevator.getDistance() < 100 &&
+    e_elevator.getDistance() > 10500)
+    {
 
+      elevatorHeightSafe = true;
+   
+    }
 
+// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
+    
+    if(elevatorHeightSafe == false)
+    {
+      if(e_elevator.getDistance() < 100)
+      {
 
+        p_elevatorBrake.set(Value.kForward);
+        rightElevatorMotor .set(-0.5);
+        leftElevatorMotor  .set(-0.5);
 
+      }
 
-    // maxElevatorHeight = 10500;
-    // minElevatorHeight = 100;
-    // elevatorDistance = setElevatorHight;
-    // currentElevatorHight = e_elevator.getDistance();
-    // SmartDashboard.putNumber("Set Elevator Hight", setElevatorHight);
-    // // sets the varaible currentElevatorHight to the encoders recorded distance
-    // while(e_elevator.getDistance() > setElevatorHight   && 
-    //       e_elevator.getDistance() != maxElevatorHeight &&
-    //       e_elevator.getDistance() != minElevatorHeight)
-    // // if current elevator hight is less then set elevaor hight
-    // {
-    //   System.out.println("Elevator Going Down");
-    //   p_elevatorBrake.set(Value.kReverse);
-    //   // Opens the elevator brake
-    //   rightElevatorMotor.set(0.5);
-    //   // Sets the right elevator motor to full speed positive 
-    //   leftElevatorMotor.set(0.5);
-    //   // Sets the left elevator motor to full speed positive
-    // }
+      if(e_elevator.getDistance() > 10500)
+      {
 
-    // while(e_elevator.getDistance() < setElevatorHight   && 
-    //       e_elevator.getDistance() != maxElevatorHeight &&
-    //       e_elevator.getDistance() != minElevatorHeight);
-    // // if current elevaor hight is grater than the set elevator hight
-    // {
-    //   System.out.println("Elevator Going UP");
-    //   p_elevatorBrake.set(Value.kReverse);
-    //   // opens the elevator brake
-    //   rightElevatorMotor.set(-0.5);
-    //   // Sets the right elevator motor to full speed negitve
-    //   leftElevatorMotor.set(-0.5);
-    //   // Sets the left elevator motor to full speed negitve
-    // }
+        p_elevatorBrake.set(Value.kForward);
+        rightElevatorMotor .set(0.5);
+        leftElevatorMotor  .set(0.5);    
 
-    // while(e_elevator.getDistance() == setElevatorHight  && 
-    //       e_elevator.getDistance() != maxElevatorHeight &&
-    //       e_elevator.getDistance() != minElevatorHeight)
-    // // If the current hight is equel to the set elevator hight
-    // {
-    //   System.out.println("Elevator Stop");
-    //   p_elevatorBrake.set(Value.kForward);
-    //   // closes the elevator brake
-    //   rightElevatorMotor.stopMotor();
-    //   // stops the right elevator motor
-    //   leftElevatorMotor.stopMotor();
-    //   // stops the left elevator motor
-    // }
+      }
+
+      if(e_elevator.getDistance() < 100 &&
+         e_elevator.getDistance() > 10500)
+      {
+
+        elevatorHeightSafe = true;
+        rightElevatorMotor .set(0.0);
+        leftElevatorMotor  .set(0.0);
+        p_elevatorBrake    .set(Value.kReverse);
+
+      }
+
+    }
+    else  // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
+    {
+
+      if(Math.abs(e_elevator.getDistance() - setElevatorHight) < 100 &&
+      Math.abs(e_elevator.getDistance() - setElevatorHight) > -100)
+      // if the elevator height - sethElevatorHeight is less then 0
+      // then the elevator is below the setElevatorheight
+      {
+
+        elevatorDirection = 0;
+        // the elevator is at the correct height
+
+      } 
+
+      if(Math.abs(e_elevator.getDistance() - setElevatorHight) > 100 &&
+      Math.abs(e_elevator.getDistance() - setElevatorHight) < -100)
+      // if the elevator height - sethElevatorHeight is less then 0
+      // then the elevator is below the setElevatorheight
+      {
+
+        elevatorDirection = 3;
+        // the elevator us not at the correct height
+
+      }
+// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
+      while(elevatorDirection != 0)
+      {
+
+        if(Math.abs(e_elevator.getDistance() - setElevatorHight) < 100 &&
+        Math.abs(e_elevator.getDistance() - setElevatorHight) > -100)
+        // if the elevator height - sethElevatorHeight is less then 0
+        // then the elevator is below the setElevatorheight
+        {
+
+          elevatorDirection = 0;
+          // the elevator needs to go up
+
+        }
+
+        if(Math.abs(e_elevator.getDistance() - setElevatorHight) >= 0)
+        // if the elevator height - sethElevatorHeight is grater then 0
+        // then the elevator is above the setElevatorheight
+        {
+
+          elevatorDirection = -1;
+          // the elevator needs to go down
+        
+        } 
+
+        if(Math.abs(e_elevator.getDistance() - setElevatorHight) <= 0)
+        // if the elevator height - sethElevatorHeight is less then 0
+        // then the elevator is below the setElevatorheight
+        {
+
+          elevatorDirection = 1;
+          // the elevator needs to go up
+
+        }
+    
+
+// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
+
+        if(elevatorDirection == 1)
+        {
+
+          p_elevatorBrake.set(Value.kForward);
+          rightElevatorMotor .set(-0.5);
+          leftElevatorMotor  .set(-0.5);
+          System.out.println("Elevator ++++++++++++++ UP");
+
+        }
+
+        if(elevatorDirection == -1)
+        {
+
+          p_elevatorBrake.set(Value.kForward);
+          rightElevatorMotor .set(0.5);
+          leftElevatorMotor  .set(0.5);
+          System.out.println("Elevator -------------- DOWN");
+
+        }
+
+        if(elevatorDirection == 0)
+        {
+
+          p_elevatorBrake.set(Value.kReverse);
+          rightElevatorMotor .set(0.0);
+          leftElevatorMotor  .set(0.0);
+          System.out.println("Elevator ============== REACHED");
+
+        }
+      }
+    }
+// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   }
+
+
+
+/*
+
+    maxElevatorHeight = 10500;
+    minElevatorHeight = 100;
+    elevatorDistance = setElevatorHight;
+    currentElevatorHight = e_elevator.getDistance();
+    SmartDashboard.putNumber("Set Elevator Hight", setElevatorHight);
+    // sets the varaible currentElevatorHight to the encoders recorded distance
+
+
+if(joystick.getRawButton(1) == false)
+// if Button #1 on the button pannel is not pressed,
+// then run auto height elevator.
+{
+
+    while(e_elevator.getDistance() >  setElevatorHight   && 
+          e_elevator.getDistance() != maxElevatorHeight &&
+          e_elevator.getDistance() != minElevatorHeight)
+    // if current elevator hight is less then set elevaor hight
+    {
+      System.out.println("Elevator Going Down");
+      p_elevatorBrake.set(Value.kReverse);
+      // Opens the elevator brake
+
+      rightElevatorMotor.set(0.5);
+      // Sets the right elevator motor to full speed positive 
+      leftElevatorMotor.set(0.5);
+      // Sets the left elevator motor to full speed positive
+    }
+
+
+
+    while(e_elevator.getDistance() <  setElevatorHight   && 
+          e_elevator.getDistance() != maxElevatorHeight &&
+          e_elevator.getDistance() != minElevatorHeight);
+    // if current elevaor hight is grater than the set elevator hight
+    {
+      System.out.println("Elevator Going UP");
+      p_elevatorBrake.set(Value.kReverse);
+      // opens the elevator brake
+
+      rightElevatorMotor.set(-0.5);
+      // Sets the right elevator motor to full speed negitve
+      leftElevatorMotor.set(-0.5);
+      // Sets the left elevator motor to full speed negitve
+    }
+
+
+
+    while(e_elevator.getDistance() == setElevatorHight  && 
+          e_elevator.getDistance() != maxElevatorHeight &&
+          e_elevator.getDistance() != minElevatorHeight)
+    // If the current hight is equel to the set elevator hight
+    {
+      System.out.println("Elevator Stop");
+      p_elevatorBrake.set(Value.kForward);
+      // closes the elevator brake
+
+      rightElevatorMotor.stopMotor();
+      // stops the right elevator motor
+      leftElevatorMotor.stopMotor();
+      // stops the left elevator motor.
+
+    }
+  }else{
+    rightElevatorMotor.stopMotor();
+    leftElevatorMotor.stopMotor();
+    p_elevatorBrake.set(Value.kForward);
+  }
+*/
   public void ElevatorMotorStop()
   {
     rightElevatorMotor.stopMotor();

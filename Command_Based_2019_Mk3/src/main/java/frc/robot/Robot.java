@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import edu.wpi.first.wpilibj.Compressor;
 
 // Cammra Imports
@@ -64,7 +65,7 @@ public class Robot extends TimedRobot
   Command cmdBallIntake           = new cmdBallIntake();
 
   // Other Components // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
-  
+
   // Compressor
   Compressor compressor = new Compressor(0);
 
@@ -78,6 +79,7 @@ public class Robot extends TimedRobot
     // camera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 480, 60);
     
     m_oi = new OI();
+    
 
     compressor.setClosedLoopControl(true);
     compressor.start();
@@ -125,7 +127,13 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     // cmdAutoShift.start();
     cmdBallIntake.start();
-    
+
+    Robot.sub_elevator.autoElevator(true, 1);
+
+    if(Robot.sub_elevator.e_elevator.getDistance() > 125)
+    {
+      Robot.sub_elevator.autoElevator(true, 0.0);
+    }
   }
 
   @Override
@@ -146,6 +154,13 @@ public class Robot extends TimedRobot
     cmdWristJoystick.start();
     cmdBallIntake.start();
     // cmdAutoShift.start();
+
+    Robot.sub_elevator.autoElevator(true, 1);
+
+    if(Robot.sub_elevator.e_elevator.getDistance() > 125)
+    {
+      Robot.sub_elevator.autoElevator(true, 0.0);
+    }
   }
 
   @Override
