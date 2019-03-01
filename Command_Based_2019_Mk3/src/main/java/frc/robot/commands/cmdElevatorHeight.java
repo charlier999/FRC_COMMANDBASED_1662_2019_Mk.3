@@ -37,7 +37,7 @@ public class cmdElevatorHeight extends Command
   @Override
   protected boolean isFinished() 
   {
-    
+    Robot.sub_elevator.CommandIsRunning(false);
     return false;
   }
 

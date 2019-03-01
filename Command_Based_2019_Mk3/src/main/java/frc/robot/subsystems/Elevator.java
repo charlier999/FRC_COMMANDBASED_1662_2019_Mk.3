@@ -32,18 +32,23 @@ public class Elevator extends Subsystem
   WPI_VictorSPX leftElevatorMotor   = new WPI_VictorSPX(RobotMap.leftElevatorMotor);
 
   SensorCollection rightElevatorSensor = new SensorCollection(rightElevatorMotor);
+
   public DoubleSolenoid p_elevatorBrake = new DoubleSolenoid(6, 7);
 
   public Encoder e_elevator = new Encoder(16, 17, false, Encoder.EncodingType.k4X);
 
   boolean elevatorHeightSafe;
-  boolean commandIsRunning;
 
-  Integer elevatorDirection;
+  boolean commandIsRunning;
+  boolean sectionIsRunning;
+  boolean oneTimePrint;
+
+  int elevatorDirection;
 
   double elevatorDistance;
 
   Timer timer = new Timer();
+
 
   public Elevator()
   {
@@ -125,22 +130,15 @@ public class Elevator extends Subsystem
   public void ElevatorHightset(double setElevatorHight)
   // Sets the elvator motors to raise or lower the diffrent highs on the robot
   {
-    while(commandIsRunning)
+    if(commandIsRunning)
     {
-
+      oneTimePrint = false;
       if(e_elevator.getDistance() < 100 & e_elevator.getDistance() > 10500)
       {
 
         elevatorHeightSafe = false;
 
       }
-
-      // if(e_elevator.getDistance() > 10500)
-      // {
-
-      //   elevatorHeightSafe = false;
-
-      // } 
 
       if(e_elevator.getDistance() < 100 &
       e_elevator.getDistance() > 10500)
@@ -152,10 +150,10 @@ public class Elevator extends Subsystem
 
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
     
-      if(elevatorHeightSafe == false)
+      while(elevatorHeightSafe == false)
       {
 
-        if(e_elevator.getDistance() < 100 & e_elevator.getDistance() > 10500)
+        if(e_elevator.getDistance() <  100 & e_elevator.getDistance() > 10500)
         {
   
           elevatorHeightSafe = false;
@@ -193,19 +191,28 @@ public class Elevator extends Subsystem
            e_elevator.getDistance() > 10500)
         {
 
-          elevatorHeightSafe = true;
           rightElevatorMotor .set(0.0);
           leftElevatorMotor  .set(0.0);
           p_elevatorBrake    .set(Value.kReverse);
           System.out.println("Inside of safe area");
-
+          elevatorHeightSafe = true;
+          
         }
 
       }
-      else  // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
-      {
 
-        if(Math.abs(e_elevator.getDistance() - setElevatorHight) < 100 &
+      while(elevatorHeightSafe == true)  // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
+      {
+        if(oneTimePrint == false)
+        {
+          rightElevatorMotor .set(0.0);
+          leftElevatorMotor  .set(0.0);
+          p_elevatorBrake    .set(Value.kReverse);
+          System.out.println("{While} Inside of safe area -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-");
+          oneTimePrint = true;
+        }
+
+        if(Math.abs(e_elevator.getDistance() - setElevatorHight) < 100 &&
         Math.abs(e_elevator.getDistance() - setElevatorHight) > -100)
         // if the elevator height - sethElevatorHeight is less then 0
         // then the elevator is below the setElevatorheight
@@ -213,11 +220,11 @@ public class Elevator extends Subsystem
 
           elevatorDirection = 0;
           // the elevator is at the correct height
-          System.out.println("elevatorDirection = 0");
+          System.out.println("Start elevatorDirection = 0");
 
         } 
 
-        if(Math.abs(e_elevator.getDistance() - setElevatorHight) > 100 &
+        if(Math.abs(e_elevator.getDistance() - setElevatorHight) > 100 |
         Math.abs(e_elevator.getDistance() - setElevatorHight) < -100)
         // if the elevator height - sethElevatorHeight is less then 0
         // then the elevator is below the setElevatorheight
@@ -225,14 +232,14 @@ public class Elevator extends Subsystem
 
           elevatorDirection = 3;
           // the elevator us not at the correct height
-          System.out.println("elevatorDirection = 3");
+          System.out.println("Start elevatorDirection = 3");
 
         }
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
-        while(elevatorDirection != 0)
+        if(elevatorDirection != 0)
         {
 
-          if(Math.abs(e_elevator.getDistance() - setElevatorHight) < 100 &
+          if(Math.abs(e_elevator.getDistance() - setElevatorHight) < 100 &&
           Math.abs(e_elevator.getDistance() - setElevatorHight) > -100)
           // if the elevator height - sethElevatorHeight is less then 0
           // then the elevator is below the setElevatorheight
@@ -240,8 +247,11 @@ public class Elevator extends Subsystem
 
             elevatorDirection = 0;
             // the elevator needs to go up
-            System.out.println("elevatorDirection = 0");
-
+            System.out.println(setElevatorHight);
+            System.out.println(e_elevator.getDistance());
+            System.out.println(e_elevator.getDistance() - setElevatorHight);
+            System.out.println("Main elevatorDirection = 0");
+            sectionIsRunning = true;
           }
 
           if(Math.abs(e_elevator.getDistance() - setElevatorHight) >= 0)
@@ -251,8 +261,11 @@ public class Elevator extends Subsystem
 
             elevatorDirection = -1;
             // the elevator needs to go down
-            System.out.println("elevatorDirection = -1");
-        
+            System.out.println(setElevatorHight);
+            System.out.println(e_elevator.getDistance());
+            System.out.println(e_elevator.getDistance() - setElevatorHight);
+            System.out.println("Main elevatorDirection = -1");
+            sectionIsRunning = true;
           } 
 
           if(Math.abs(e_elevator.getDistance() - setElevatorHight) <= 0)
@@ -262,48 +275,99 @@ public class Elevator extends Subsystem
 
             elevatorDirection = 1;
             // the elevator needs to go up
-            System.out.println("elevatorDirection = 1");
-
+            System.out.println(setElevatorHight);
+            System.out.println(e_elevator.getDistance());
+            System.out.println(e_elevator.getDistance() - setElevatorHight);
+            System.out.println("Main elevatorDirection = 1");
+            sectionIsRunning = true;
           }
     
 
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
-
-          if(elevatorDirection == 1)
+          while(sectionIsRunning)
           {
+            if(Math.abs(e_elevator.getDistance() - setElevatorHight) < 1000 &&
+          Math.abs(e_elevator.getDistance() - setElevatorHight) > -1000
+          )
+          // if the elevator height - sethElevatorHeight is less then 0
+          // then the elevator is below the setElevatorheight
+            {
 
-            p_elevatorBrake.set(Value.kForward);
-            rightElevatorMotor .set(-0.5);
-            leftElevatorMotor  .set(-0.5);
-            System.out.println("Elevator ++++++++++++++ UP");
+              elevatorDirection = 0;
+              // the elevator needs to go up
+              System.out.println(setElevatorHight);
+              System.out.println(e_elevator.getDistance());
+              System.out.println(e_elevator.getDistance() - setElevatorHight);
+              System.out.println("Main elevatorDirection = 0");
+              sectionIsRunning = false;
+            }
 
-          }
+            if(Math.abs(e_elevator.getDistance() - setElevatorHight) >= 0)
+            // if the elevator height - sethElevatorHeight is grater then 0
+            // then the elevator is above the setElevatorheight
+            {
 
-          if(elevatorDirection == -1)
-          {
+              elevatorDirection = -1;
+              // the elevator needs to go down
+              System.out.println(setElevatorHight);
+              System.out.println(e_elevator.getDistance());
+              System.out.println(e_elevator.getDistance() - setElevatorHight);
+              System.out.println("Main elevatorDirection = -1");
+              sectionIsRunning = true;
+            } 
 
-            p_elevatorBrake.set(Value.kForward);
-            rightElevatorMotor .set(0.5);
-            leftElevatorMotor  .set(0.5);
-            System.out.println("Elevator -------------- DOWN");
+            if(Math.abs(e_elevator.getDistance() - setElevatorHight) <= 0)
+            // if the elevator height - sethElevatorHeight is less then 0
+            // then the elevator is below the setElevatorheight
+            {
 
-          }
+              elevatorDirection = 1;
+              // the elevator needs to go up
+              System.out.println(setElevatorHight);
+              System.out.println(e_elevator.getDistance());
+              System.out.println(e_elevator.getDistance() - setElevatorHight);
+              System.out.println("Main elevatorDirection = 1");
+              sectionIsRunning = true;
+            }
 
-          if(elevatorDirection == 0)
-          {
+            if(elevatorDirection == -1)
+            {
 
-            p_elevatorBrake.set(Value.kReverse);
-            rightElevatorMotor .set(0.0);
-            leftElevatorMotor  .set(0.0);
-            System.out.println("Elevator ============== REACHED");
-            commandIsRunning = false;
+              p_elevatorBrake.set(Value.kForward);
+              rightElevatorMotor .set(-0.5);
+              leftElevatorMotor  .set(-0.5);
+              System.out.println("Elevator ++++++++++++++ UP");
 
+            }
+
+            if(elevatorDirection == 1)
+            {
+
+              p_elevatorBrake.set(Value.kForward);
+              rightElevatorMotor .set(0.5);
+              leftElevatorMotor  .set(0.5);
+              System.out.println("Elevator -------------- DOWN");
+
+            }
+            if(elevatorDirection == 0)
+            {
+              
+              p_elevatorBrake.set(Value.kReverse);
+              rightElevatorMotor .set(0.0);
+              leftElevatorMotor  .set(0.0);
+              System.out.println("Reached Point ========  DONE");
+              sectionIsRunning = false;
+              commandIsRunning = false;
+            } 
+
+            
           }
         }
       }
     }
-// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   }
+// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
+  
 
 
 

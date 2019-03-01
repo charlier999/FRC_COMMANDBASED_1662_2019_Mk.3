@@ -109,7 +109,7 @@ public class OI {
     ballLevel2Button.whenPressed(new cmdElevatorHeight(6658.25));
     ballLevel3button.whenPressed(new cmdElevatorHeight(10400.00));
 
-    ballPickUpButton.whileHeld(new cmdElevatorHeight(0));
+    ballPickUpButton.whileHeld(new cmdElevatorHeight(250));
 
     // Auto Climb 
     // climberButton.whenPressed(new SomeOtherCmd());
