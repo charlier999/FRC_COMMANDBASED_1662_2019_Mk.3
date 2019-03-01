@@ -128,21 +128,21 @@ public class Elevator extends Subsystem
     while(commandIsRunning)
     {
 
-      if(e_elevator.getDistance() < 100)
+      if(e_elevator.getDistance() < 100 & e_elevator.getDistance() > 10500)
       {
 
         elevatorHeightSafe = false;
 
       }
 
-      if(e_elevator.getDistance() > 10500)
-      {
+      // if(e_elevator.getDistance() > 10500)
+      // {
 
-        elevatorHeightSafe = false;
+      //   elevatorHeightSafe = false;
 
-      } 
+      // } 
 
-      if(e_elevator.getDistance() < 100 &&
+      if(e_elevator.getDistance() < 100 &
       e_elevator.getDistance() > 10500)
       {
 
@@ -154,13 +154,28 @@ public class Elevator extends Subsystem
     
       if(elevatorHeightSafe == false)
       {
+
+        if(e_elevator.getDistance() < 100 & e_elevator.getDistance() > 10500)
+        {
+  
+          elevatorHeightSafe = false;
+  
+        }
+
+        if(e_elevator.getDistance() > 100 & e_elevator.getDistance() < 10500)
+        {
+  
+          elevatorHeightSafe = true;
+  
+        }
+
         if(e_elevator.getDistance() < 100)
         {
 
           p_elevatorBrake.set(Value.kForward);
           rightElevatorMotor .set(-0.5);
           leftElevatorMotor  .set(-0.5);
-          System.out.println("Moiving into safty area");
+          System.out.println("Moving into safty area UP");
 
         }
 
@@ -170,11 +185,11 @@ public class Elevator extends Subsystem
           p_elevatorBrake.set(Value.kForward);
           rightElevatorMotor .set(0.5);
           leftElevatorMotor  .set(0.5);    
-          System.out.println("Moiving into safty area");
+          System.out.println("Moving into safty area DOWN");
 
         }
 
-        if(e_elevator.getDistance() < 100 &&
+        if(e_elevator.getDistance() < 100 &
            e_elevator.getDistance() > 10500)
         {
 
@@ -182,7 +197,7 @@ public class Elevator extends Subsystem
           rightElevatorMotor .set(0.0);
           leftElevatorMotor  .set(0.0);
           p_elevatorBrake    .set(Value.kReverse);
-          System.out.println("Is inside of safe area");
+          System.out.println("Inside of safe area");
 
         }
 
@@ -190,7 +205,7 @@ public class Elevator extends Subsystem
       else  // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
       {
 
-        if(Math.abs(e_elevator.getDistance() - setElevatorHight) < 100 &&
+        if(Math.abs(e_elevator.getDistance() - setElevatorHight) < 100 &
         Math.abs(e_elevator.getDistance() - setElevatorHight) > -100)
         // if the elevator height - sethElevatorHeight is less then 0
         // then the elevator is below the setElevatorheight
@@ -202,7 +217,7 @@ public class Elevator extends Subsystem
 
         } 
 
-        if(Math.abs(e_elevator.getDistance() - setElevatorHight) > 100 &&
+        if(Math.abs(e_elevator.getDistance() - setElevatorHight) > 100 &
         Math.abs(e_elevator.getDistance() - setElevatorHight) < -100)
         // if the elevator height - sethElevatorHeight is less then 0
         // then the elevator is below the setElevatorheight
@@ -217,7 +232,7 @@ public class Elevator extends Subsystem
         while(elevatorDirection != 0)
         {
 
-          if(Math.abs(e_elevator.getDistance() - setElevatorHight) < 100 &&
+          if(Math.abs(e_elevator.getDistance() - setElevatorHight) < 100 &
           Math.abs(e_elevator.getDistance() - setElevatorHight) > -100)
           // if the elevator height - sethElevatorHeight is less then 0
           // then the elevator is below the setElevatorheight
