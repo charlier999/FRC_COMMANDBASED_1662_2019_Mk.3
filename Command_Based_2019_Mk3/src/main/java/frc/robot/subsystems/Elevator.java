@@ -160,6 +160,7 @@ public class Elevator extends Subsystem
           p_elevatorBrake.set(Value.kForward);
           rightElevatorMotor .set(-0.5);
           leftElevatorMotor  .set(-0.5);
+          System.out.println("Moiving into safty area");
 
         }
 
@@ -169,6 +170,7 @@ public class Elevator extends Subsystem
           p_elevatorBrake.set(Value.kForward);
           rightElevatorMotor .set(0.5);
           leftElevatorMotor  .set(0.5);    
+          System.out.println("Moiving into safty area");
 
         }
 
@@ -180,6 +182,7 @@ public class Elevator extends Subsystem
           rightElevatorMotor .set(0.0);
           leftElevatorMotor  .set(0.0);
           p_elevatorBrake    .set(Value.kReverse);
+          System.out.println("Is inside of safe area");
 
         }
 
@@ -195,6 +198,7 @@ public class Elevator extends Subsystem
 
           elevatorDirection = 0;
           // the elevator is at the correct height
+          System.out.println("elevatorDirection = 0");
 
         } 
 
@@ -206,6 +210,7 @@ public class Elevator extends Subsystem
 
           elevatorDirection = 3;
           // the elevator us not at the correct height
+          System.out.println("elevatorDirection = 3");
 
         }
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
@@ -220,6 +225,7 @@ public class Elevator extends Subsystem
 
             elevatorDirection = 0;
             // the elevator needs to go up
+            System.out.println("elevatorDirection = 0");
 
           }
 
@@ -230,6 +236,7 @@ public class Elevator extends Subsystem
 
             elevatorDirection = -1;
             // the elevator needs to go down
+            System.out.println("elevatorDirection = -1");
         
           } 
 
@@ -240,6 +247,7 @@ public class Elevator extends Subsystem
 
             elevatorDirection = 1;
             // the elevator needs to go up
+            System.out.println("elevatorDirection = 1");
 
           }
     
