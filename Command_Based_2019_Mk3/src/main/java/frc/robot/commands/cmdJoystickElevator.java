@@ -48,7 +48,6 @@ public class cmdJoystickElevator extends Command
   protected void end() 
   {
     Robot.sub_elevator.stop();
-    // Robot.sub_elevator.elevatorBrake(true);
   }
 
   // Called when another command which requires one or more of the same

@@ -23,12 +23,14 @@ import frc.robot.RobotMap;
 public class GrabberOpenClose extends Subsystem 
 {
   // public AnalogPotentiometer ap_gripper = new AnalogPotentiometer(1);
-  public Joystick opwerator = new Joystick(1);
+  public Joystick operator = new Joystick(1);
 
   public WPI_VictorSPX gripperMotorV2 = new WPI_VictorSPX(RobotMap.gripperMotorV2);
   public WPI_VictorSPX wristMotor = new WPI_VictorSPX(RobotMap.wristMotor);
 
-  public DoubleSolenoid p_gripper = new DoubleSolenoid(2, 3);
+  // WPI_VictorSPX climberWheel  = new WPI_VictorSPX(RobotMap.climberWheel);
+
+  public DoubleSolenoid p_gripper = new DoubleSolenoid(1, 2, 3);
 
   public GrabberOpenClose()
   {
@@ -36,7 +38,6 @@ public class GrabberOpenClose extends Subsystem
 
     gripperMotorV2.setSafetyEnabled(true);
   }
-
 
   // User //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
 
@@ -51,25 +52,25 @@ public class GrabberOpenClose extends Subsystem
     }
   }
 
-  public void Intake(Joystick joystick)
+  public void Intake(Joystick joystick)  //Original
   // Controlls the intake speed based on user input
   {
-    if(joystick.getRawAxis(2) < .5)
+    if( joystick.getRawAxis(2) > .5)
     {
-      gripperMotorV2.set(joystick.getRawAxis(2));
+      System.out.println("Left Intake");
+      System.out.println(joystick.getRawAxis(2));
+      System.out.println(joystick.getRawAxis(3));
+      gripperMotorV2.set(joystick.getRawAxis(2)); 
     }
 
-    if(joystick.getRawAxis(3) < .5)
+    if(joystick.getRawAxis(3) > .5)
     {
-      gripperMotorV2.set(joystick.getRawAxis(3));
-    }
-
-    if(joystick.getRawAxis(2) == joystick.getRawAxis(3))
-    {
-      gripperMotorV2.stopMotor();
+      System.out.println("Right Intake");
+      System.out.println(joystick.getRawAxis(2));
+      System.out.println(joystick.getRawAxis(3));
+      gripperMotorV2.set(-joystick.getRawAxis(3));  
     }
   }
-
 
   // Auto //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
 

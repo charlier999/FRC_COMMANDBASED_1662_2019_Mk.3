@@ -39,7 +39,6 @@ import frc.robot.commands.cmdJoystickElevator;
 import frc.robot.commands.cmdWristJoystick;
 import frc.robot.commands.cmdSmartDashboard;
 import frc.robot.commands.cmdEncoderPrint;
-import frc.robot.commands.cmdAutoShift;
 import frc.robot.commands.cmdBallIntake;
 
 
@@ -61,8 +60,8 @@ public class Robot extends TimedRobot
   Command cmdWristJoystick        = new cmdWristJoystick();
   Command cmdSmartDashboard       = new cmdSmartDashboard();
   Command cmdEncoderPrint         = new cmdEncoderPrint();
-  Command cmdAutoShift            = new cmdAutoShift();
   Command cmdBallIntake           = new cmdBallIntake();
+
 
   // Other Components // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
@@ -128,12 +127,6 @@ public class Robot extends TimedRobot
     // cmdAutoShift.start();
     cmdBallIntake.start();
 
-    Robot.sub_elevator.autoElevator(true, 1);
-
-    if(Robot.sub_elevator.e_elevator.getDistance() > 125)
-    {
-      Robot.sub_elevator.autoElevator(true, 0.0);
-    }
   }
 
   @Override
@@ -155,12 +148,6 @@ public class Robot extends TimedRobot
     cmdBallIntake.start();
     // cmdAutoShift.start();
 
-    Robot.sub_elevator.autoElevator(true, 1);
-
-    if(Robot.sub_elevator.e_elevator.getDistance() > 125)
-    {
-      Robot.sub_elevator.autoElevator(true, 0.0);
-    }
   }
 
   @Override

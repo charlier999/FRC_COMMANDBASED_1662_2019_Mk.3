@@ -22,17 +22,17 @@ public class RobotMap {
   public static int rightMotorB = 4;         // Right Drive Train back
 
   //Intake Motors
-  public static int gripperMotorV2 = 9;      // Intake Motor
+  public static int gripperMotorV2 = 6;  //9      // Intake Motor
 
   //Elevator Motors
   public static int rightElevatorMotor = 8;  // Right elevator motor
   public static int leftElevatorMotor = 7;   // Left elevator motor
 
   //Climber Linear Actuators
-  public static int linearActuator = 3;      // Linear actuator motor
+  // public static int linearActuator = 3;      // Linear actuator motor
 
   //Climber Wheel Motors
-  public static int climberWheel = 6;        // Climbing wheel motor on the climbing claw
+  public static int climberWheel = 3;        // Climbing wheel motor on the climbing claw
     
   // Wrist Motor
   public static int wristMotor = 10;         // Wrist Motor to actuate the gripper angle
@@ -41,10 +41,11 @@ public class RobotMap {
   // Pnumatics // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   
   //Double Soleniods
-  public DoubleSolenoid p_shifters      = new DoubleSolenoid(0, 1); // Drive train shifters 
-  public DoubleSolenoid p_gripper       = new DoubleSolenoid(2, 3); // Use to open and close grabber
-  public DoubleSolenoid p_climberClaws  = new DoubleSolenoid(4, 5); // used to Drop the climbing claws 
-  public DoubleSolenoid p_elevatorBrake = new DoubleSolenoid(6, 7); // Elevator brake to stop the elevator in place
+  public DoubleSolenoid p_shifters      = new DoubleSolenoid(1, 0, 1); // Drive train shifters 
+  public DoubleSolenoid p_gripper       = new DoubleSolenoid(1, 2, 3); // Use to open and close grabber
+  public DoubleSolenoid p_climberClaws  = new DoubleSolenoid(1, 4, 5); // used to Drop the climbing claws 
+  public DoubleSolenoid p_elevatorBrake = new DoubleSolenoid(1, 6, 7); // Elevator brake to stop the elevator in place
+  public DoubleSolenoid p_BAP           = new DoubleSolenoid(0, 4, 5); 
 
 
   // Sensors // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 

@@ -22,7 +22,7 @@ public class cmdBallIntake extends Command
   @Override
   protected void initialize() 
   {
-
+    
   }
 
 //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
@@ -30,7 +30,8 @@ public class cmdBallIntake extends Command
   @Override
   protected void execute() 
   {
-    Robot.sub_grabberOC.Intake(Robot.m_oi.driver);
+   Robot.sub_grabberOC.Intake(Robot.m_oi.driver);
+  // Robot.sub_grabberOC.IntakeTry1(direction, Robot.m_oi.driver);
   }
 
 //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  

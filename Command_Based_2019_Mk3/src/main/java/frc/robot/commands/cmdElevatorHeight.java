@@ -23,7 +23,7 @@ public class cmdElevatorHeight extends Command
   @Override
   protected void initialize() 
   {
-    Robot.sub_elevator.CommandIsRunning(true);
+
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -37,7 +37,6 @@ public class cmdElevatorHeight extends Command
   @Override
   protected boolean isFinished() 
   {
-    Robot.sub_elevator.CommandIsRunning(false);
     return false;
   }
 
@@ -45,7 +44,7 @@ public class cmdElevatorHeight extends Command
   @Override
   protected void end() 
   {
-    Robot.sub_elevator.CommandIsRunning(false);
+
   }
 
   // Called when another command which requires one or more of the same

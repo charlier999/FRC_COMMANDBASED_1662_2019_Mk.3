@@ -16,7 +16,63 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
  * Add your docs here.
  */
 public class Wrist extends Subsystem {
-  public Joystick opwerator = new Joystick(1);
+  public Joystick operator     = new Joystick(1);
+
+  void MakeWristSafe()
+  {
+
+    // double elevatorDistance = e_elevator.getDistance();
+    // double minElevatorHeight = 100;
+    // double maxElevatorHeight = 10000;
+
+    // if(elevatorDistance < minElevatorHeight)
+    
+    // {
+    //   MoveElevatorUP();
+    //   System.out.println("Moving into safety area UP");
+    //   do
+    //   {
+    //     elevatorDistance = e_elevator.getDistance();
+    //   }while(elevatorDistance < minElevatorHeight);
+    // }else{
+    //   if(elevatorDistance > maxElevatorHeight)
+    //   {
+    //     MoveElevatorDOWN();   
+    //     System.out.println("Moving into safty area DOWN");
+    //     do
+    //     {
+    //       elevatorDistance = e_elevator.getDistance();
+    //     }while(elevatorDistance > maxElevatorHeight);
+    //   }
+    // }
+    // ElevatorStop();
+    // System.out.println("Inside of safe area");
+   
+  }
+
+  // if(elevatorDistance < minElevatorHeight)
+    
+  //   {
+  //     MoveElevatorUP();
+  //     System.out.println("Moving into safety area UP");
+  //     do
+  //     {
+  //       elevatorDistance = e_elevator.getDistance();
+  //     }while(elevatorDistance < minElevatorHeight);
+  //   }else{
+  //     if(elevatorDistance > maxElevatorHeight)
+  //     {
+  //       MoveElevatorDOWN();   
+  //       System.out.println("Moving into safty area DOWN");
+  //       do
+  //       {
+  //         elevatorDistance = e_elevator.getDistance();
+  //       }while(elevatorDistance > maxElevatorHeight);
+  //     }
+  //   }
+  //   ElevatorStop();
+  //   System.out.println("Inside of safe area");
+  // }
 
   public WPI_VictorSPX wristMotor = new WPI_VictorSPX(RobotMap.wristMotor);
 

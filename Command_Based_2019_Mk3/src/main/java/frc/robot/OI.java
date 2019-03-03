@@ -16,7 +16,8 @@ import frc.robot.commands.cmdClawDrop;
 import frc.robot.commands.cmdClimberPull;
 import frc.robot.commands.cmdGrabberOC;
 import frc.robot.commands.cmdElevatorHeight;
-import frc.robot.commands.cmdBAP;
+import frc.robot.commands.cmdBigGasPiston;
+// import frc.robot.commands.cmdBAP;
 
 public class OI {
   // Joysticks // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -39,6 +40,7 @@ public class OI {
   public Button linearActuatorDown      = new JoystickButton(operator, 2);
 
   public Button climbingWheel           = new JoystickButton(operator, 5);
+  public Button climbingWheelReverse    = new JoystickButton(operator, 6);
 
   public Button releaseClimbingClaw     = new JoystickButton(operator, 7);
   public Button attachClimbingClaw      = new JoystickButton(operator, 8);
@@ -56,6 +58,7 @@ public class OI {
   public Button ballPickUpButton        = new JoystickButton(buttonPannel, 1);
 
   public Button climberButton           = new JoystickButton(buttonPannel, 2);
+
 
 
   public Joystick getDriverJoystick()
@@ -90,11 +93,15 @@ public class OI {
     
     releaseClimbingClaw.whenPressed(new cmdClawDrop(true));
     attachClimbingClaw.whenPressed(new cmdClawDrop(false));
+
     climbingWheel.whileHeld(new cmdClimberPull(true));
+    climbingWheelReverse.whileHeld(new cmdClimberPull(false));
 
     // Linear Actuator
-    linearActuatorDown.whileHeld(new cmdBAP(true));
-    linearActuatorUp.whileHeld(new cmdBAP(false));
+    linearActuatorDown.whenPressed(new cmdBigGasPiston(true));
+    linearActuatorUp.whenPressed(new cmdBigGasPiston(false));
+    // linearActuatorDown.whileHeld(new cmdBAP(true));
+    // linearActuatorUp.whileHeld(new cmdBAP(false));
 
 
     // Button Pannel // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -102,12 +109,12 @@ public class OI {
     // Hatch Levels
     hatchLevel1Button.whenPressed(new cmdElevatorHeight(880.0));
     hatchLevel2Button.whenPressed(new cmdElevatorHeight(5507.75));
-    hatchLevel3Button.whenPressed(new cmdElevatorHeight(10400.00));
+    hatchLevel3Button.whenPressed(new cmdElevatorHeight(9500));
 
     // Ball Levels
     ballLevel1Button.whenPressed(new cmdElevatorHeight(2334.75));
     ballLevel2Button.whenPressed(new cmdElevatorHeight(6658.25));
-    ballLevel3button.whenPressed(new cmdElevatorHeight(10400.00));
+    ballLevel3button.whenPressed(new cmdElevatorHeight(9500));
 
     ballPickUpButton.whileHeld(new cmdElevatorHeight(250));
 

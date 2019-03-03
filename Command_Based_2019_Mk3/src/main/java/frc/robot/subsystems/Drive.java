@@ -39,7 +39,7 @@ public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   double downShift;
   double upShift;
 
-  private DoubleSolenoid p_shifters     = new DoubleSolenoid(0, 1);
+  private DoubleSolenoid p_shifters     = new DoubleSolenoid(1, 0, 1);
  
   // Drive base motors
   WPI_TalonSRX leftMotorA           = new WPI_TalonSRX(RobotMap.leftMotorA);
@@ -54,8 +54,6 @@ public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   // Differential Drive
   public DifferentialDrive driveBase;
 
-
-
   public Drive() 
   {
     leftMotorA.setInverted(false); // Reverses the voltage of the motor
@@ -64,21 +62,7 @@ public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
     rightMotorB.setInverted(false); // Reverses the voltage of the motor
   }
 
-
   // User Input //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
-
-  // public void Shifters(boolean direction)
-  // // Actuates the shifters to high or low based on user input
-  // {
-  //   if (direction)
-  //   {
-  //     p_shifters.set(DoubleSolenoid.Value.kForward);  // Up Shift
-  //     System.out.println("Shift Up");
-  //   }else{
-  //     p_shifters.set(DoubleSolenoid.Value.kReverse);  // Down Shift
-  //     System.out.println("Shift Down");
-  //   }
-  // }
 
   public void Shifters()
   {
@@ -98,7 +82,7 @@ public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   }
 
   // Automatic Input // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
-  
+/*  
   public void AutoShifters()
   // Automaticly shifts the drive train shifters based on the rpm of the drive train
   {
@@ -123,7 +107,7 @@ public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
       }
     }
   }
-  
+ */ 
   public void stop()
   // Removes all voltage on the drive motors
   {

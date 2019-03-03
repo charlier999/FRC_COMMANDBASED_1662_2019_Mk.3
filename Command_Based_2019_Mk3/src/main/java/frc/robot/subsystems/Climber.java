@@ -17,14 +17,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.RobotMap;
 
-public class Climber extends Subsystem //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
+public class Climber extends Subsystem //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 {
-  public DoubleSolenoid p_climberClaws = new DoubleSolenoid(4 , 5);
-  // public DoubleSolenoid p_BAP          = new DoubleSolenoid(8, 9);
-
+  public DoubleSolenoid p_climberClaws = new DoubleSolenoid(1, 4, 5);
+  public DoubleSolenoid p_BAP          = new DoubleSolenoid(0, 4, 5);
   WPI_VictorSPX climberWheel  = new WPI_VictorSPX(RobotMap.climberWheel);
-
-
 
   //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
   
@@ -33,6 +30,15 @@ public class Climber extends Subsystem //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -
     climberWheel.setInverted(false);
   }
 
+  public void BigGasPiston(boolean direction)
+  {
+    if (direction)
+    {
+      p_BAP.set(Value.kForward);
+    } else {
+      p_BAP.set(Value.kReverse);
+    }
+  }
 
   // User Input // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
  
@@ -46,16 +52,6 @@ public class Climber extends Subsystem //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -
       p_climberClaws.set(Value.kReverse); // Close
     }
   }
-
-  public void BAPToggle(Boolean direction)
-  {
-    // if(direction)
-    // {
-    //   p_BAP.set(Value.kForward);
-    // }else{
-    //   p_BAP.set(Value.kReverse);
-    // }
-  }
   
   public void ClimbingWheel(Boolean direction)
   // Sets the direction of the of the climbing wheel on the climbing arm based on user input
@@ -67,8 +63,6 @@ public class Climber extends Subsystem //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -
       climberWheel.set(-1); // Spin at full speed (-)
     }
   }
-
-
 
   // Automatic Commands //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
  
