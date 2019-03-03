@@ -16,6 +16,8 @@ public class cmdJoystickElevator extends Command
   {
     requires(Robot.sub_elevator);
 
+    //requires(Robot.sub_ElevatorTry); //Added 3/3/19
+
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -25,6 +27,8 @@ public class cmdJoystickElevator extends Command
   protected void initialize() 
   {
     Robot.sub_elevator.stop();
+
+    //Robot.sub_ElevatorTry.stop(); //Added 3/3/19
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -33,6 +37,9 @@ public class cmdJoystickElevator extends Command
   {
     Robot.sub_elevator.joystickElevator(Robot.m_oi.operator);
     Robot.sub_elevator.elevatorBrake(Robot.m_oi.operator);
+
+    //Robot.sub_ElevatorTry.joystickElevator(Robot.m_oi.operator); //Added 3/3/19
+   // Robot.sub_ElevatorTry.elevatorBrake(Robot.m_oi.operator); //Added 3/3/19
 
   }
 
@@ -48,6 +55,8 @@ public class cmdJoystickElevator extends Command
   protected void end() 
   {
     Robot.sub_elevator.stop();
+
+    //Robot.sub_ElevatorTry.stop(); //Added 3/3/19
   }
 
   // Called when another command which requires one or more of the same
@@ -56,5 +65,7 @@ public class cmdJoystickElevator extends Command
   protected void interrupted() 
   {
     Robot.sub_elevator.stop();
+
+    //Robot.sub_ElevatorTry.stop(); //Added 3/3/19
   }
 }

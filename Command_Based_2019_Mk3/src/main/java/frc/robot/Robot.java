@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.Compressor;
 // import edu.wpi.cscore.CvSink;
 // import edu.wpi.cscore.CvSource;
 // import edu.wpi.cscore.UsbCamera;
-// import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.CameraServer;
 // import 
 
 // Subsystem Imports //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -32,6 +32,7 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.GrabberOpenClose;
 import frc.robot.subsystems.Wrist;
+//import frc.robot.subsystems.ElevatorTry; //Added 3/3/19
 
 // Commands //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 import frc.robot.commands.cmdDrive;
@@ -51,6 +52,7 @@ public class Robot extends TimedRobot
   public static Elevator sub_elevator          = new Elevator();
   public static GrabberOpenClose sub_grabberOC = new GrabberOpenClose();
   public static Wrist sub_wrist                = new Wrist();
+  //public static ElevatorTry sub_ElevatorTry = new ElevatorTry(); //Added 3/3/19
   public static OI m_oi;
 
   // Commands // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -73,7 +75,7 @@ public class Robot extends TimedRobot
   public void robotInit() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   {
     
-    // CameraServer.getInstance().startAutomaticCapture();
+    CameraServer.getInstance().startAutomaticCapture();
     // UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
     // camera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 480, 60);
     

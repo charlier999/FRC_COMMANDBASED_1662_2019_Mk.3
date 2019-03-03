@@ -18,6 +18,8 @@ public class cmdSmartDashboard extends Command
     requires(Robot.sub_climber);
     requires(Robot.sub_drive);
     requires(Robot.sub_elevator);
+
+    //requires(Robot.sub_ElevatorTry);
   }
 
   // Called just before this Command runs the first time
@@ -31,10 +33,12 @@ public class cmdSmartDashboard extends Command
   @Override
   protected void execute() 
   {
-    // SmartDashboard.putNumber("Wrist Potentometer", Robot.sub_grabber.ap_gripper.get());
+    //SmartDashboard.putNumber("Wrist Potentometer", Robot.sub_grabber.ap_gripper.get());
     SmartDashboard.putNumber("Elevator Hight", Robot.sub_elevator.e_elevator.getDistance());
     SmartDashboard.putNumber("Drive Train Left", Robot.sub_drive.e_driveLeft.getDistance());
     SmartDashboard.putNumber("Drive Train Right", Robot.sub_drive.e_driveRight.getDistance());
+
+    //SmartDashboard.putNumber("Elevator Hight", Robot.sub_ElevatorTry.e_elevator.getDistance()); //Added 3/3/19
   }
 
   // Make this return true when this Command no longer needs to run execute()
