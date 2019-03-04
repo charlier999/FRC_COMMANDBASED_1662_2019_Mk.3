@@ -47,6 +47,9 @@ public class Elevator extends Subsystem
   double elevatorUP   = -0.75;
   double elevatorDown =  0.75;
 
+  double minElevatorHeight = 100;
+  double maxElevatorHeight = 10000;
+
   Timer timer = new Timer();
 
 
@@ -156,8 +159,8 @@ public class Elevator extends Subsystem
   {
 
     double elevatorDistance = e_elevator.getDistance();
-    double minElevatorHeight = 100;
-    double maxElevatorHeight = 10000;
+    //double minElevatorHeight = 100;
+    //double maxElevatorHeight = 10000;
 
     if(elevatorDistance < minElevatorHeight)
     {
@@ -199,22 +202,23 @@ public class Elevator extends Subsystem
 
     if(elevatorDistance < setElevatorHight)
     {
-      MoveElevatorUP();
       System.out.println("Elevator is moving UP");
-      do
+      MoveElevatorUP();
+      while(elevatorDistance < setElevatorHight && elevatorDistance < maxElevatorHeight )
       {
         elevatorDistance = e_elevator.getDistance();
+        
         System.out.println(elevatorDistance);
-      }while(elevatorDistance < setElevatorHight);
+      }
     }else{
       if(elevatorDistance > setElevatorHight)
       {
-        MoveElevatorDOWN();
         System.out.println("Elevator is moiving DOWN");
-        do
+        MoveElevatorDOWN();
+        while(elevatorDistance > setElevatorHight && elevatorDistance > minElevatorHeight)
         {
-        elevatorDistance = e_elevator.getDistance();
-        }while(elevatorDistance > setElevatorHight);
+          elevatorDistance = e_elevator.getDistance();
+        }
       }
     }
     ElevatorStop();
