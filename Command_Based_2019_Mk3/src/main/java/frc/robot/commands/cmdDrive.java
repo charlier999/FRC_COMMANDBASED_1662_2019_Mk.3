@@ -53,6 +53,7 @@ public class cmdDrive extends Command
   @Override
   protected void interrupted() 
   {
-    end();
+    Robot.sub_drive.stop();
+    //end();
   }
 }

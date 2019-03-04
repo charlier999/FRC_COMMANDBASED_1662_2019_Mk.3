@@ -17,11 +17,6 @@ public class cmdElevatorHeight extends Command
   {
     requires(Robot.sub_elevator);
     this.elevatorHight = elevatorHight;
-
-    //requires(Robot.sub_ElevatorTry); //Added 3/3/19
-    //this.elevatorHight = elevatorHight; //Added 3/3/19
-
-
   }
 
   // Called just before this Command runs the first time
@@ -37,7 +32,6 @@ public class cmdElevatorHeight extends Command
   {
     Robot.sub_elevator.ElevatorHightset(elevatorHight);
 
-    //Robot.sub_ElevatorTry.ElevatorHightset(elevatorHight); //Added 3/3/19
   }
 
   // Make this return true when this Command no longer needs to run execute()

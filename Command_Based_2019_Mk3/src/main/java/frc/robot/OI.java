@@ -17,7 +17,7 @@ import frc.robot.commands.cmdClimberPull;
 import frc.robot.commands.cmdGrabberOC;
 import frc.robot.commands.cmdElevatorHeight;
 import frc.robot.commands.cmdBigGasPiston;
-// import frc.robot.commands.cmdBAP;
+import frc.robot.commands.cmdPistonRelease;
 
 public class OI {
   // Joysticks // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -55,9 +55,9 @@ public class OI {
   public Button ballLevel2Button        = new JoystickButton(buttonPannel, 4);
   public Button ballLevel3button        = new JoystickButton(buttonPannel, 5);
 
-  public Button ballPickUpButton        = new JoystickButton(buttonPannel, 1);
+  public Button pistonUpButton          = new JoystickButton(buttonPannel, 2);
 
-  public Button climberButton           = new JoystickButton(buttonPannel, 2);
+  public Button pistonDownButton        = new JoystickButton(buttonPannel, 1);
 
 
 
@@ -107,16 +107,17 @@ public class OI {
     // Button Pannel // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
     // Hatch Levels
-    hatchLevel1Button.whenPressed(new cmdElevatorHeight(932.25));
-    hatchLevel2Button.whenPressed(new cmdElevatorHeight(5194.75));
-    hatchLevel3Button.whenPressed(new cmdElevatorHeight(9679.5));
+    hatchLevel1Button.whileHeld(new cmdElevatorHeight(37290));
+    hatchLevel2Button.whileHeld(new cmdElevatorHeight(207790));
+    hatchLevel3Button.whileHeld(new cmdElevatorHeight(387180));
 
     // Ball Levels
-    ballLevel1Button.whenPressed(new cmdElevatorHeight(-5.75));
-    ballLevel2Button.whenPressed(new cmdElevatorHeight(3528.75));
-    ballLevel3button.whenPressed(new cmdElevatorHeight(7903.25));
+    ballLevel1Button.whenPressed(new cmdElevatorHeight(-230));
+    ballLevel2Button.whenPressed(new cmdElevatorHeight(141150));
+    ballLevel3button.whenPressed(new cmdElevatorHeight(316130));
 
-    ballPickUpButton.whileHeld(new cmdElevatorHeight(250));
+    pistonUpButton.whenPressed(new cmdPistonRelease());
+    pistonDownButton.whenPressed(new cmdPistonRelease());
 
     // Auto Climb 
     // climberButton.whenPressed(new SomeOtherCmd());

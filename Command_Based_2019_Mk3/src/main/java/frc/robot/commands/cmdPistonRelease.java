@@ -8,58 +8,37 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 
-public class cmdSmartDashboard extends Command 
-{
-  public cmdSmartDashboard() 
-  {
-    requires(Robot.sub_climber);
-    requires(Robot.sub_drive);
-    requires(Robot.sub_elevator);
-
-    //requires(Robot.sub_ElevatorTry);
+public class cmdPistonRelease extends Command {
+  public cmdPistonRelease() {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() 
-  {
-
+  protected void initialize() {
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() 
-  {
-    //SmartDashboard.putNumber("Wrist Potentometer", Robot.sub_grabber.ap_gripper.get());
-    SmartDashboard.putNumber("Elevator Hight", Robot.sub_elevator.e_elevator.getDistance());
-    //SmartDashboard.putNumber("Drive Train Left", Robot.sub_drive.e_driveLeft.getDistance());
-   // SmartDashboard.putNumber("Drive Train Right", Robot.sub_drive.e_driveRight.getDistance());
-
-    //SmartDashboard.putNumber("Elevator Hight", Robot.sub_ElevatorTry.e_elevator.getDistance()); //Added 3/3/19
+  protected void execute() {
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() 
-  {
+  protected boolean isFinished() {
     return false;
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() 
-  {
-
+  protected void end() {
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() 
-  {
-
+  protected void interrupted() {
   }
 }
