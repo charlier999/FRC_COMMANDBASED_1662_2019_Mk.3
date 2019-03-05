@@ -36,6 +36,7 @@ public class cmdJoystickElevator extends Command
   protected void execute() 
   {
     Robot.sub_elevator.joystickElevator(Robot.m_oi.operator);
+    
     Robot.sub_elevator.elevatorBrake(Robot.m_oi.operator);
 
     //Robot.sub_ElevatorTry.joystickElevator(Robot.m_oi.operator); //Added 3/3/19

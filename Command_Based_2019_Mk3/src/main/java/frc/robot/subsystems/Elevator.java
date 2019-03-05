@@ -47,8 +47,8 @@ public class Elevator extends Subsystem
   double elevatorUP   = -0.75;
   double elevatorDown =  0.75;
 
-  double minElevatorHeight = -11271.5;
-  double maxElevatorHeight = 387914.25;
+  double minElevatorHeight = 100;
+  double maxElevatorHeight = 10000;
 
   Timer timer = new Timer();
 
@@ -159,6 +159,8 @@ public class Elevator extends Subsystem
   {
 
     double elevatorDistance = e_elevator.getDistance();
+    //double minElevatorHeight = 100;
+    //double maxElevatorHeight = 10000;
 
     if(elevatorDistance < minElevatorHeight)
     {
@@ -167,8 +169,7 @@ public class Elevator extends Subsystem
       do
       {
         elevatorDistance = e_elevator.getDistance();
-      }while
-      (elevatorDistance < minElevatorHeight);
+      }while(elevatorDistance < minElevatorHeight);
     }else{
       if(elevatorDistance > maxElevatorHeight)
       {
@@ -190,7 +191,6 @@ public class Elevator extends Subsystem
   // Sets the elvator motors to raise or lower the diffrent highs on the robot
   {
     double elevatorDistance = e_elevator.getDistance();
-    double tolerance = 20;
 
     System.out.print("Elevator Moiving From ");
     System.out.print(elevatorDistance);
@@ -200,17 +200,29 @@ public class Elevator extends Subsystem
     MakeElevatorSafe();
     System.out.println("Elevator is safe");
 
-      if(elevatorDistance < setElevatorHight && elevatorDistance < maxElevatorHeight)
+    if(elevatorDistance < setElevatorHight)
+    {
+      System.out.println("Elevator is moving UP");
+      MoveElevatorUP();
+      while(elevatorDistance < setElevatorHight && elevatorDistance < maxElevatorHeight )
       {
-        MoveElevatorUP();
+        elevatorDistance = e_elevator.getDistance();
+        
+        System.out.println(elevatorDistance);
       }
-      else if(elevatorDistance > setElevatorHight && elevatorDistance > minElevatorHeight)
-    {
-      MoveElevatorDOWN();
-    }else if (Math.abs(elevatorDistance - setElevatorHight) > tolerance)
-    {
-      ElevatorStop();
+    }else{
+      if(elevatorDistance > setElevatorHight)
+      {
+        System.out.println("Elevator is moiving DOWN");
+        MoveElevatorDOWN();
+        while(elevatorDistance > setElevatorHight && elevatorDistance > minElevatorHeight)
+        {
+          elevatorDistance = e_elevator.getDistance();
+        }
+      }
     }
+    ElevatorStop();
+    System.out.println("Elevator has reached its location");
   }
 //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
   
@@ -236,15 +248,8 @@ public void elevatorBrake(Joystick joystick)
       rightElevatorMotor.set(joystick.getRawAxis(1)); 
       // The right elevator motor speed is set to the joystick input
       leftElevatorMotor.set(joystick.getRawAxis(1));
+
       // The left elevator motor speed is set to the joystick inptut
-  }
-
-  public void pistonUpElevator(){
-
-  }
-
-  public void pistonDownElevator(){
-
   }
 
   @Override

@@ -48,7 +48,7 @@ public class OI {
   // Button Pannel Buttons // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
   public Button hatchLevel1Button       = new JoystickButton(buttonPannel, 6);
-  public Button hatchLevel2Button       = new JoystickButton(buttonPannel, 7);
+  public Button hatchLevel2Button        = new JoystickButton(buttonPannel, 7);
   public Button hatchLevel3Button       = new JoystickButton(buttonPannel, 8);
 
   public Button ballLevel1Button        = new JoystickButton(buttonPannel, 3);
@@ -107,9 +107,9 @@ public class OI {
     // Button Pannel // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
     // Hatch Levels
-    hatchLevel1Button.whileHeld(new cmdElevatorHeight(37290));
-    hatchLevel2Button.whileHeld(new cmdElevatorHeight(207790));
-    hatchLevel3Button.whileHeld(new cmdElevatorHeight(387180));
+    hatchLevel1Button.whenPressed(new cmdElevatorHeight(37290));
+    hatchLevel2Button.whenPressed(new cmdElevatorHeight(207790));
+    hatchLevel3Button.whenPressed(new cmdElevatorHeight(387180));
 
     // Ball Levels
     ballLevel1Button.whenPressed(new cmdElevatorHeight(-230));
