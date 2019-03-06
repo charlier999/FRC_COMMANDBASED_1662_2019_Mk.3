@@ -35,13 +35,18 @@ public class cmdJoystickElevator extends Command
   @Override
   protected void execute() 
   {
+    //Robot.sub_elevator.joystickElevator(Robot.m_oi.operator);
+    //Robot.sub_elevator.joystickElevator(Robot.m_oi.buttonPannel); //Added 3/4/19
+    //Robot.sub_elevator.elevatorBrake(Robot.m_oi.buttonPannel);
     Robot.sub_elevator.joystickElevator(Robot.m_oi.operator);
     Robot.sub_elevator.elevatorBrake(Robot.m_oi.operator);
+ 
+    }
+    //Robot.sub_elevator.elevatorBrake(Robot.m_oi.operator);
 
     //Robot.sub_ElevatorTry.joystickElevator(Robot.m_oi.operator); //Added 3/3/19
    // Robot.sub_ElevatorTry.elevatorBrake(Robot.m_oi.operator); //Added 3/3/19
 
-  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

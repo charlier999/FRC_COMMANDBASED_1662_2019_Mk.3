@@ -30,7 +30,10 @@ public class cmdWristJoystick extends Command
   @Override
   protected void execute() 
   {
-    Robot.sub_wrist.wristJoystickActuation(Robot.m_oi.operator);
+    //Robot.sub_wrist.wristJoystickActuation(Robot.m_oi.operator);
+
+    Robot.sub_wrist.wristJoystickActuation(Robot.m_oi.buttonPannel);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

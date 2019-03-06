@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-
+import frc.robot.commands.cmdJoystickElevator;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class Elevator extends Subsystem 
@@ -47,8 +47,15 @@ public class Elevator extends Subsystem
   double elevatorUP   = -0.75;
   double elevatorDown =  0.75;
 
-  double minElevatorHeight = -11271.5;
-  double maxElevatorHeight = 387914.25;
+  
+  public double minElevatorHeight = -11271.5; //-11271.5
+  public double maxElevatorHeight = 392318;
+
+  double minElevatorsafe = 10000;
+  double maxElevatorSafe = 350000;
+
+  //double minElevatorHeight = 100;
+  //double maxElevatorHeight = 10000;
 
   Timer timer = new Timer();
 
@@ -126,10 +133,19 @@ public class Elevator extends Subsystem
 
   void MoveElevatorDOWN()
   {
-
     ElevatorBrakeOff();
-    rightElevatorMotor .set(elevatorDown);
-    leftElevatorMotor  .set(elevatorDown);
+    //double distance = e_elevator.getDistance();
+    // if (distance > minElevatorsafe || distance < maxElevatorSafe){
+    //   rightElevatorMotor.set(elevatorDown * 0.2);
+    //   leftElevatorMotor.set(elevatorDown * 0.2);
+    // } else {
+    //   rightElevatorMotor .set(elevatorDown);
+    //   leftElevatorMotor  .set(elevatorDown);
+    // }
+    rightElevatorMotor.set(elevatorDown);
+    leftElevatorMotor.set(elevatorDown);
+
+
   }
 
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
@@ -138,8 +154,16 @@ public class Elevator extends Subsystem
   {
 
     ElevatorBrakeOff();
-    rightElevatorMotor .set(elevatorUP);
-    leftElevatorMotor  .set(elevatorUP);
+    // double distance = e_elevator.getDistance();
+    // if (distance > minElevatorsafe || distance > maxElevatorSafe) {
+    //   rightElevatorMotor.set(elevatorUP * 0.2);
+    //   leftElevatorMotor.set(elevatorUP * 0.2);
+    // }else {
+    // rightElevatorMotor .set(elevatorUP);
+    // leftElevatorMotor  .set(elevatorUP);
+    // }
+    rightElevatorMotor.set(elevatorUP);
+    leftElevatorMotor.set(elevatorUP);
   }
 
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
@@ -159,6 +183,8 @@ public class Elevator extends Subsystem
   {
 
     double elevatorDistance = e_elevator.getDistance();
+    //double minElevatorHeight = 100;
+    //double maxElevatorHeight = 10000;
 
     if(elevatorDistance < minElevatorHeight)
     {
@@ -167,8 +193,7 @@ public class Elevator extends Subsystem
       do
       {
         elevatorDistance = e_elevator.getDistance();
-      }while
-      (elevatorDistance < minElevatorHeight);
+      }while(elevatorDistance < minElevatorHeight);
     }else{
       if(elevatorDistance > maxElevatorHeight)
       {
@@ -186,32 +211,38 @@ public class Elevator extends Subsystem
 
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 
-  public void ElevatorHightset(double setElevatorHight)
-  // Sets the elvator motors to raise or lower the diffrent highs on the robot
+public void ElevatorHightset(double setElevatorHight)
+// Sets the elvator motors to raise or lower the diffrent highs on the robot
+{
+  double elevatorDistance = e_elevator.getDistance();
+  //double tolerance = 20;
+
+  System.out.print("Elevator Moiving From ");
+  System.out.print(elevatorDistance);
+  System.out.print(" to ");
+  System.out.println(setElevatorHight);
+
+  //MakeElevatorSafe();
+  System.out.println("Elevator is safe");
+
+    if(elevatorDistance < setElevatorHight && elevatorDistance < maxElevatorHeight)
+    {
+      MoveElevatorUP();
+    }
+    else if(elevatorDistance > setElevatorHight && elevatorDistance > minElevatorHeight)
   {
-    double elevatorDistance = e_elevator.getDistance();
-    double tolerance = 20;
-
-    System.out.print("Elevator Moiving From ");
-    System.out.print(elevatorDistance);
-    System.out.print(" to ");
-    System.out.println(setElevatorHight);
-
-    MakeElevatorSafe();
-    System.out.println("Elevator is safe");
-
-      if(elevatorDistance < setElevatorHight && elevatorDistance < maxElevatorHeight)
-      {
-        MoveElevatorUP();
-      }
-      else if(elevatorDistance > setElevatorHight && elevatorDistance > minElevatorHeight)
-    {
-      MoveElevatorDOWN();
-    }else if (Math.abs(elevatorDistance - setElevatorHight) > tolerance)
-    {
+    MoveElevatorDOWN();
+  }
+    else if(elevatorDistance - 1000 < minElevatorHeight || elevatorDistance + 1000 > maxElevatorHeight) {
       ElevatorStop();
     }
-  }
+}
+
+public double getEncoderClicks() 
+{
+  return e_elevator.getDistance();
+}
+
 //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
   
 public void elevatorBrake(Joystick joystick)
@@ -233,22 +264,20 @@ public void elevatorBrake(Joystick joystick)
   public void joystickElevator(Joystick joystick)
   // The elevator motors are spinned based on the user input
   {
-      rightElevatorMotor.set(joystick.getRawAxis(1)); 
+      //rightElevatorMotor.set(joystick.getRawAxis(1)); 
       // The right elevator motor speed is set to the joystick input
-      leftElevatorMotor.set(joystick.getRawAxis(1));
+      //leftElevatorMotor.set(joystick.getRawAxis(1));
       // The left elevator motor speed is set to the joystick inptut
-  }
 
-  public void pistonUpElevator(){
-
-  }
-
-  public void pistonDownElevator(){
+      rightElevatorMotor.set(joystick.getRawAxis(1)); //Added 3/4/19
+      leftElevatorMotor.set(joystick.getRawAxis(1)); //Added 3/4/19
 
   }
+
 
   @Override
   public void initDefaultCommand() {
+    setDefaultCommand(new cmdJoystickElevator());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }

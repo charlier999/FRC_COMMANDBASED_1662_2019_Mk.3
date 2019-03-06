@@ -21,6 +21,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.RobotMap;
 
+import frc.robot.commands.cmdDrive;
+
 
 public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
 {
@@ -132,7 +134,7 @@ public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   @Override
   public void initDefaultCommand() 
   {
-
+    setDefaultCommand(new cmdDrive());
   }  
 }
  

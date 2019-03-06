@@ -143,7 +143,7 @@ public class Robot extends TimedRobot
   @Override
   public void teleopInit() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   {
-    cmdDrive.start();
+    //cmdDrive.start();
     cmdWristJoystick.start();
     cmdJoystickElevator.start();
     cmdWristJoystick.start();
@@ -156,9 +156,8 @@ public class Robot extends TimedRobot
   public void teleopPeriodic() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
   {
     Scheduler.getInstance().run();
-    cmdDrive.start();
-    cmdWristJoystick.start();
-    cmdJoystickElevator.start();
+    //cmdDrive.start();
+    //cmdJoystickElevator.start();
     cmdWristJoystick.start();
 
     allPeriodic();
