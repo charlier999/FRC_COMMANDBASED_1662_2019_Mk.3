@@ -25,7 +25,7 @@ public class DriveAIDS extends Subsystem
 {
   
   public AnalogInput opticalSensor = new AnalogInput(0);
-  Solenoid ledLight = new Solenoid(1);
+  Solenoid ledLight = new Solenoid(0, 1);
   
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 
