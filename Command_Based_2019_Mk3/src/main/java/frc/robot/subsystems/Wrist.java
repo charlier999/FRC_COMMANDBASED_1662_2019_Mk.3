@@ -16,8 +16,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
  * Add your docs here.
  */
 public class Wrist extends Subsystem {
-  //public Joystick operator     = new Joystick(1);
-  public Joystick buttonPannel = new Joystick(2);
+  public Joystick operator     = new Joystick(1);
+  //public Joystick buttonPannel = new Joystick(2);
 
   void MakeWristSafe()
   {
@@ -80,8 +80,8 @@ public class Wrist extends Subsystem {
     public void wristJoystickActuation(Joystick joystick)
     // Changes the angle of the grabber wrist based on user input via joystick
     {
-      //wristMotor.set(joystick.getRawAxis(5));
-      wristMotor.set(joystick.getRawAxis(1));
+      wristMotor.set(joystick.getRawAxis(5));
+      //wristMotor.set(joystick.getRawAxis(1));
       // sets the wrist motor to the joystick input
     }
 

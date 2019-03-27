@@ -8,6 +8,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -22,6 +23,7 @@ public class Climber extends Subsystem //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
   public DoubleSolenoid p_climberClaws = new DoubleSolenoid(1, 4, 5);
   public DoubleSolenoid p_BAP          = new DoubleSolenoid(0, 4, 5);
   WPI_VictorSPX climberWheel  = new WPI_VictorSPX(RobotMap.climberWheel);
+  //WPI_TalonSRX climberWheel = new WPI_TalonSRX(RobotMap.climberWheel);
 
   //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
   

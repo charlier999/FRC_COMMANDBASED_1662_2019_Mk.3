@@ -32,15 +32,16 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.GrabberOpenClose;
 import frc.robot.subsystems.Wrist;
+import frc.robot.subsystems.DriveAIDS;
 //import frc.robot.subsystems.ElevatorTry; //Added 3/3/19
 
 // Commands //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 import frc.robot.commands.cmdDrive;
 import frc.robot.commands.cmdJoystickElevator;
 import frc.robot.commands.cmdWristJoystick;
-import frc.robot.commands.cmdSmartDashboard;
 import frc.robot.commands.cmdEncoderPrint;
 import frc.robot.commands.cmdBallIntake;
+import frc.robot.commands.cmdOpticalSensor;
 
 
 public class Robot extends TimedRobot 
@@ -52,7 +53,8 @@ public class Robot extends TimedRobot
   public static Elevator sub_elevator          = new Elevator();
   public static GrabberOpenClose sub_grabberOC = new GrabberOpenClose();
   public static Wrist sub_wrist                = new Wrist();
-  //public static ElevatorTry sub_ElevatorTry = new ElevatorTry(); //Added 3/3/19
+  public static DriveAIDS sub_DriveAIDS        = new DriveAIDS();
+
   public static OI m_oi;
 
   // Commands // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -60,9 +62,9 @@ public class Robot extends TimedRobot
   Command cmdDrive                = new cmdDrive();
   Command cmdJoystickElevator     = new cmdJoystickElevator();
   Command cmdWristJoystick        = new cmdWristJoystick();
-  Command cmdSmartDashboard       = new cmdSmartDashboard();
   Command cmdEncoderPrint         = new cmdEncoderPrint();
   Command cmdBallIntake           = new cmdBallIntake();
+  Command cmdOpticalSensor        = new cmdOpticalSensor();
 
 
   // Other Components // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -84,7 +86,6 @@ public class Robot extends TimedRobot
 
     compressor.setClosedLoopControl(true);
     compressor.start();
-    cmdSmartDashboard.start();
     // cmdEncoderPrint.start();
     }
 
@@ -93,6 +94,7 @@ public class Robot extends TimedRobot
   public void robotPeriodic() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   {
     // cmdEncoderPrint.start();
+    cmdOpticalSensor.start();
   }
 
   @Override
@@ -103,13 +105,20 @@ public class Robot extends TimedRobot
 
   public void allPeriodic()
   {
+    // Elevator Height
     SmartDashboard.putNumber("Current Elevator Height", Robot.sub_elevator.e_elevator.getDistance());
 
+    // Right Drive Train
     SmartDashboard.putNumber("Right Drive Train Speed", Robot.sub_drive.e_driveRight.getRate());
     SmartDashboard.putNumber("Right Drive Train Distance", Robot.sub_drive.e_driveRight.getDistance());
 
+    // Left Drive Train
     SmartDashboard.putNumber("Left Drive Train Speed", Robot.sub_drive.e_driveLeft.getRate());
     SmartDashboard.putNumber("Left Drive Train Distance", Robot.sub_drive.e_driveLeft.getDistance());
+    
+    // Optical Sensor Voltage
+    SmartDashboard.putNumber("Optical Sensor Voltage", Robot.sub_DriveAIDS.opticalSensor.getVoltage());
+    SmartDashboard.putNumber("Optical Sensor Value", Robot.sub_DriveAIDS.opticalSensor.getValue());
   }
 
   @Override

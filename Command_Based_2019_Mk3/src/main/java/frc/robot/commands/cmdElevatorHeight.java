@@ -38,7 +38,7 @@ public class cmdElevatorHeight extends Command
   @Override
   protected boolean isFinished() 
   {
-    return Math.abs(Robot.sub_elevator.getEncoderClicks()-elevatorHight) < 1000;
+    return Math.abs(Robot.sub_elevator.getEncoderClicks()-elevatorHight) < 1200;
   }
 
   // Called once after isFinished returns true

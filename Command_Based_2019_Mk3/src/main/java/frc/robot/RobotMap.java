@@ -16,13 +16,20 @@ public class RobotMap {
   // Motors // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   
   //Drive Motors
-  public static int leftMotorA = 1;          // Left Drive Train front
-  public static int leftMotorB = 5;          // Left Drive Train back
-  public static int rightMotorA = 2;         // Right Drive Train front
-  public static int rightMotorB = 4;         // Right Drive Train back
+  public static int leftMotorA = 1;          // Left Drive Train front  
+  public static int leftMotorB = 5;          // Left Drive Train back   
+  public static int rightMotorA = 2;         // Right Drive Train front 
+  public static int rightMotorB = 4;         // Right Drive Train back  
+
+
+  //Defensive Robot
+  // public static int leftMotorA = 1;
+  // public static int leftMotorB = 2;
+  // public static int rightMotorA = 3;
+  // public static int rightMotorB = 4; 
 
   //Intake Motors
-  public static int gripperMotorV2 = 6;  //9      // Intake Motor
+  public static int gripperMotorV2 = 9;  //9      // Intake Motor
 
   //Elevator Motors
   public static int rightElevatorMotor = 8;  // Right elevator motor
@@ -32,7 +39,7 @@ public class RobotMap {
   // public static int linearActuator = 3;      // Linear actuator motor
 
   //Climber Wheel Motors
-  public static int climberWheel = 3;        // Climbing wheel motor on the climbing claw
+  public static int climberWheel = 6;        // Climbing wheel motor on the climbing claw
     
   // Wrist Motor
   public static int wristMotor = 10;         // Wrist Motor to actuate the gripper angle

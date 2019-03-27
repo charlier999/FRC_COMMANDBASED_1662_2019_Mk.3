@@ -18,6 +18,7 @@ import frc.robot.commands.cmdGrabberOC;
 import frc.robot.commands.cmdElevatorHeight;
 import frc.robot.commands.cmdBigGasPiston;
 import frc.robot.commands.cmdPistonRelease;
+// import frc.robot.commands.cmdAutoTimedElevator;
 
 public class OI {
   // Joysticks // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -32,7 +33,6 @@ public class OI {
   public Button shifterButton           = new JoystickButton(driver, 5);
   public Button grabberButton           = new JoystickButton(driver, 6);
   public Button hatchButton             = new JoystickButton(driver, 1);
-   
 
   // Operator Buttons // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
@@ -45,6 +45,9 @@ public class OI {
   public Button releaseClimbingClaw     = new JoystickButton(operator, 7);
   public Button attachClimbingClaw      = new JoystickButton(operator, 8);
 
+  public Button elevatorDown3           = new JoystickButton(operator, 1);
+  public Button elevatorUp3             = new JoystickButton(operator, 4);
+
   // Button Pannel Buttons // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
   public Button hatchLevel1Button       = new JoystickButton(buttonPannel, 6); 
@@ -55,9 +58,13 @@ public class OI {
   public Button ballLevel2Button        = new JoystickButton(buttonPannel, 4);
   public Button ballLevel3button        = new JoystickButton(buttonPannel, 5);
 
-  public Button pistonUpButton          = new JoystickButton(buttonPannel, 1); 
+  public Button intakeStationButton = new JoystickButton(buttonPannel, 1);
 
-  public Button pistonDownButton        = new JoystickButton(buttonPannel, 2); 
+  //public Button pistonUpButton          = new JoystickButton(buttonPannel, 1); 
+
+ // public Button pistonDownButton        = new JoystickButton(buttonPannel, 2); 
+
+
 
 
 
@@ -78,6 +85,7 @@ public class OI {
 
   public OI()
   {
+
     // Driver // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
  
     // Shifters
@@ -106,23 +114,30 @@ public class OI {
 
     // Button Pannel // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
-    // Hatch Levels
-    hatchLevel1Button.whenPressed(new cmdElevatorHeight(24191.75));
-    hatchLevel2Button.whenPressed(new cmdElevatorHeight(216489.5));
-    hatchLevel3Button.whenPressed(new cmdElevatorHeight(392318));
+   // Hatch Levels
+    hatchLevel1Button.whenPressed(new cmdElevatorHeight(3257.25));
+    hatchLevel2Button.whenPressed(new cmdElevatorHeight(229866.25));
+    hatchLevel3Button.whenPressed(new cmdElevatorHeight(364064.5));
 
     // Ball Levels
-    ballLevel1Button.whenPressed(new cmdElevatorHeight(-379));
-    ballLevel2Button.whenPressed(new cmdElevatorHeight(140318.5));
-    ballLevel3button.whenPressed(new cmdElevatorHeight(313567));
+    ballLevel1Button.whenPressed(new cmdElevatorHeight(-12188.5));
+    ballLevel2Button.whenPressed(new cmdElevatorHeight(161571.75));
+    ballLevel3button.whenPressed(new cmdElevatorHeight(368002.25));
 
-    pistonUpButton.whenPressed(new cmdPistonRelease(true));
-    pistonDownButton.whenPressed(new cmdPistonRelease(false));
+    intakeStationButton.whenPressed(new cmdElevatorHeight(69423.0));
 
+    // Climber
+    //pistonUpButton.whenPressed(new cmdPistonRelease(true));
+    //pistonDownButton.whenPressed(new cmdPistonRelease(false));
+
+    // Elevator 3 inch move
+    // elevatorUp3.whenPressed(new cmdAutoTimedElevator(true, 0.05));
+    // elevatorDown3.whenPressed(new cmdAutoTimedElevator(false, 0.05));
 
     // Auto Climb 
     // climberButton.whenPressed(new SomeOtherCmd());
 
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
-  }
+
+}
 }

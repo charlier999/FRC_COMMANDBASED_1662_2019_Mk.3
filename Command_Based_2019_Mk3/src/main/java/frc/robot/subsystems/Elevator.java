@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -20,19 +21,20 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.cmdJoystickElevator;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class Elevator extends Subsystem 
 {
-  WPI_VictorSPX rightElevatorMotor  = new WPI_VictorSPX(RobotMap.rightElevatorMotor);
+  WPI_TalonSRX rightElevatorMotor = new WPI_TalonSRX(RobotMap.rightElevatorMotor);
+  //WPI_VictorSPX rightElevatorMotor  = new WPI_VictorSPX(RobotMap.rightElevatorMotor);
   WPI_VictorSPX leftElevatorMotor   = new WPI_VictorSPX(RobotMap.leftElevatorMotor);
 
   SensorCollection rightElevatorSensor = new SensorCollection(rightElevatorMotor);
 
   public DoubleSolenoid p_elevatorBrake = new DoubleSolenoid(1, 6, 7);
 
-  public Encoder e_elevator = new Encoder(16, 17, false, Encoder.EncodingType.k4X);
+  public Encoder e_elevator = new Encoder(18, 19, false, Encoder.EncodingType.k4X);
+ // public Encoder e_elevator = new Encoder(14, 15, false, Encoder.EncodingType.k4X);
 
   boolean elevatorHeightSafe;
 
@@ -47,12 +49,14 @@ public class Elevator extends Subsystem
   double elevatorUP   = -0.75;
   double elevatorDown =  0.75;
 
+  // private double timestamp = 0.0;
+
   
   public double minElevatorHeight = -11271.5; //-11271.5
   public double maxElevatorHeight = 392318;
 
   double minElevatorsafe = 10000;
-  double maxElevatorSafe = 350000;
+  double maxElevatorSafe = 398876.75; //350000
 
   //double minElevatorHeight = 100;
   //double maxElevatorHeight = 10000;
@@ -67,14 +71,108 @@ public class Elevator extends Subsystem
   }
 
 
-  // User Input //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
+  // Internal Functions //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
+
+  boolean ElevatorTimerWait(double time) // new \/
+  {
+    boolean timerFinished = false;
+    if(timerFinished == false)
+    {
+      timer.reset();
+      timer.start();
+      if(timer.get() >= time)
+      {
+        timerFinished = true;
+        System.out.println("return false");
+        return false;
+      } else {
+        System.out.println("return false");
+        return false;
+      }
+    } else {
+      System.out.println("return true");
+      return true;
+    }
+  } // new /\
+
+  // public void setTimeout(double startTime) {
+  //   timestamp = startTime;
+
+  // }
+
+  
+
+  // public boolean isTimedout(double currentTime, double timeToWait) {
+  //   return currentTime - timestamp >= timeToWait;
+  // }
 
 
-  // Automatic Input // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
+
+  void ElevatorBrakeOn()
+  {
+    p_elevatorBrake.set(Value.kForward);
+  }
+
+  void ElevatorBrakeOff()
+  {
+    p_elevatorBrake.set(Value.kReverse);
+  }
+// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
+
+  void MoveElevatorDOWN()
+  {
+    ElevatorBrakeOff();
+    rightElevatorMotor.set(elevatorDown);
+    leftElevatorMotor.set(elevatorDown);
+  }
+
+// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
+
+  void MoveElevatorUP()
+  {
+
+    ElevatorBrakeOff();
+    rightElevatorMotor.set(elevatorUP);
+    leftElevatorMotor.set(elevatorUP);
+  }
+
+// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
+
+  void ElevatorStop()
+  {
+    System.out.println("Stopping Elevator");
+    rightElevatorMotor.stopMotor();
+    leftElevatorMotor.stopMotor();
+    ElevatorBrakeOn();
+  }
+
+  // void SetElevatorSpeed(double speed, boolean direction) // new \/
+  // {
+  //   if(direction)
+  //   {
+  //     rightElevatorMotor.set(-speed);
+  //     leftElevatorMotor.set(-speed);
+  //   }else{
+  //     rightElevatorMotor.set(speed);
+  //     leftElevatorMotor.set(speed);
+  //   }
+  // }
+  // // Automatic Input // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
+  // public void autoTimedElevator(boolean direction, double time) 
+  // {
+  //   ElevatorBrakeOff();
+  //   SetElevatorSpeed(0.75, direction);
+  //   if(ElevatorTimerWait(time))
+  //   {
+  //     ElevatorStop();
+  //     ElevatorBrakeOn();
+  //   }
+    
+  // }  // new /\
 
   public void autoElevator(boolean elevatorDirection, double elevatorSpeed) 
   // Controll of the elevator for computor controlled robot
-  {
+  { 
     elevatorSpeed = Math.abs(elevatorSpeed); 
     // Learn how this actualy works so it can be properly commented
     if(elevatorDirection)
@@ -111,71 +209,17 @@ public class Elevator extends Subsystem
 
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 
-// void printEncoderValue()
-// {
-//   System.out.println(e_elevator.getDistance());
-// }
 
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 
-  void ElevatorBrakeOn()
-  {
-    p_elevatorBrake.set(Value.kForward);
-  }
-
-  void ElevatorBrakeOff()
-  {
-    p_elevatorBrake.set(Value.kReverse);
-    // System.out.println("Brake OFF");
-
-  }
-// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
-
-  void MoveElevatorDOWN()
-  {
-    ElevatorBrakeOff();
-    //double distance = e_elevator.getDistance();
-    // if (distance > minElevatorsafe || distance < maxElevatorSafe){
-    //   rightElevatorMotor.set(elevatorDown * 0.2);
-    //   leftElevatorMotor.set(elevatorDown * 0.2);
-    // } else {
-    //   rightElevatorMotor .set(elevatorDown);
-    //   leftElevatorMotor  .set(elevatorDown);
-    // }
-    rightElevatorMotor.set(elevatorDown);
-    leftElevatorMotor.set(elevatorDown);
-
-
-  }
+void printEncoderValue()
+{
+  System.out.println(e_elevator.getDistance());
+}
 
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 
-  void MoveElevatorUP()
-  {
 
-    ElevatorBrakeOff();
-    // double distance = e_elevator.getDistance();
-    // if (distance > minElevatorsafe || distance > maxElevatorSafe) {
-    //   rightElevatorMotor.set(elevatorUP * 0.2);
-    //   leftElevatorMotor.set(elevatorUP * 0.2);
-    // }else {
-    // rightElevatorMotor .set(elevatorUP);
-    // leftElevatorMotor  .set(elevatorUP);
-    // }
-    rightElevatorMotor.set(elevatorUP);
-    leftElevatorMotor.set(elevatorUP);
-  }
-
-// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
-
-  void ElevatorStop()
-  {
-    System.out.println("Stopping Elevator");
-    rightElevatorMotor.stopMotor();
-    leftElevatorMotor.stopMotor();
-    //stop();
-    ElevatorBrakeOn();
-  }
 
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
   
@@ -233,7 +277,7 @@ public void ElevatorHightset(double setElevatorHight)
   {
     MoveElevatorDOWN();
   }
-    else if(elevatorDistance - 1000 < minElevatorHeight || elevatorDistance + 1000 > maxElevatorHeight) {
+    else if(elevatorDistance - 1000 < minElevatorHeight || elevatorDistance + 96000 > maxElevatorHeight) {  //Was -1000 and +1000
       ElevatorStop();
     }
 }
@@ -277,7 +321,6 @@ public void elevatorBrake(Joystick joystick)
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new cmdJoystickElevator());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }

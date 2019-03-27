@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 
-
+ 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
@@ -48,6 +48,9 @@ public class Drive extends Subsystem // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   WPI_VictorSPX leftMotorB           = new WPI_VictorSPX(RobotMap.leftMotorB);
   WPI_VictorSPX rightMotorA          = new WPI_VictorSPX(RobotMap.rightMotorA);
   WPI_TalonSRX rightMotorB          = new WPI_TalonSRX(RobotMap.rightMotorB);
+
+ //WPI_VictorSPX leftMotorA           = new WPI_VictorSPX(RobotMap.leftMotorA);   //Defensive Robot
+ //WPI_VictorSPX rightMotorB           = new WPI_VictorSPX(RobotMap.rightMotorB); // Defensive Robot
 
   // Speed Controller Groups
   SpeedControllerGroup leftDriveBase  = new SpeedControllerGroup(leftMotorA, leftMotorB); 
