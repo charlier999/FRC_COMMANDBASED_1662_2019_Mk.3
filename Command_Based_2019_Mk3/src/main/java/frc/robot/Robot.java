@@ -24,7 +24,6 @@ import edu.wpi.first.wpilibj.Compressor;
 // import edu.wpi.cscore.CvSource;
 // import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
-// import 
 
 // Subsystem Imports //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 import frc.robot.subsystems.Climber;
@@ -33,7 +32,6 @@ import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.GrabberOpenClose;
 import frc.robot.subsystems.Wrist;
 import frc.robot.subsystems.DriveAIDS;
-//import frc.robot.subsystems.ElevatorTry; //Added 3/3/19
 
 // Commands //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 import frc.robot.commands.cmdDrive;
@@ -41,7 +39,7 @@ import frc.robot.commands.cmdJoystickElevator;
 import frc.robot.commands.cmdWristJoystick;
 import frc.robot.commands.cmdEncoderPrint;
 import frc.robot.commands.cmdBallIntake;
-import frc.robot.commands.cmdOpticalSensor;
+import frc.robot.commands.cmdLineUpAid;
 
 
 public class Robot extends TimedRobot 
@@ -64,7 +62,7 @@ public class Robot extends TimedRobot
   Command cmdWristJoystick        = new cmdWristJoystick();
   Command cmdEncoderPrint         = new cmdEncoderPrint();
   Command cmdBallIntake           = new cmdBallIntake();
-  Command cmdOpticalSensor        = new cmdOpticalSensor();
+  Command cmdLineUpAid            = new cmdLineUpAid();
 
 
   // Other Components // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -87,20 +85,21 @@ public class Robot extends TimedRobot
     compressor.setClosedLoopControl(true);
     compressor.start();
     // cmdEncoderPrint.start();
-    }
+
+    cmdLineUpAid.start();
+  }
 
 
   @Override
   public void robotPeriodic() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   {
-    // cmdEncoderPrint.start();
-    cmdOpticalSensor.start();
+    cmdLineUpAid.start();
   }
 
   @Override
   public void disabledInit() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   {
-
+    cmdLineUpAid.start();
   }
 
   public void allPeriodic()
@@ -116,14 +115,27 @@ public class Robot extends TimedRobot
     SmartDashboard.putNumber("Left Drive Train Speed", Robot.sub_drive.e_driveLeft.getRate());
     SmartDashboard.putNumber("Left Drive Train Distance", Robot.sub_drive.e_driveLeft.getDistance());
     
-    // Optical Sensor Voltage
-    SmartDashboard.putNumber("Optical Sensor Voltage", Robot.sub_DriveAIDS.opticalSensor.getVoltage());
-    SmartDashboard.putNumber("Optical Sensor Value", Robot.sub_DriveAIDS.opticalSensor.getValue());
+    // Optical Sensors Value
+    SmartDashboard.putNumber("Top    Optical Sensor Value", Robot.sub_DriveAIDS.opticalSensorTop.   getValue());
+    SmartDashboard.putNumber("Left   Optical Sensor Value", Robot.sub_DriveAIDS.opticalSensorLeft.  getValue());
+    SmartDashboard.putNumber("Middle Optical Sensor Value", Robot.sub_DriveAIDS.opticalSensorMiddle.getValue());
+    SmartDashboard.putNumber("Right  Optical Sensor Value", Robot.sub_DriveAIDS.opticalSensorRight. getValue());
+    SmartDashboard.putNumber("Bottom Optical Sensor Value", Robot.sub_DriveAIDS.opticalSensorBottom.getValue());
+
+    // Optical Sensor Detected
+    SmartDashboard.putBoolean("Top    Optical Sensor Detected", Robot.sub_DriveAIDS.TopOpticalSensorDetected());
+    SmartDashboard.putBoolean("Left   Optical Sensor Detected", Robot.sub_DriveAIDS.LeftOpticalSensorDetected());
+    SmartDashboard.putBoolean("Middle Optical Sensor Detected", Robot.sub_DriveAIDS.MiddleOpticalSensorDetected());
+    SmartDashboard.putBoolean("Right  Optical Sensor Detected", Robot.sub_DriveAIDS.RightOpticalSensorDetected());
+    SmartDashboard.putBoolean("Bottom Optical Sensor Detected", Robot.sub_DriveAIDS.BottomOpticalSensorDetected());
+
+    cmdLineUpAid.start();
   }
 
   @Override
   public void disabledPeriodic() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   {
+    cmdLineUpAid.start();
     Scheduler.getInstance().run();
     allPeriodic();
   }
