@@ -58,50 +58,50 @@ boolean TimerWait(double time)
 
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 //-------------------------------------------------------//
-//        Get value from the aray of light sensors       //
+//        Get Value from the aray of light sensors       //
 //-------------------------------------------------------//
-  int GetOpticalSensorTopValue()
+  double GetOpticalSensorTopValue()
   {
-    int value = opticalSensorTop.getValue();
-    return value;
+    double Value = opticalSensorTop.getValue();
+    return Value;
   }
 
-  int GetOpticalSensorLeftValue()
+  double GetOpticalSensorLeftValue()
   {
-    int value = opticalSensorLeft.getValue();
-    return value;
+    double Value = opticalSensorLeft.getValue();
+    return Value;
   }
 
-  int GetOpticalSensorMiddleValue()
+  double GetOpticalSensorMiddleValue()
   {
-    int value = opticalSensorMiddle.getValue();
-    return value;
+    double Value = opticalSensorMiddle.getValue();
+    return Value;
   }
 
-  int GetOpticalSensorRightValue()
+  double GetOpticalSensorRightValue()
   {
-    int value = opticalSensorRight.getValue();
-    return value;
+    double Value = opticalSensorRight.getValue();
+    return Value;
   }
 
-  int GetOpticalSensorBottomValue()
+  double GetOpticalSensorBottomValue()
   {
-    int value = opticalSensorBottom.getValue();
-    return value;
+    double Value = opticalSensorBottom.getValue();
+    return Value;
   }
 
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 //-------------------------------------------------------//
-// Converts the value from the sensor to a boolean value //
+// Converts the Value from the sensor to a boolean Value //
 //-------------------------------------------------------//
 
   public boolean TopOpticalSensorDetected()
   {
-    if( GetOpticalSensorTopValue() <= 300 )
+    if( GetOpticalSensorTopValue() <= 370 )
     {
       return true;
     }
-    else if( GetOpticalSensorTopValue() >= 600 )
+    else if( GetOpticalSensorTopValue() >= 520 )
     {
       return false;
     }
@@ -110,11 +110,11 @@ boolean TimerWait(double time)
 
   public boolean LeftOpticalSensorDetected()
   {
-    if( GetOpticalSensorLeftValue() <= 300 )
+    if( GetOpticalSensorLeftValue() <= 370 )
     {
       return true;
     }
-    else if( GetOpticalSensorLeftValue() >= 600 )
+    else if( GetOpticalSensorLeftValue() >= 520 )
     {
       return false;
     }
@@ -123,11 +123,11 @@ boolean TimerWait(double time)
 
   public boolean MiddleOpticalSensorDetected()
   {
-    if( GetOpticalSensorMiddleValue() <= 300 )
+    if( GetOpticalSensorMiddleValue() <= 250 )
     {
       return true;
     }
-    else if( GetOpticalSensorMiddleValue() >= 600 )
+    else if( GetOpticalSensorMiddleValue() >= 520 )
     {
       return false;
     }
@@ -136,11 +136,11 @@ boolean TimerWait(double time)
 
   public boolean RightOpticalSensorDetected()
   {
-    if( GetOpticalSensorRightValue() <= 300 )
+    if( GetOpticalSensorRightValue() <= 370 )
     {
       return true;
     }
-    else if( GetOpticalSensorRightValue() >= 600 )
+    else if( GetOpticalSensorRightValue() >= 520 )
     {
       return false;
     }
@@ -149,11 +149,11 @@ boolean TimerWait(double time)
 
   public boolean BottomOpticalSensorDetected()
   {
-    if( GetOpticalSensorBottomValue() <= 300 )
+    if( GetOpticalSensorBottomValue() <= 370 )
     {
       return true;
     }
-    else if( GetOpticalSensorBottomValue() >= 600 )
+    else if( GetOpticalSensorBottomValue() >= 520 )
     {
       return false;
     }
