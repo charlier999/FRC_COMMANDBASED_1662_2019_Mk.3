@@ -25,8 +25,11 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class Elevator extends Subsystem 
 {
-  WPI_TalonSRX rightElevatorMotor = new WPI_TalonSRX(RobotMap.rightElevatorMotor);
-  //WPI_VictorSPX rightElevatorMotor  = new WPI_VictorSPX(RobotMap.rightElevatorMotor);
+  // The Right elevator motor controller is diffrnet from the Comp bot 
+  // WPI_TalonSRX rightElevatorMotor = new WPI_TalonSRX(RobotMap.rightElevatorMotor);
+  WPI_VictorSPX rightElevatorMotor  = new WPI_VictorSPX(RobotMap.rightElevatorMotor);
+
+
   WPI_VictorSPX leftElevatorMotor   = new WPI_VictorSPX(RobotMap.leftElevatorMotor);
 
   SensorCollection rightElevatorSensor = new SensorCollection(rightElevatorMotor);
@@ -34,7 +37,6 @@ public class Elevator extends Subsystem
   public DoubleSolenoid p_elevatorBrake = new DoubleSolenoid(1, 6, 7);
 
   public Encoder e_elevator = new Encoder(18, 19, false, Encoder.EncodingType.k4X);
- // public Encoder e_elevator = new Encoder(14, 15, false, Encoder.EncodingType.k4X);
 
   boolean elevatorHeightSafe;
 
@@ -48,9 +50,6 @@ public class Elevator extends Subsystem
 
   double elevatorUP   = -0.75;
   double elevatorDown =  0.75;
-
-  // private double timestamp = 0.0;
-
   
   public double minElevatorHeight = -11271.5; //-11271.5
   public double maxElevatorHeight = 392318;
@@ -73,7 +72,7 @@ public class Elevator extends Subsystem
 
   // Internal Functions //-=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
 
-  boolean ElevatorTimerWait(double time) // new \/
+  boolean ElevatorTimerWait(double time) 
   {
     boolean timerFinished = false;
     if(timerFinished == false)
@@ -93,20 +92,7 @@ public class Elevator extends Subsystem
       System.out.println("return true");
       return true;
     }
-  } // new /\
-
-  // public void setTimeout(double startTime) {
-  //   timestamp = startTime;
-
-  // }
-
-  
-
-  // public boolean isTimedout(double currentTime, double timeToWait) {
-  //   return currentTime - timestamp >= timeToWait;
-  // }
-
-
+  } 
 
   void ElevatorBrakeOn()
   {
@@ -117,6 +103,7 @@ public class Elevator extends Subsystem
   {
     p_elevatorBrake.set(Value.kReverse);
   }
+
 // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 
   void MoveElevatorDOWN()
@@ -146,29 +133,7 @@ public class Elevator extends Subsystem
     ElevatorBrakeOn();
   }
 
-  // void SetElevatorSpeed(double speed, boolean direction) // new \/
-  // {
-  //   if(direction)
-  //   {
-  //     rightElevatorMotor.set(-speed);
-  //     leftElevatorMotor.set(-speed);
-  //   }else{
-  //     rightElevatorMotor.set(speed);
-  //     leftElevatorMotor.set(speed);
-  //   }
-  // }
-  // // Automatic Input // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-  
-  // public void autoTimedElevator(boolean direction, double time) 
-  // {
-  //   ElevatorBrakeOff();
-  //   SetElevatorSpeed(0.75, direction);
-  //   if(ElevatorTimerWait(time))
-  //   {
-  //     ElevatorStop();
-  //     ElevatorBrakeOn();
-  //   }
-    
-  // }  // new /\
+// -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 
   public void autoElevator(boolean elevatorDirection, double elevatorSpeed) 
   // Controll of the elevator for computor controlled robot
@@ -274,10 +239,10 @@ public void ElevatorHightset(double setElevatorHight)
       MoveElevatorUP();
     }
     else if(elevatorDistance > setElevatorHight && elevatorDistance > minElevatorHeight)
-  {
-    MoveElevatorDOWN();
-  }
-    else if(elevatorDistance - 1000 < minElevatorHeight || elevatorDistance + 96000 > maxElevatorHeight) {  //Was -1000 and +1000
+    {
+      MoveElevatorDOWN();
+    }
+    else if(elevatorDistance - 1000 < minElevatorHeight || elevatorDistance + 1000 > maxElevatorHeight) {  //Was -1000 and +1000
       ElevatorStop();
     }
 }

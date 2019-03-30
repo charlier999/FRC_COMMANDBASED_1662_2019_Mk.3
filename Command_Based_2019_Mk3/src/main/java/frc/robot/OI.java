@@ -49,13 +49,13 @@ public class OI {
 
   // Button Pannel Buttons // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
 
-  public Button hatchLevel1Button       = new JoystickButton(buttonPannel, 6); 
-  public Button hatchLevel2Button       = new JoystickButton(buttonPannel, 7);
-  public Button hatchLevel3Button       = new JoystickButton(buttonPannel, 8);
+  public Button hatchLevel1Button       = new JoystickButton(buttonPannel, 3); 
+  public Button hatchLevel2Button       = new JoystickButton(buttonPannel, 4);
+  public Button hatchLevel3Button       = new JoystickButton(buttonPannel, 5);
 
-  public Button ballLevel1Button        = new JoystickButton(buttonPannel, 3);
-  public Button ballLevel2Button        = new JoystickButton(buttonPannel, 4);
-  public Button ballLevel3button        = new JoystickButton(buttonPannel, 5);
+  public Button ballLevel1Button        = new JoystickButton(buttonPannel, 6);
+  public Button ballLevel2Button        = new JoystickButton(buttonPannel, 7);
+  public Button ballLevel3button        = new JoystickButton(buttonPannel, 8);
 
   public Button intakeStationButton = new JoystickButton(buttonPannel, 1);
 

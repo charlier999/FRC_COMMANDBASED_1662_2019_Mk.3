@@ -31,7 +31,6 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.GrabberOpenClose;
 import frc.robot.subsystems.Wrist;
-import frc.robot.subsystems.DriveAIDS;
 
 // Commands //  -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=-
 import frc.robot.commands.cmdDrive;
@@ -39,7 +38,6 @@ import frc.robot.commands.cmdJoystickElevator;
 import frc.robot.commands.cmdWristJoystick;
 import frc.robot.commands.cmdEncoderPrint;
 import frc.robot.commands.cmdBallIntake;
-import frc.robot.commands.cmdLineUpAid;
 
 
 public class Robot extends TimedRobot 
@@ -51,7 +49,6 @@ public class Robot extends TimedRobot
   public static Elevator sub_elevator          = new Elevator();
   public static GrabberOpenClose sub_grabberOC = new GrabberOpenClose();
   public static Wrist sub_wrist                = new Wrist();
-  public static DriveAIDS sub_DriveAIDS        = new DriveAIDS();
 
   public static OI m_oi;
 
@@ -62,7 +59,6 @@ public class Robot extends TimedRobot
   Command cmdWristJoystick        = new cmdWristJoystick();
   Command cmdEncoderPrint         = new cmdEncoderPrint();
   Command cmdBallIntake           = new cmdBallIntake();
-  Command cmdLineUpAid            = new cmdLineUpAid();
 
 
   // Other Components // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
@@ -86,20 +82,20 @@ public class Robot extends TimedRobot
     compressor.start();
     // cmdEncoderPrint.start();
 
-    cmdLineUpAid.start();
+    
   }
 
 
   @Override
   public void robotPeriodic() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   {
-    cmdLineUpAid.start();
+    
   }
 
   @Override
   public void disabledInit() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   {
-    cmdLineUpAid.start();
+    
   }
 
   public void allPeriodic()
@@ -115,27 +111,12 @@ public class Robot extends TimedRobot
     SmartDashboard.putNumber("Left Drive Train Speed", Robot.sub_drive.e_driveLeft.getRate());
     SmartDashboard.putNumber("Left Drive Train Distance", Robot.sub_drive.e_driveLeft.getDistance());
     
-    // Optical Sensors Value
-    SmartDashboard.putNumber("Top    Optical Sensor Value", Robot.sub_DriveAIDS.opticalSensorTop.   getValue());
-    SmartDashboard.putNumber("Left   Optical Sensor Value", Robot.sub_DriveAIDS.opticalSensorLeft.  getValue());
-    SmartDashboard.putNumber("Middle Optical Sensor Value", Robot.sub_DriveAIDS.opticalSensorMiddle.getValue());
-    SmartDashboard.putNumber("Right  Optical Sensor Value", Robot.sub_DriveAIDS.opticalSensorRight. getValue());
-    SmartDashboard.putNumber("Bottom Optical Sensor Value", Robot.sub_DriveAIDS.opticalSensorBottom.getValue());
-
-    // Optical Sensor Detected
-    SmartDashboard.putBoolean("Top    Optical Sensor Detected", Robot.sub_DriveAIDS.TopOpticalSensorDetected());
-    SmartDashboard.putBoolean("Left   Optical Sensor Detected", Robot.sub_DriveAIDS.LeftOpticalSensorDetected());
-    SmartDashboard.putBoolean("Middle Optical Sensor Detected", Robot.sub_DriveAIDS.MiddleOpticalSensorDetected());
-    SmartDashboard.putBoolean("Right  Optical Sensor Detected", Robot.sub_DriveAIDS.RightOpticalSensorDetected());
-    SmartDashboard.putBoolean("Bottom Optical Sensor Detected", Robot.sub_DriveAIDS.BottomOpticalSensorDetected());
-
-    cmdLineUpAid.start();
   }
 
   @Override
   public void disabledPeriodic() // -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- -=- 
   {
-    cmdLineUpAid.start();
+    
     Scheduler.getInstance().run();
     allPeriodic();
   }
